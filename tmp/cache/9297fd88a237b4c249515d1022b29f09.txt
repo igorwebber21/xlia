@@ -1,0 +1,239 @@
+a:2:{s:4:"data";s:18695:"<!--
+<li>
+    <a href="category/"></a>
+            <ul>
+                    </ul>
+    </li>-->
+
+        <li class="mega-dropdown">
+        <a href="category/muzhchinam">Мужчинам</a>
+        <div class="sub-menu">
+            <div class="container">
+                <div class="megamenu-left width-25">
+                    <a href="#bannerLink" class="banner-wrap">
+                        <div class="banner style-13 autosize-text image-hover-scale" data-fontratio="4">
+                            <img src="http://ms-seiko/upload/categories/f6261db194f0c9c639537b97a5d03499.png" alt="Banner">
+                            <div class="banner-caption horc vertb" style="bottom: 3%;">
+                                <div class="vert-wrapper">
+                                    <div class="vert">
+                                        <div class="text-1">NEW STYLE</div>
+                                        <div class="text-2">New Collection</div>
+                                        <div class="banner-btn text-hoverslide" data-hcolor="#f82e56"><span><span class="text">SHOP NOW</span><span class="hoverbg"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="megamenu-categories column-3">
+                                        <!-- megamenu column 1 -->
+                    <div class="col">
+                        <a class="category-image light" href="#"><img src="http://ms-seiko/upload/categories/cec61e8d8a7b91398d95ce7beb76b8d9.png" alt /></a>
+                        <div class="category-title title-border"><a href="#">Одежда</a></div>
+                        <ul class="category-links">
+                                                        <li><a href="#">Брюки</a></li>
+                                                        <li><a href="#">Джинсы</a></li>
+                                                        <li><a href="#">Комплекты</a></li>
+                                                        <li><a href="#">Кофты</a></li>
+                                                        <li><a href="#">Крутки и пальто</a></li>
+                                                        <li><a href="#">Рубашки</a></li>
+                                                        <li><a href="#">Свитеры</a></li>
+                                                        <li><a href="#">Пиджаки</a></li>
+                                                    </ul>
+                    </div>
+                                        <!-- megamenu column 1 -->
+                    <div class="col">
+                        <a class="category-image light" href="#"><img src="http://ms-seiko/upload/categories/07c443218a5052ac55dbb0bd53385549.png" alt /></a>
+                        <div class="category-title title-border"><a href="#">Обувь</a></div>
+                        <ul class="category-links">
+                                                        <li><a href="#">Outdoor</a></li>
+                                                        <li><a href="#">Ботинки и сапоги</a></li>
+                                                        <li><a href="#">Кеды</a></li>
+                                                        <li><a href="#">Кроссовки</a></li>
+                                                        <li><a href="#">Тапки</a></li>
+                                                        <li><a href="#">Туфли</a></li>
+                                                        <li><a href="#">Уход за обувью</a></li>
+                                                        <li><a href="#">Сандалии</a></li>
+                                                    </ul>
+                    </div>
+                                        <!-- megamenu column 1 -->
+                    <div class="col">
+                        <a class="category-image light" href="#"><img src="http://ms-seiko/upload/categories/cb4e81bfdba669ff7f8a83c07d0378cf.png" alt /></a>
+                        <div class="category-title title-border"><a href="#">Аксессуары</a></div>
+                        <ul class="category-links">
+                                                        <li><a href="#">Ремни</a></li>
+                                                        <li><a href="#">Рюкзаки</a></li>
+                                                        <li><a href="#">Сумки</a></li>
+                                                        <li><a href="#">Часы</a></li>
+                                                        <li><a href="#">Шапки</a></li>
+                                                        <li><a href="#">Кошельки</a></li>
+                                                        <li><a href="#">Галстуки и бабочки</a></li>
+                                                        <li><a href="#">Шарфы</a></li>
+                                                    </ul>
+                    </div>
+                                    </div>
+            </div>
+        </div>
+    </li>
+            <li class="mega-dropdown">
+        <a href="category/zhenschinam">Женщинам</a>
+        <div class="sub-menu">
+            <div class="container">
+                <div class="megamenu-left width-25">
+                    <a href="#bannerLink" class="banner-wrap">
+                        <div class="banner style-13 autosize-text image-hover-scale" data-fontratio="4">
+                            <img src="http://ms-seiko/upload/categories/c818a9d1278ced58a74031c6cbba1f36.png" alt="Banner">
+                            <div class="banner-caption horc vertb" style="bottom: 3%;">
+                                <div class="vert-wrapper">
+                                    <div class="vert">
+                                        <div class="text-1">NEW STYLE</div>
+                                        <div class="text-2">New Collection</div>
+                                        <div class="banner-btn text-hoverslide" data-hcolor="#f82e56"><span><span class="text">SHOP NOW</span><span class="hoverbg"></span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="megamenu-categories column-3">
+                                        <!-- megamenu column 1 -->
+                    <div class="col">
+                        <a class="category-image light" href="#"><img src="http://ms-seiko/upload/categories/cdaa725256e2edf9e47a912e333d1e1d.png" alt /></a>
+                        <div class="category-title title-border"><a href="#">Одежда</a></div>
+                        <ul class="category-links">
+                                                        <li><a href="#">Футболки и майки</a></li>
+                                                        <li><a href="#">Свитеры и кардиганы</a></li>
+                                                        <li><a href="#">Платья</a></li>
+                                                        <li><a href="#">Юбки</a></li>
+                                                        <li><a href="#">Куртки и пальто</a></li>
+                                                        <li><a href="#">Блузки и рубашки</a></li>
+                                                        <li><a href="#">Кофты</a></li>
+                                                        <li><a href="#">Пиджаки и жилеты</a></li>
+                                                    </ul>
+                    </div>
+                                        <!-- megamenu column 1 -->
+                    <div class="col">
+                        <a class="category-image light" href="#"><img src="http://ms-seiko/upload/categories/362fb7c67b1ed2931233e32cd0b9150b.png" alt /></a>
+                        <div class="category-title title-border"><a href="#">Обувь</a></div>
+                        <ul class="category-links">
+                                                        <li><a href="#">Outdoor</a></li>
+                                                        <li><a href="#">Балетки</a></li>
+                                                        <li><a href="#">Кеды</a></li>
+                                                        <li><a href="#">Сапоги и ботинки</a></li>
+                                                        <li><a href="#">Туфли и босоножки</a></li>
+                                                        <li><a href="#">Кроссовки</a></li>
+                                                        <li><a href="#">Сандалии</a></li>
+                                                        <li><a href="#">Тапки</a></li>
+                                                    </ul>
+                    </div>
+                                        <!-- megamenu column 1 -->
+                    <div class="col">
+                        <a class="category-image light" href="#"><img src="http://ms-seiko/upload/categories/026e7ae4ff208e801f9e9420212af4c3.png" alt /></a>
+                        <div class="category-title title-border"><a href="#">Аксессуары</a></div>
+                        <ul class="category-links">
+                                                        <li><a href="#">Бижутерия</a></li>
+                                                        <li><a href="#">Зонты</a></li>
+                                                        <li><a href="#">Косметички</a></li>
+                                                        <li><a href="#">Кошельки</a></li>
+                                                        <li><a href="#">Очки</a></li>
+                                                        <li><a href="#">Перчатки</a></li>
+                                                        <li><a href="#">Сумочки</a></li>
+                                                        <li><a href="#">Шапки и шляпы</a></li>
+                                                    </ul>
+                    </div>
+                                    </div>
+            </div>
+        </div>
+    </li>
+            <li class="mega-dropdown">
+            <a href="category.html">Детям</a>
+            <div class="sub-menu">
+                <div class="container">
+
+                    <div class="megamenu-categories column-2">
+                                        <!-- megamenu column 1 -->
+                        <div class="col">
+                            <a class="category-image" href="#"><img src="http://ms-seiko/upload/categories/0b377b6b4e50ef4c8e4d4c7abfadcfb9.png" alt /></a>
+                            <div class="category-title title-border"><a href="#">Мальчик<span class="menu-label">HOT</span></a></div>
+
+                            <div class="flex top end">
+                                                                <div class="megamenu-categories-flex-3">
+                                    <a href="#" class="subcategory-title">Одежда</a>
+                                    <ul class="category-links">
+                                                                                    <li><a href="#">Брюки </a></li>
+                                                                                    <li><a href="#">Джинсы</a></li>
+                                                                                    <li><a href="#">Куртки и пальто</a></li>
+                                                                                    <li><a href="#">Футболки и майки</a></li>
+                                                                                    <li><a href="#">Шорты</a></li>
+                                                                            </ul>
+                                </div>
+                                                                    <div class="megamenu-categories-flex-3">
+                                    <a href="#" class="subcategory-title">Обувь</a>
+                                    <ul class="category-links">
+                                                                                    <li><a href="#">Кеды</a></li>
+                                                                                    <li><a href="#">Кроссовки</a></li>
+                                                                                    <li><a href="#">Сапоги и ботинки</a></li>
+                                                                                    <li><a href="#">Сандалии</a></li>
+                                                                                    <li><a href="#">Тапки</a></li>
+                                                                            </ul>
+                                </div>
+                                                                    <div class="megamenu-categories-flex-3">
+                                    <a href="#" class="subcategory-title">Аксессуары</a>
+                                    <ul class="category-links">
+                                                                                    <li><a href="#">Барсетки</a></li>
+                                                                                    <li><a href="#">Ремни</a></li>
+                                                                                    <li><a href="#">Рюкзаки</a></li>
+                                                                                    <li><a href="#">Шапки и шляпы</a></li>
+                                                                                    <li><a href="#">Гаджеты</a></li>
+                                                                            </ul>
+                                </div>
+                                                                </div>
+
+                        </div>
+                        <!-- /megamenu column 1 -->
+                                            <!-- megamenu column 1 -->
+                        <div class="col">
+                            <a class="category-image" href="#"><img src="http://ms-seiko/upload/categories/14a8cd1a197c6e24d96e6f0d91c18cae.png" alt /></a>
+                            <div class="category-title title-border"><a href="#">Девочка<span class="menu-label">HOT</span></a></div>
+
+                            <div class="flex top end">
+                                                                <div class="megamenu-categories-flex-3">
+                                    <a href="#" class="subcategory-title">Одежда</a>
+                                    <ul class="category-links">
+                                                                                    <li><a href="#">Блузки и рубашки</a></li>
+                                                                                    <li><a href="#">Брюки и леггинсы</a></li>
+                                                                                    <li><a href="#">Комбенизоны</a></li>
+                                                                                    <li><a href="#">Платья</a></li>
+                                                                                    <li><a href="#">Джинсы</a></li>
+                                                                            </ul>
+                                </div>
+                                                                    <div class="megamenu-categories-flex-3">
+                                    <a href="#" class="subcategory-title">Обувь</a>
+                                    <ul class="category-links">
+                                                                                    <li><a href="#">Балетки</a></li>
+                                                                                    <li><a href="#">Кроссовки</a></li>
+                                                                                    <li><a href="#">Сапоги и ботинки</a></li>
+                                                                                    <li><a href="#">Шлепанцы и босоножки</a></li>
+                                                                                    <li><a href="#">Тапки</a></li>
+                                                                            </ul>
+                                </div>
+                                                                    <div class="megamenu-categories-flex-3">
+                                    <a href="#" class="subcategory-title">Аксессуары</a>
+                                    <ul class="category-links">
+                                                                                    <li><a href="#">Сумочки</a></li>
+                                                                                    <li><a href="#">Шарфы и шляпы</a></li>
+                                                                                    <li><a href="#">Рюкзаки</a></li>
+                                                                                    <li><a href="#">Бижутерия</a></li>
+                                                                                    <li><a href="#">Аксессуары для младенцев</a></li>
+                                                                            </ul>
+                                </div>
+                                                                </div>
+
+                        </div>
+                        <!-- /megamenu column 1 -->
+                                    </div>
+            </div>
+    </li>
+    ";s:8:"end_time";i:1606760009;}

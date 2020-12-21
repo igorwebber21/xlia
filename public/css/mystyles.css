@@ -95,10 +95,29 @@ a, ul.simple-list li a, ul.simple-list i.icon{
 }
 /* ==============   cart ============= */
 
-   
+
+/* ==============   category ============= */
+.breadcrumbs li{
+	font-weight: 400;
+}
+
+.breadcrumbs li a{
+	font-weight: 700;
+}
+/* ==============   category ============= */
+
+
 /* ==============   product ============= */
 #previewsGallery a{
 	margin-bottom: 25px;
+}
+
+.tab-content h3.custom-color span{
+	font-family: Verdana, serif;
+}
+
+.page-main  a:hover{
+	color: #f82e56;
 }
 
 @media screen and (max-width: 991px){

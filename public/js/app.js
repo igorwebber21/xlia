@@ -2302,7 +2302,7 @@ $(function () {
 		var $this = $(".product-previews-carousel");
 
 		$this.slick({
-			slidesToShow: 3,
+			slidesToShow: 5,
 			slidesToScroll: 1,
 			dots: false,
 			focusOnSelect: true,

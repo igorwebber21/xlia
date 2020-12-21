@@ -6,7 +6,7 @@ namespace app\controllers\admin;
 
 use app\models\admin\Product;
 use app\models\AppModel;
-use app\models\Category;
+use app\models\admin\Category;
 use ishop\App;
 use ishop\Cache;
 use RedBeanPHP\R;
@@ -52,7 +52,7 @@ class CategoryController extends AppController
         }
         if(!empty($_POST))
         {
-            $category = new \app\models\admin\Category();
+            $category = new Category();
             $data = $_POST;
             $category->load($data);
             $category->getImg();
@@ -94,7 +94,7 @@ class CategoryController extends AppController
             }
 
             $name = $_POST['name'];
-            $product = new \app\models\admin\Category();
+            $product = new Category();
             $product->uploadImg($name, $vmax, $hmax);
         }
     }
@@ -104,7 +104,7 @@ class CategoryController extends AppController
         if(!empty($_POST))
         {
             $id = $this->getRequestID(false);
-            $category = new \app\models\admin\Category();
+            $category = new Category();
             $data = $_POST;
             $category->load($data);
             $category->getImg();

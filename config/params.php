@@ -11,11 +11,8 @@ return [
     'smtp_login' => 'igorwebber21@ukr.net',
     'smtp_password' => 'N69c8K27qh1ge445',
 
-    'img_width' => 125,
-    'img_height' => 200,
+    'img_width' => 390,
+    'img_height' => 480,
     'gallery_width' => 700,
-    'gallery_height' => 1000,
-
-    'category_width' => 420,
-    'category_height' => 660
+    'gallery_height' => 1000
 ];

@@ -1,307 +1,445 @@
-<!--start-breadcrumbs-->
-<div class="breadcrumbs">
-    <div class="container">
-        <div class="breadcrumbs-main">
-            <ol class="breadcrumb">
-                <?=$breadcrumbs?>
-            </ol>
+<!-- Page Content -->
+<main class="page-main">
+    <div class="block">
+        <div class="container">
+            <ul class="breadcrumbs">
+                <?=$breadcrumbs;?>
+                <li class="product-nav">
+                    <i class="icon icon-angle-left"></i><a href="#" class="product-nav-prev">prev product
+                        <span class="product-nav-preview">
+							<span class="image"><img src="images/products/product-prev-preview.jpg" alt=""><span class="price">$280</span></span>
+							<span class="name">Black swimsuit</span>
+						</span></a>/
+                    <a href="#" class="product-nav-next">next product
+                        <span class="product-nav-preview">
+							<span class="image"><img src="images/products/product-next-preview.jpg" alt=""><span class="price">$280</span></span>
+							<span class="name">Black swimsuit</span>
+						</span></a><i class="icon icon-angle-right"></i>
+                </li>
+            </ul>
         </div>
     </div>
-</div>
-<!--end-breadcrumbs-->
-<!--start-single-->
-<div class="single contact">
-    <div class="container">
-        <div class="single-main">
-            <?//=debug($product);?>
-            <div class="col-md-9 single-main-left">
-                <div class="sngl-top">
-                    <div class="col-md-5 single-top-left">
-                        <?php if($gallery): ?>
-                        <div class="flexslider">
-                            <ul class="slides">
-                                <?php foreach ($gallery as $item): ?>
-                                <li data-thumb="<?=GALLERYIMG?><?=$item->img?>">
-                                    <div class="thumb-image"> <img src="<?=GALLERYIMG?><?=$item->img?>" data-imagezoom="true" class="img-responsive" alt=""/> </div>
-                                </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
-                         <?php else: ?>
-                            <img src="<?=PRODUCTIMG?><?=$product->img?>" alt="">
-                        <?php endif; ?>
-                        <!-- FlexSlider -->
-
-                    </div>
-                    <div class="col-md-7 single-top-right">
-                        <div class="single-para simpleCart_shelfItem">
-                            <h2><?=$product->title?></h2>
-                            <div class="star-on">
-                                <ul class="star-footer">
-                                    <li><a href="#"><i> </i></a></li>
-                                    <li><a href="#"><i> </i></a></li>
-                                    <li><a href="#"><i> </i></a></li>
-                                    <li><a href="#"><i> </i></a></li>
-                                    <li><a href="#"><i> </i></a></li>
-                                </ul>
-                                <div class="review">
-                                    <a href="#"> 1 customer review </a>
-
-                                </div>
-                                <div class="clearfix"> </div>
+    <div class="block product-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-5">
+                    <!-- Product Gallery -->
+                    <div class="container">
+                        <div class="row">
+                            <?php  $previewImg = ($gallery) ? GALLERYIMG.reset($gallery)->img : '/public/upload/images/product-9.jpg';?>
+                            <div class="main-image col-xs-10">
+                                <img src="<?=$previewImg?>" class="zoom" alt="" data-zoom-image="<?=$previewImg?>" />
+                                <?php if($gallery): ?>
+                                <div class="dblclick-text"><span>Double click for enlarge</span></div>
+                                <a href="<?=$previewImg?>" class="zoom-link"><i class="icon icon-zoomin"></i></a>
+                                <?php endif; ?>
                             </div>
 
-                            <h5 class="item_price" id="base-price" data-price=" <?=$product->price * $curr['value'];?>">
-                                <?=$curr['symbol_left']?>
-                                <?=$product->price * $curr['value'];?>
-                                <?=$curr['symbol_right']?>
-                                <?php if($product->old_price): ?>
-                                    <small><del><?=$curr['symbol_left']?> <?=$product->old_price * $curr['value'];?><?=$curr['symbol_right']?></del></small>
-                                <?php endif; ?>
-                            </h5>
-                             <?=$product->content?>
-                            <?php if($modes): ?>
-                            <div class="available">
-                                <ul>
-                                    <li>Color
-                                        <select>
-                                            <option>Выбрать цвет</option>
-                                            <?php foreach ($modes as $mode): ?>
-                                                <option data-title="<?=$mode['title']?>"
-                                                        data-price="<?=$mode['price']*$curr['value']?>"
-                                                        value="<?=$mode['id']?>">
-                                                    <?=$mode['title']?>
-                                                </option>
-                                            <?php endforeach; ?>
-
-                                        </select>
-                                    </li>
-                                    <div class="clearfix"> </div>
-                                </ul>
+                            <?php if($gallery): ?>
+                            <div class="product-previews-wrapper col-xs-2">
+                                <div class="product-previews-carousel" id="previewsGallery">
+                                    <?php foreach ($gallery as $item): ?>
+                                    <a href="#" data-image="<?=GALLERYIMG.$item->img?>" data-zoom-image="<?=GALLERYIMG.$item->img?>"><img src="<?=GALLERYIMG.$item->img?>" alt="" /></a>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                             <?php endif; ?>
-                            <ul class="tag-men">
-                                <li><span>Category</span>
-                                    <span>: <a href="category/<?=$cats[$product->category_id]['alias']?>"><?=$cats[$product->category_id]['title']?></a></span></li>
-                            </ul>
-                            <div class="quantity">
-                                <input type="number" size="4" class="input-text qty text" value="1" name="quantity">
-                            </div>
-                            <a id="productAdd" data-id="<?=$product->id?>" href="cart/add?id=<?=$product->id?>" class="add-cart item_add add-to-cart-link">ADD TO CART</a>
-
                         </div>
                     </div>
-                    <div class="clearfix"> </div>
+                    <!-- /Product Gallery -->
                 </div>
-                <div class="tabs">
-                    <ul class="menu_drop">
-                        <li class="item1"><a href="#"><img src="images/arrow.png" alt="">Description</a>
-                            <ul>
-                                <li class="subitem1"><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</a></li>
-                                <li class="subitem2"><a href="#"> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore</a></li>
-                                <li class="subitem3"><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes </a></li>
-                            </ul>
-                        </li>
-                        <li class="item2"><a href="#"><img src="images/arrow.png" alt="">Additional information</a>
-                            <ul>
-                                <li class="subitem2"><a href="#"> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore</a></li>
-                                <li class="subitem3"><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes </a></li>
-                            </ul>
-                        </li>
-                        <li class="item3"><a href="#"><img src="images/arrow.png" alt="">Reviews (10)</a>
-                            <ul>
-                                <li class="subitem1"><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</a></li>
-                                <li class="subitem2"><a href="#"> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore</a></li>
-                                <li class="subitem3"><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes </a></li>
-                            </ul>
-                        </li>
-                        <li class="item4"><a href="#"><img src="images/arrow.png" alt="">Helpful Links</a>
-                            <ul>
-                                <li class="subitem2"><a href="#"> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore</a></li>
-                                <li class="subitem3"><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes </a></li>
-                            </ul>
-                        </li>
-                        <li class="item5"><a href="#"><img src="images/arrow.png" alt="">Make A Gift</a>
-                            <ul>
-                                <li class="subitem1"><a href="#">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</a></li>
-                                <li class="subitem2"><a href="#"> Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore</a></li>
-                                <li class="subitem3"><a href="#">Mirum est notare quam littera gothica, quam nunc putamus parum claram, anteposuerit litterarum formas humanitatis per seacula quarta decima et quinta decima. Eodem modo typi, qui nunc nobis videntur parum clari, fiant sollemnes </a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-
-                <?php if($related): ?>
-                <div class="latestproducts">
-                    <div class="product-one">
-                        
-                        <h3>С этим товаром также покупают</h3>
-                        <?php foreach ($related as $item): ?>
-                        <div class="col-md-4 product-left p-left">
-                            <div class="product-main simpleCart_shelfItem">
-                                <a href="product/<?=$item['alias']?>" class="mask">
-                                    <img class="img-responsive zoom-img" src="<?=PRODUCTIMG.$item['img']?>" alt="" /></a>
-                                <div class="product-bottom">
-                                    <h3>
-                                        <a href="product/<?=$item['alias']?>">
-                                            <?=$item['title']?>
-                                        </a>
-                                    </h3>
-                                    <p>Explore Now</p>
-                                    <h4>
-                                        <a class="item_add add-to-cart-link" href="cart/add?id=<?=$item['id']?>" data-id="<?=$item['id']?>">
-                                            <i></i>
-                                        </a>
-                                        <span class=" item_price">
-                                            <?=$curr['symbol_left']?>
-                                            <?=$item['price'] * $curr['value'];?>
-                                            <?=$curr['symbol_right']?>
-                                            <?php if($item['old_price']): ?>
-                                                <small><del><?=$curr['symbol_left']?> <?=$item['old_price'] * $curr['value'];?><?=$curr['symbol_right']?></del></small>
-                                            <?php endif; ?>
-                                        </span>
-                                    </h4>
+                <div class="col-sm-6 col-md-6 col-lg-7">
+                    <div class="product-info-block classic">
+                        <div class="product-name-wrapper">
+                            <h1 class="product-name"><?=$product->title?></h1>
+                            <div class="product-labels">
+                                <span class="product-label sale">SALE</span>
+                                <span class="product-label new">NEW</span>
+                            </div>
+                        </div>
+                        <div class="product-availability">Осталось: <span>5 шт.</span></div>
+                        <div class="product-description">
+                            <p>Брюки из коллекции Medicine. Модель выполнена из гладкой ткани.</p>
+                        </div>
+                        <div class="product-options">
+                            <div class="product-size swatches">
+                                <span class="option-label">Размер:</span>
+                                <div class="select-wrapper-sm">
+                                    <select class="form-control input-sm size-variants">
+                                        <option value="36">36 - $114.00 USD</option>
+                                        <option value="38" selected>38 - $114.00 USD</option>
+                                        <option value="40">40 - $114.00 USD</option>
+                                        <option value="42">42 - $114.00 USD</option>
+                                    </select>
                                 </div>
-                                <div class="srch">
-                                    <span>-50%</span>
+                                <ul class="size-list">
+                                    <li class="absent-option"><a href="#" data-value='36'><span class="value">36</span></a></li>
+                                    <li><a href="#" data-value='38'><span class="value">38</span></a></li>
+                                    <li><a href="#" data-value='40'><span class="value">40</span></a></li>
+                                    <li><a href="#" data-value='42'><span class="value">42</span></a></li>
+                                </ul>
+                            </div>
+                            <div class="product-color swatches">
+                                <span class="option-label">Цвет:</span>
+                                <div class="select-wrapper-sm">
+                                    <select class="form-control input-sm">
+                                        <option value="Red">Red</option>
+                                        <option value="Green">Green</option>
+                                        <option value="Blue" selected>Blue</option>
+                                        <option value="Yellow">Yellow</option>
+                                        <option value="Grey">Grey</option>
+                                        <option value="Violet">Violet</option>
+                                    </select>
+                                </div>
+                                <ul class="color-list">
+                                    <li class="absent-option"><a href="#" data-toggle="tooltip" data-placement="top" title="Red" data-value="Red" data-image="images/products/product-color-red.jpg"><span class="value"><img src="images/colorswatch/color-red.png" alt=""></span></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Pink" data-value="Green" data-image="images/products/product-color-green.jpg"><span class="value"><img src="images/colorswatch/color-green.png" alt=""></span></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Marine" data-value="Blue" data-image="images/products/product-color-blue.jpg"><span class="value"><img src="images/colorswatch/color-blue.png" alt=""></span></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Orange" data-value="yellow" data-image="images/products/product-color-yellow.jpg"><span class="value"><img src="images/colorswatch/color-yellow.png" alt=""></span></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Orange" data-value="grey" data-image="images/products/product-color-grey.jpg"><span class="value"><img src="images/colorswatch/color-grey.png" alt=""></span></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Orange" data-value="grey" data-image="images/products/product-color-violet.jpg"><span class="value"><img src="images/colorswatch/color-violet.png" alt=""></span></a></li>
+                                </ul>
+                            </div>
+                            <div class="product-qty">
+                                <span class="option-label">Кол-во:</span>
+                                <div class="qty qty-changer">
+                                    <fieldset>
+                                        <input type="button" value="&#8210;" class="decrease">
+                                        <input type="text" class="qty-input" value="2" data-min="0">
+                                        <input type="button" value="+" class="increase">
+                                    </fieldset>
                                 </div>
                             </div>
                         </div>
-
-                        <?php endforeach; ?>
-                       
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <?php endif; ?>
-
-
-                <?php if($recentlyViewed): ?>
-                    <div class="latestproducts">
-                        <div class="product-one">
-
-                            <h3>Просмотренные товары</h3>
-                            <?php foreach ($recentlyViewed as $item): ?>
-                                <div class="col-md-4 product-left p-left">
-                                    <div class="product-main simpleCart_shelfItem">
-                                        <a href="product/<?=$item['alias']?>" class="mask">
-                                            <img class="img-responsive zoom-img" src="<?=PRODUCTIMG.$item['img']?>" alt="" /></a>
-                                        <div class="product-bottom">
-                                            <h3>
-                                                <a href="product/<?=$item['alias']?>">
-                                                    <?=$item['title']?>
-                                                </a>
-                                            </h3>
-                                            <p>Explore Now</p>
-                                            <h4>
-                                                <a class="item_add add-to-cart-link" href="cart/add?id=<?=$item['id']?>" data-id="<?=$item['id']?>">
-                                                    <i></i>
-                                                </a>
-                                                <span class=" item_price">
-                                            <?=$curr['symbol_left']?>
-                                                    <?=$item['price'] * $curr['value'];?>
-                                                    <?=$curr['symbol_right']?>
-                                                    <?php if($item['old_price']): ?>
-                                                        <small><del><?=$curr['symbol_left']?> <?=$item['old_price'] * $curr['value'];?><?=$curr['symbol_right']?></del></small>
-                                                    <?php endif; ?>
-                                        </span>
-                                            </h4>
-                                        </div>
-                                        <div class="srch">
-                                            <span>-50%</span>
+                        <div class="product-actions">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="product-meta">
+                                        <span><a href="#"><i class="icon icon-heart"></i> В избранное</a></span>
+                                    </div>
+                                    <div class="social">
+                                        <div class="share-button toLeft">
+                                            <span class="toggle">Поделиться</span>
+                                            <ul class="social-list">
+                                                <li>
+                                                    <a href="#" class="icon icon-google google"></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="icon icon-fancy fancy"></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="icon icon-pinterest pinterest"></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="icon icon-twitter-logo twitter"></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#" class="icon icon-facebook-logo facebook"></a>
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
-
-                            <?php endforeach; ?>
-
-                            <div class="clearfix"></div>
+                                <div class="col-md-6">
+                                    <div class="price">
+                                        <span class="old-price"><span><?=$curr['symbol_left'];?><?=$product->old_price?><?=$curr['symbol_right'];?></span></span>
+                                        <span class="special-price"><span><?=$curr['symbol_left'];?><?=$product->price;?><?=$curr['symbol_right'];?></span></span>
+                                    </div>
+                                    <div class="actions">
+                                        <button data-loading-text='<i class="icon icon-spinner spin"></i><span>Add to cart</span>' class="btn btn-lg btn-loading"><i class="icon icon-cart"></i><span>В корзину</span></button>
+                                        <a href="#" class="btn btn-lg product-details"><i class="icon icon-external-link"></i></a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
-                <?php endif; ?>
+                </div>
 
             </div>
-            <div class="col-md-3 single-right">
-                <div class="w_sidebar">
-                    <section  class="sky-form">
-                        <h4>Catogories</h4>
-                        <div class="row1 scroll-pane">
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>All Accessories</label>
-                            </div>
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Women Watches</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Kids Watches</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Men Watches</label>
-                            </div>
-                        </div>
-                    </section>
-                    <section  class="sky-form">
-                        <h4>Brand</h4>
-                        <div class="row1 row2 scroll-pane">
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>kurtas</label>
-                            </div>
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Sonata</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Titan</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Casio</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Omax</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox" ><i></i>shree</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Fastrack</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Sports</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Fossil</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Maxima</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Yepme</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Citizen</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Diesel</label>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="sky-form">
-                        <h4>Colour</h4>
-                        <ul class="w_nav2">
-                            <li><a class="color1" href="#"></a></li>
-                            <li><a class="color2" href="#"></a></li>
-                            <li><a class="color3" href="#"></a></li>
-                            <li><a class="color4" href="#"></a></li>
-                            <li><a class="color5" href="#"></a></li>
-                            <li><a class="color6" href="#"></a></li>
-                            <li><a class="color7" href="#"></a></li>
-                            <li><a class="color8" href="#"></a></li>
-                            <li><a class="color9" href="#"></a></li>
-                            <li><a class="color10" href="#"></a></li>
-                            <li><a class="color12" href="#"></a></li>
-                            <li><a class="color13" href="#"></a></li>
-                            <li><a class="color14" href="#"></a></li>
-                            <li><a class="color15" href="#"></a></li>
-                            <li><a class="color5" href="#"></a></li>
-                            <li><a class="color6" href="#"></a></li>
-                            <li><a class="color7" href="#"></a></li>
-                            <li><a class="color8" href="#"></a></li>
-                            <li><a class="color9" href="#"></a></li>
-                            <li><a class="color10" href="#"></a></li>
-                        </ul>
-                    </section>
-                    <section class="sky-form">
-                        <h4>discount</h4>
-                        <div class="row1 row2 scroll-pane">
-                            <div class="col col-4">
-                                <label class="radio"><input type="radio" name="radio" checked=""><i></i>60 % and above</label>
-                                <label class="radio"><input type="radio" name="radio"><i></i>50 % and above</label>
-                                <label class="radio"><input type="radio" name="radio"><i></i>40 % and above</label>
-                            </div>
-                            <div class="col col-4">
-                                <label class="radio"><input type="radio" name="radio"><i></i>30 % and above</label>
-                                <label class="radio"><input type="radio" name="radio"><i></i>20 % and above</label>
-                                <label class="radio"><input type="radio" name="radio"><i></i>10 % and above</label>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
-            <div class="clearfix"> </div>
         </div>
     </div>
-</div>
-<!--end-single-->
+    <div class="block">
+        <div class="tabaccordion">
+            <div class="container">
+                <!-- Nav tabs -->
+                <ul class="nav-tabs product-tab" role="tablist">
+                    <li><a href="#Tab1" role="tab" data-toggle="tab">Описание</a></li>
+                    <li><a href="#Tab2" role="tab" data-toggle="tab">Замеры</a></li>
+                    <li><a href="#Tab3" role="tab" data-toggle="tab">Размерная сетка</a></li>
+                    <li><a href="#Tab4" role="tab" data-toggle="tab">Отправка</a></li>
+                    <li><a href="#Tab5" role="tab" data-toggle="tab">Гарантия и возврат</a></li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane" id="Tab1">
+                        <p>Брюки из коллекции Medicine. Модель выполнена из гладкой ткани.</p>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped">
+                                <tbody>
+                                <tr>
+                                    <td><strong>Крой </strong></td>
+                                    <td>slim</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Карманы</strong></td>
+                                    <td>Прорезные карманы</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Застегивается</strong></td>
+                                    <td>На пуговицу и молнию</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Фасон</strong></td>
+                                    <td>Приталенный</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Материал</strong></td>
+                                    <td>Ткань с эластаном</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Состав</strong></td>
+                                    <td>2% Эластан, 98% Хлопок</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="Tab2">
+                        <h3 class="custom-color">Параметры указаны для размера - <span>31</span></h3>
+                        <table class="table table-bordered table-striped">
+                            <tbody>
+                            <tr>
+                                <td><strong>Ширина по поясу </strong></td>
+                                <td>42 см</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Полуобхват бедер </strong></td>
+                                <td>51 см</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Высота талии </strong></td>
+                                <td>26 см</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ширина штанины снизу </strong></td>
+                                <td>42 см</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ширина по поясу </strong></td>
+                                <td>17 см</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Ширина штанины сверху </strong></td>
+                                <td>27 см</td>
+                            </tr><tr>
+                                <td><strong>Длина </strong></td>
+                                <td>104 см</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="Tab3">
+                        <h3 class="custom-color">Размерная сетка</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td><strong>РАЗМЕР</strong></td>
+                                    <td>
+                                        <ul class="params-row">
+                                            <li>S</li>
+                                            <li>M</li>
+                                            <li>L</li>
+                                            <li>XL</li>
+                                            <li>XXL</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ОБХВАТ ТАЛИИ, см</strong></td>
+                                    <td>
+                                        <ul class="params-row">
+                                            <li>78-82</li>
+                                            <li>83-87</li>
+                                            <li>88-92</li>
+                                            <li>93-97</li>
+                                            <li>98-102</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>ВНУТРЕННЯЯ ДЛИНА ЩИКОЛОТКИ, см</strong></td>
+                                    <td>
+                                        <ul class="params-row">
+                                            <li>84</li>
+                                            <li>84</li>
+                                            <li>86</li>
+                                            <li>86</li>
+                                            <li>86</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="Tab4">
+                        <p>Отправка товара происходит в день после оформления заказа, при условии, что заказ оформлен до 16:00</p>
+                        <p>Срок доставки 1-3 дня по Украине в зависимости от графика перевозчика.</p>
+                        <p>Доставка осуществляется Новой Почтой или УкрПочтой</p>
+                        <p>Подробнее о доставке и оплате читайте <a href="dostavka-i-oplata"><strong>тут</strong></a>.</p>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="Tab5">
+                        <p>
+                            Вы вправе вернуть или обменять товар в течении 14 дней с момента получения заказа.
+                        </p>
+                        <p>
+                            При обмене или возврате нового изделия пересылку оплачивает покупатель (или продавец, но в таком случае цена доставки будет вычтена из суммы возврата средств)
+                        </p>
+                        <p>
+                            Обмену и возврату подлежат: изделия, которые не использовались; при наличии всех товарных ярлыков и бирок; изделия, которые невозможно эксплуатировать из-за выявленных дефектов.
+                        </p>
+                        <p>
+                            Подробнее о возврате читайте <a href="dostavka-i-oplata"><strong>тут</strong></a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block">
+        <div class="container">
+            <div class="row">
+
+                <?php if($related): ?>
+                <div class="col-md-12">
+                    <!-- Deal Carousel -->
+                    <div class="title">
+                        <h2 class="custom-color">Похожие товары</h2>
+                        <div class="toggle-arrow"></div>
+                        <div class="carousel-arrows"></div>
+                    </div>
+                    <div class="collapsed-content">
+                        <div class="similar-products-carousel products-grid product-variant-5">
+                            <!-- Product Item -->
+                            <?php foreach ($related as $item): ?>
+                            <div class="product-item large">
+                                <div class="product-item-inside">
+                                    <div class="product-item-info">
+                                        <!-- Product Photo -->
+                                        <div class="product-item-photo">
+                                            <!-- Product Label -->
+                                            <div class="product-item-label label-new"><span>New</span></div>
+                                            <!-- /Product Label -->
+                                            <div class="product-item-gallery">
+                                                <!-- product main photo -->
+                                                <div class="product-item-gallery-main">
+                                                    <a href="product/<?=$item['alias']?>"><img class="product-image-photo" src="<?=PRODUCTIMG.$item['img']?>" alt=""></a>
+
+                                                </div>
+                                                <!-- /product main photo  -->
+                                            </div>
+                                            <!-- Product Actions -->
+                                            <a href="#" title="Add to Wishlist" class="no_wishlist"> <i class="icon icon-heart"></i><span>В избранное</span> </a>
+
+                                            <!-- /Product Actions -->
+                                        </div>
+                                        <!-- /Product Photo -->
+                                        <!-- Product Details -->
+                                        <div class="product-item-details">
+                                            <div class="product-item-name"> <a title="Style Dome Men's Solid Red Color" href="product/<?=$item['alias']?>" class="product-item-link"><?=$item['title']?></a> </div>
+
+                                            <div class="price-box">
+                                                    <span class="price-container">
+                                                           <span class="price-wrapper">
+                                                               <span class="old-price"><?=$curr['symbol_left'];?><?=$item['old_price']?><?=$curr['symbol_right'];?></span>
+                                                                <span class="special-price">
+                                                                    <?=$curr['symbol_left'];?><?=$item['price'];?><?=$curr['symbol_right'];?>
+                                                                </span>
+                                                           </span>
+												    </span>
+                                            </div>
+
+                                            <button class="btn add-to-cart" data-product="789123"> <i class="icon icon-cart"></i><span>В корзину</span> </button>
+                                        </div>
+                                        <!-- /Product Details -->
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                    <!-- /Deal Carousel -->
+                </div>
+                <?php endif; ?>
+
+                <?php if($recentlyViewed): ?>
+                <div class="col-md-12">
+                    <!-- Deal Carousel -->
+                    <div class="title">
+                        <h2 class="custom-color">Просмотренные товары</h2>
+                        <div class="toggle-arrow"></div>
+                        <div class="carousel-arrows"></div>
+                    </div>
+                    <div class="collapsed-content">
+                        <div class="viewed-products-carousel products-grid product-variant-5">
+                            <!-- Product Item -->
+                            <?php foreach ($recentlyViewed as $item): ?>
+                                <div class="product-item large">
+                                    <div class="product-item-inside">
+                                        <div class="product-item-info">
+                                            <!-- Product Photo -->
+                                            <div class="product-item-photo">
+                                                <!-- Product Label -->
+                                                <div class="product-item-label label-new"><span>New</span></div>
+                                                <!-- /Product Label -->
+                                                <div class="product-item-gallery">
+                                                    <!-- product main photo -->
+                                                    <div class="product-item-gallery-main">
+                                                        <a href="product/<?=$item['alias']?>"><img class="product-image-photo" src="<?=PRODUCTIMG.$item['img']?>" alt=""></a>
+
+                                                    </div>
+                                                    <!-- /product main photo  -->
+                                                </div>
+                                                <!-- Product Actions -->
+                                                <a href="#" title="Add to Wishlist" class="no_wishlist"> <i class="icon icon-heart"></i><span>Add to Wishlist</span> </a>
+
+                                                <!-- /Product Actions -->
+                                            </div>
+                                            <!-- /Product Photo -->
+                                            <!-- Product Details -->
+                                            <div class="product-item-details">
+                                                <div class="product-item-name"> <a title="Style Dome Men's Solid Red Color" href="product/<?=$item['alias']?>" class="product-item-link"><?=$item['title']?></a> </div>
+
+                                                <div class="price-box">
+                                                    <span class="price-container">
+                                                           <span class="price-wrapper">
+                                                               <span class="old-price"><?=$curr['symbol_left'];?><?=$item['old_price']?><?=$curr['symbol_right'];?></span>
+                                                                <span class="special-price">
+                                                                    <?=$curr['symbol_left'];?><?=$item['price'];?><?=$curr['symbol_right'];?>
+                                                                </span>
+                                                           </span>
+												    </span>
+                                                </div>
+
+                                                <button class="btn add-to-cart" data-product="789123"> <i class="icon icon-cart"></i><span>В корзину</span> </button>
+                                            </div>
+                                            <!-- /Product Details -->
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                            <!-- /Product Item -->
+
+                        </div>
+                    </div>
+                    <!-- /Deal Carousel -->
+                </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- /Page Content -->

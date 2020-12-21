@@ -1,13 +1,3 @@
-<?php /*$parent = isset($category['childs']); */?><!--
-<li>
-    <a href="category/<?/*=$category['alias'];*/?>"><?/*=$category['title'];*/?></a>
-    <?php /*if(isset($category['childs'])): */?>
-        <ul>
-            <?/*= $this->getMenuHtml($category['childs']);*/?>
-        </ul>
-    <?php /*endif; */?>
-</li>-->
-
 <?php  //debug($tree, 1); ?>
 <?php foreach ($tree as $key => $category): ?>
     <?php if($key != 3): ?>
@@ -37,12 +27,12 @@
                             foreach ($category['childs'] as $subcat): ?>
                     <!-- megamenu column 1 -->
                     <div class="col">
-                        <a class="category-image light" href="#"><img src="<?=CATEGORYIMG.$subcat['img']?>" alt /></a>
-                        <div class="category-title title-border"><a href="#"><?=$subcat['title']?></a></div>
+                        <a class="category-image light" href="category/<?=$subcat['alias']?>"><img src="<?=CATEGORYIMG.$subcat['img']?>" alt /></a>
+                        <div class="category-title title-border"><a href="category/<?=$subcat['alias']?>"><?=$subcat['title']?></a></div>
                         <ul class="category-links">
                             <?php if(isset($subcat['childs'])):
                                     foreach ($subcat['childs'] as $item): ?>
-                            <li><a href="#"><?php echo $item['title']?></a></li>
+                            <li><a href="category/<?=$item['alias']?>"><?php echo $item['title']?></a></li>
                             <?php
                                     endforeach;
                                    endif;

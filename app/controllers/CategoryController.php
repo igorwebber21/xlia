@@ -17,7 +17,7 @@
 
             $alias = $this->route['alias'];
             $category = R::findOne('category', 'alias = ?', [$alias]);
-           // debug($category);
+
 
             if(!$category){
                 throw new \Exception('Страница не найдена', 404);
@@ -70,7 +70,7 @@
             }
 
             $this->setMeta($category->title, $category->description, $category->keywords);
-            $this->set(compact('products', 'breadcrumbs', 'pagination', 'total'));
+            $this->set(compact('products', 'breadcrumbs', 'pagination', 'total', 'category'));
            //die();
 
         }

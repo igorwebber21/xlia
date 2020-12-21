@@ -4,13 +4,42 @@
 namespace app\models\admin;
 
 use app\models\AppModel;
+use ishop\App;
 
 class Category extends AppModel
 {
 
     public $attributes = [
-        'title' => ''
+        'title' => '',
+        'parent_id' => '',
+        'keywords' => '',
+        'description' => '',
+        'alias' => ''
     ];
+
+    public $rules = [
+        'required' => [
+            'title'
+        ]
+    ];
+
+    public function getIds($id)
+    {
+        $cats = App::$app->getProperty('cats');
+        // debug($cats);
+        $ids = null;
+
+        foreach ($cats as $k => $v)
+        {
+            if($v['parent_id'] == $id)
+            {
+                $ids .= $k . ',';
+                $ids .= $this->getIds($k);
+            }
+        }
+
+        return $ids;
+    }
 
     public function getImg()
     {

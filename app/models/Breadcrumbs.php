@@ -11,14 +11,19 @@
             $breadcrumbs_array = self::getParts($cats, $category_id);
            // debug($cats);
             //debug($breadcrumbs_array);
-            $breadcrumbs = "<li><a href='" . PATH . "'>Главная</a></li>";
-            if($breadcrumbs_array){
-                foreach($breadcrumbs_array as $alias => $title){
-                    $breadcrumbs .= "<li><a href='" . PATH . "/category/{$alias}'>{$title}</a></li>";
+            $breadcrumbs = "<li><a href='" . PATH . "'><i class=\"icon icon-home\"></i></a></li>";
+            if($breadcrumbs_array){ $counter = 1;
+                foreach($breadcrumbs_array as $alias => $title)
+                {
+                    $breadcrumbs .= ($counter == count($breadcrumbs_array) && !$product_name)
+                        ? "<span> / </span><li>{$title}</li>"
+                        : "<span> / </span><li><a href='" . PATH . "/category/{$alias}'>{$title}</a></li>";
+
+                    $counter++;
                 }
             }
             if($product_name){
-                $breadcrumbs .= "<li>$product_name</li>";
+                $breadcrumbs .= "<span> / </span> <li>$product_name</li>";
             }
             return $breadcrumbs;
         }

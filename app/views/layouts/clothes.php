@@ -503,7 +503,7 @@
     <!-- Page Content -->
 </div>
 <!-- ProductStack -->
-<div class="productStack disable hide_on_scroll"> <a href="#" class="toggleStack"><i class="icon icon-cart"></i> (6) items</a>
+<div class="productStack disable hide_on_scroll"> <a href="#" class="toggleStack"><i class="icon icon-cart"></i> (6) шт.</a>
     <div class="productstack-content">
         <div class="products-list-wrapper">
             <ul class="products-list">

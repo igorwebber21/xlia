@@ -87,11 +87,142 @@ a, ul.simple-list li a, ul.simple-list i.icon{
 /* ==============   header  ============= */
 
 
+/* ==============   form ============= */
+form .has-success .form-control{
+	border-color: green;
+}
+form .has-error .form-control{
+	border-color: red;
+}
+.has-error, .has-success{
+	position: relative;
+}
+
+form .has-feedback .form-control-feedback{
+	position: absolute;
+	top: 38px;
+	height: auto;
+	width: auto;
+	right: 10px;
+}
+
+form label.userCity{
+	width: 100%;
+	display: flex;
+	align-items: baseline;
+}
+
+form #userCityDropdown li{
+	display: inline-block;
+	width: 100%;
+}
+
+form #userCityDropdown li a{
+	display: inline-block;
+	width: 100%;
+	padding: 7px 5px;
+}
+
+form #userCityDropdown li:not(:last-child){
+	border-bottom: 1px solid #eee8d5;
+}
+
+form #userCityDropdown{
+	width: 100%;
+}
+/* ==============   form ============= */
+
 
 
 /* ==============   cart ============= */
 .cart-select{
 	margin-bottom: 12px;
+}
+
+.header-cart.variant-1 .dropdown-container .product-item-pricing .price-container{
+	font-size: 14px;
+}
+
+.header-cart.variant-1 .dropdown-container .product-item-qty{
+	width: 20%;
+	display: flex;
+	margin-top: 6px;
+	align-items: center;
+}
+.header-cart.variant-1 .dropdown-container .product-item-qty i.icon{
+	font-size: 10px;
+	cursor: pointer;
+}
+
+.header-cart.variant-1 .dropdown-container .product-item-qty .cart-item-qty{
+	margin: 0 5px;
+	width: 20px;
+	padding: 0;
+}
+
+.header-cart.variant-1 .dropdown-container .product-item-details{
+	width: calc(100% - 80px);
+}
+
+.header-cart.variant-1 .dropdown-container .product.actions{
+	width: 20px;
+}
+
+#header-cart-block .cart-actions-btns .secondary a,
+#clearCart .secondary a{
+	background-color: transparent;
+	color: #333745;
+	border-color: #333745;
+}
+
+#header-cart-block .cart-actions-btns{
+	clear: both;
+	padding: 25px 0 0;
+	text-align: right;
+	display: flex;
+	justify-content: space-between;
+}
+
+.items-go-to-cart{
+	margin: 10px 0 0;
+}
+
+.productStack .total-cart .items-total,
+.productStack .total-cart .subtotal{
+	padding: 5px 0;
+	margin: 0;
+}
+
+.productStack .total-cart{
+	padding: 5px 10px;
+}
+
+.total-cart{
+	margin-right: 15px;
+}
+
+.items-go-to-cart button{
+	width: 100%;
+}
+
+#clearCart .actions{
+	display: flex;
+	justify-content: center;
+}
+
+#clearCart .actions .secondary{
+	margin-right: 25px;
+	background-color: transparent;
+	color: #333745;
+	border-color: #333745;
+}
+
+.no-products-block{
+	margin: 100px auto;
+}
+
+.no-products-block h1{
+	text-align: center;
 }
 /* ==============   cart ============= */
 

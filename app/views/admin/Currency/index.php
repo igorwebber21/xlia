@@ -28,7 +28,7 @@
                             </thead>
                             <tbody>
                             <?php foreach($currencies as $currency): ?>
-                                <tr>
+                                <tr <?php if($currency->base == 'yes') echo 'class="success"'; ?>>
                                     <td><?=$currency->id;?></td>
                                     <td><?=$currency->title;?></td>
                                     <td><?=$currency->code;?></td>

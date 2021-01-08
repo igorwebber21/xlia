@@ -12,7 +12,6 @@
 
         // method changes active currency on the site
         public function changeAction(){
-
             $currency = $_GET['curr'] ? $_GET['curr'] : null;
             if($currency){
                 $curr = R::findOne('currency', 'code = ?', [$currency]);

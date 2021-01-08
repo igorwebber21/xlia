@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php //session_unset ();
+//debug($_SESSION); ?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,6 +26,7 @@
 	<link href="css/style-color-tomato.css" rel="stylesheet">  -->
     <link href="css/mystyles.css" rel="stylesheet">
     <link href="css/megamenu.css" rel="stylesheet">
+    <link href="css/font-glyphicons.css" rel="stylesheet">
 
     <!-- Color Schemes -->
     <!-- your style-color.css here  -->
@@ -66,192 +68,16 @@
                     <div class="menu-toggle"><a href="#" class="mobilemenu-toggle"><i class="icon icon-menu"></i></a></div>
                     <!-- /Menu Toggle -->
                     <!-- Header Cart -->
-                    <div class="header-link dropdown-link header-cart variant-1">
-                        <a href="cart.html"> <i class="icon icon-cart"></i> <span class="badge">3</span> </a>
-                        <!-- minicart wrapper -->
-                        <div class="dropdown-container right">
-                            <!-- minicart content -->
-                            <div class="block block-minicart">
-                                <div class="minicart-content-wrapper">
-                                    <div class="block-title">
-                                        <span>Recently added item(s)</span>
-                                    </div>
-                                    <a class="btn-minicart-close" title="Close">&#10060;</a>
-                                    <div class="block-content">
-                                        <div class="minicart-items-wrapper overflowed">
-                                            <ol class="minicart-items">
-                                                <li class="item product product-item">
-                                                    <div class="product">
-                                                        <a class="product-item-photo" href="#" title="Long sleeve overall">
-																<span class="product-image-container">
-																<span class="product-image-wrapper">
-																<img class="product-image-photo" src="images/products/product-16-c1.jpg" alt="Long sleeve overall">
-																</span>
-																</span>
-                                                        </a>
-                                                        <div class="product-item-details">
-                                                            <div class="product-item-name">
-                                                                <a href="#">Long sleeve overall</a>
-                                                            </div>
-                                                            <div class="product-item-qty">
-                                                                <label class="label">Qty</label>
-                                                                <input class="item-qty cart-item-qty" maxlength="12" value="1">
-                                                                <button class="update-cart-item" style="display: none" title="Update">
-                                                                    <span>Update</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="product-item-pricing">
-                                                                <div class="price-container">
-																		<span class="price-wrapper">
-																			<span class="price-excluding-tax">
-																			<span class="minicart-price">
-																			<span class="price">$139.00</span> </span>
-																		</span>
-																		</span>
-                                                                </div>
-                                                                <div class="product actions">
-                                                                    <div class="secondary">
-                                                                        <a href="#" class="action delete" title="Remove item">
-                                                                            <span>Delete</span>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="primary">
-                                                                        <a class="action edit" href="#" title="Edit item">
-                                                                            <span>Edit</span>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="item product product-item">
-                                                    <div class="product">
-                                                        <a class="product-item-photo" href="#" title="Lace back mini dress">
-																<span class="product-image-container">
-																<span class="product-image-wrapper">
-																<img class="product-image-photo" src="images/products/product-20.jpg" alt="Lace back mini dress">
-																</span>
-																</span>
-                                                        </a>
-                                                        <div class="product-item-details">
-                                                            <div class="product-item-name">
-                                                                <a href="#">Lace back mini dress</a>
-                                                            </div>
-                                                            <div class="product-item-qty">
-                                                                <label class="label">Qty</label>
-                                                                <input class="item-qty cart-item-qty" maxlength="12" value="1">
-                                                                <button class="update-cart-item" style="display: none" title="Update">
-                                                                    <span>Update</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="product-item-pricing">
-                                                                <div class="price-container">
-																		<span class="price-wrapper">
-																			<span class="price-excluding-tax">
-																			<span class="minicart-price">
-																			<span class="price">$79.00</span> </span>
-																		</span>
-																		</span>
-                                                                </div>
-                                                                <div class="product actions">
-                                                                    <div class="secondary">
-                                                                        <a href="#" class="action delete" title="Remove item">
-                                                                            <span>Delete</span>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="primary">
-                                                                        <a class="action edit" href="#" title="Edit item">
-                                                                            <span>Edit</span>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li class="item product product-item">
-                                                    <div class="product">
-                                                        <a class="product-item-photo" href="#" title="Backless mini dress">
-																<span class="product-image-container">
-																<span class="product-image-wrapper">
-																<img class="product-image-photo" src="images/products/product-7.jpg" alt="Backless mini dress">
-																</span>
-																</span>
-                                                        </a>
-                                                        <div class="product-item-details">
-                                                            <div class="product-item-name">
-                                                                <a href="#">Backless mini dress</a>
-                                                            </div>
-                                                            <div class="product-item-qty">
-                                                                <label class="label">Qty</label>
-                                                                <input class="item-qty cart-item-qty" maxlength="12" value="1">
-                                                                <button class="update-cart-item" style="display: none" title="Update">
-                                                                    <span>Update</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="product-item-pricing">
-                                                                <div class="price-container">
-																		<span class="price-wrapper">
-																			<span class="price-excluding-tax">
-																			<span class="minicart-price">
-																			<span class="price">$369.00</span> </span>
-																		</span>
-																		</span>
-                                                                </div>
-                                                                <div class="product actions">
-                                                                    <div class="secondary">
-                                                                        <a href="#" class="action delete" title="Remove item">
-                                                                            <span>Delete</span>
-                                                                        </a>
-                                                                    </div>
-                                                                    <div class="primary">
-                                                                        <a class="action edit" href="#" title="Edit item">
-                                                                            <span>Edit</span>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                            </ol>
-                                        </div>
-                                        <div class="subtotal">
-												<span class="label">
-													<span>Subtotal</span>
-												</span>
-                                            <div class="amount price-container">
-                                                <span class="price-wrapper"><span class="price">$587.00</span></span>
-                                            </div>
-                                        </div>
-                                        <div class="actions">
-                                            <!-- <div class="secondary">
-                                                <a href="#" class="btn btn-alt">
-                                                    <i class="icon icon-cart"></i><span>View and edit cart</span>
-                                                </a>
-                                            </div> -->
-                                            <div class="secondary">
-                                                <a class="btn btn-alt" href="/?v=cart">
-                                                    <i class="icon icon-external-link"></i><span> Перейти в корзину </span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /minicart content -->
-                        </div>
-                        <!-- /minicart wrapper -->
+                    <div class="header-link dropdown-link header-cart variant-1" id="header-cart-block">
+                       <?php  require APP . "/views/Cart/cart_header.php"; ?>
                     </div>
                     <!-- /Header Cart -->
                     <!-- Header Links -->
                     <div class="header-links">
-
                         <!-- Header Language -->
                         <div class="header-link header-select dropdown-link header-language">
                             <a href="#">RU</a>
-                            <ul class="dropdown-container">
+                            <ul class="dropdown-container" id="currency">
                                 <li class="active">
                                     <a href="#"><img src="images/flags/ru.png" alt />RU</a>
                                 </li>
@@ -266,12 +92,7 @@
                         <!-- /Header Language -->
                         <!-- Header Currency -->
                         <div class="header-link header-select dropdown-link header-currency">
-                            <a href="#">UAH</a>
-                            <ul class="dropdown-container">
-                                <li class="active"><a href="#">UAH</a></li>
-                                <li><a href="#">USD</a></li>
-                                <li><a href="#">RUB</a></li>
-                            </ul>
+                            <?php new \app\widgets\currency\Currency(); ?>
                         </div>
                         <!-- /Header Currency -->
                         <!-- Header Account -->
@@ -502,76 +323,10 @@
     </div>
     <!-- Page Content -->
 </div>
+
 <!-- ProductStack -->
-<div class="productStack disable hide_on_scroll"> <a href="#" class="toggleStack"><i class="icon icon-cart"></i> (6) шт.</a>
-    <div class="productstack-content">
-        <div class="products-list-wrapper">
-            <ul class="products-list">
-                <li>
-                    <a href="product.html" title="Product Name Long Name"><img class="product-image-photo" src="images/products/product-10.jpg" alt=""></a> <span class="item-qty">3</span>
-                    <div class="actions"> <a href="#" class="action edit" title="Edit item"><i class="icon icon-pencil"></i></a> <a class="action delete" href="#" title="Delete item"><i class="icon icon-trash-alt"></i></a>
-                        <div class="edit-qty">
-                            <input type="number" value="3">
-                            <button type="button" class="btn">Apply</button>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <a href="product.html" title="Product Name Long Name"><img class="product-image-photo" src="images/products/product-11.jpg" alt=""></a> <span class="item-qty">3</span>
-                    <div class="actions"> <a class="action edit" href="#" title="Edit item"><i class="icon icon-pencil"></i></a> <a class="action delete" href="#" title="Delete item"><i class="icon icon-trash-alt"></i></a>
-                        <div class="edit-qty">
-                            <input type="number" value="3">
-                            <button type="button" class="btn">Apply</button>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <a href="product.html" title="Product Name Long Name"><img class="product-image-photo" src="images/products/product-12.jpg" alt=""></a> <span class="item-qty">3</span>
-                    <div class="actions"> <a class="action edit" href="#" title="Edit item"><i class="icon icon-pencil"></i></a> <a class="action delete" href="#" title="Delete item"><i class="icon icon-trash-alt"></i></a>
-                        <div class="edit-qty">
-                            <input type="number" value="3">
-                            <button type="button" class="btn">Apply</button>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <a href="product.html" title="Product Name Long Name"><img class="product-image-photo" src="images/products/product-13.jpg" alt=""></a> <span class="item-qty">3</span>
-                    <div class="actions"> <a class="action edit" href="#" title="Edit item"><i class="icon icon-pencil"></i></a> <a class="action delete" href="#" title="Delete item"><i class="icon icon-trash-alt"></i></a>
-                        <div class="edit-qty">
-                            <input type="number" value="3">
-                            <button type="button" class="btn">Apply</button>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <a href="product.html" title="Product Name Long Name"><img class="product-image-photo" src="images/products/product-14.jpg" alt=""></a> <span class="item-qty">3</span>
-                    <div class="actions"> <a class="action edit" href="#" title="Edit item"><i class="icon icon-pencil"></i></a> <a class="action delete" href="#" title="Delete item"><i class="icon icon-trash-alt"></i></a>
-                        <div class="edit-qty">
-                            <input type="number" value="3">
-                            <button type="button" class="btn">Apply</button>
-                        </div>
-                    </div>
-                </li>
-                <li>
-                    <a href="product.html" title="Product Name Long Name"><img class="product-image-photo" src="images/products/product-15.jpg" alt=""></a> <span class="item-qty">3</span>
-                    <div class="actions"> <a class="action edit" href="#" title="Edit item"><i class="icon icon-pencil"></i></a> <a class="action delete" href="#" title="Delete item"><i class="icon icon-trash-alt"></i></a>
-                        <div class="edit-qty">
-                            <input type="number" value="3">
-                            <button type="button" class="btn">Apply</button>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="action-cart">
-            <button type="button" class="btn" title="Checkout"> <span>Checkout</span> </button>
-            <button type="button" class="btn" title="Go to Cart"> <span>Go to Cart</span> </button>
-        </div>
-        <div class="total-cart">
-            <div class="items-total">Items <span class="count">6</span></div>
-            <div class="subtotal">Subtotal <span class="price">2.150</span></div>
-        </div>
-    </div>
+<div class="productStack hide_on_scroll <?php if(empty($_SESSION['cart'])) echo 'disable'; ?>" id="footer-cart-block">
+    <?php  require APP . "/views/Cart/cart_footer.php"; ?>
 </div>
 <!-- /ProductStack -->
 
@@ -591,6 +346,40 @@
 </div>
 <!-- /Modal Quick View -->
 
+<!-- Modal -->
+<div class="modal fade zoom" id="clearCart">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&#10006;</button>
+        </div>
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center">
+                            <h3 class="title">Очистить корзину</h3>
+                            <p>Вы уверены, что хотите удалить все товары из корзины?</p>
+                            <div class="actions">
+                                <div class="secondary">
+                                    <a href="#" class="btn btn-alt" data-dismiss="modal">
+                                        <span> Нет </span>
+                                    </a>
+                                </div>
+                                <div class="primary">
+                                    <a class="btn btn-alt cart-clear-confirm" href="#">
+                                        <span>Да </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Modal -->
+
 <!-- jQuery Scripts  -->
 <script src="js/vendor/jquery/jquery.js"></script>
 <script src="js/vendor/bootstrap/bootstrap.min.js"></script>
@@ -608,7 +397,9 @@
 <script src="js/vendor/darktooltip/dist/jquery.darktooltip.js"></script>
 <script src="js/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
 <script src="js/vendor/instafeed/instafeed.min.js"></script>
+<script src="js/validator.min.js"></script>
 <script src="js/megamenu.min.js"></script>
+<script src="js/jquery.maskedinput.min.js"></script>
 <script src="js/myscripts.js"></script>
 <script src="js/app.js"></script>
 

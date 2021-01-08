@@ -142,8 +142,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="price">
-                                        <span class="old-price"><span><?=$curr['symbol_left'];?><?=$product->old_price?><?=$curr['symbol_right'];?></span></span>
-                                        <span class="special-price"><span><?=$curr['symbol_left'];?><?=$product->price;?><?=$curr['symbol_right'];?></span></span>
+                                        <span class="old-price"><span><?=$curr['symbol_left'];?><?=round($product->old_price * $curr['value']);?><?=$curr['symbol_right'];?></span></span>
+                                        <span class="special-price"><span><?=$curr['symbol_left'];?><?=round($product->price * $curr['value']);?><?=$curr['symbol_right'];?></span></span>
                                     </div>
                                     <div class="actions">
                                         <button data-loading-text='<i class="icon icon-spinner spin"></i><span>Add to cart</span>' class="btn btn-lg btn-loading"><i class="icon icon-cart"></i><span>В корзину</span></button>

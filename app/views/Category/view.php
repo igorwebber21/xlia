@@ -337,15 +337,17 @@
                                             <div class="price-box">
                                                 <span class="price-container">
                                                     <span class="price-wrapper">
-                                                        <span class="old-price"><?=$curr['symbol_left'];?><?=$product->old_price?><?=$curr['symbol_right'];?></span>
+                                                        <span class="old-price"><?=$curr['symbol_left'];?><?=round($product->old_price * $curr['value'])?><?=$curr['symbol_right'];?></span>
                                                         <span class="special-price">
-                                                            <?=$curr['symbol_left'];?><?=$product->price;?><?=$curr['symbol_right'];?>
+                                                            <?=$curr['symbol_left'];?><?=round($product->price * $curr['value']);?><?=$curr['symbol_right'];?>
                                                         </span>
                                                     </span>
                                                 </span>
                                             </div>
 
-                                            <button class="btn add-to-cart" data-product="789123"> <i class="icon icon-cart"></i><span>В корзину</span> </button>
+                                            <button class="btn add-to-cart" data-id="<?=$product->id;?>" href="cart/add?id=<?=$product->id;?>">
+                                                <i class="icon icon-cart"></i><span>В корзину</span>
+                                            </button>
                                         </div>
                                         <!-- /Product Details -->
                                     </div>

@@ -1242,16 +1242,16 @@ $(function () {
 
 	// product stack
 	$.fn.ProductStack = function (productstack) {
+
 		var $productstack = this,
 			$toggleStack = $(".toggleStack", $productstack),
 			$editbtn = $(".action.edit", $productstack),
 			$product = $(".products-list li", $productstack);
 
-
-		$toggleStack.on('click', function (e) {
+		$('#footer-cart-block').on('click', '.toggleStack', function (e) {
 			$('.productStack').toggleClass('open');
 			e.preventDefault();
-		})
+		});
 
 		$product.on('mouseleave', function (e) {
 			var $this = $(this);

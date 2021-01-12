@@ -9,7 +9,12 @@
     use ishop\Cache;
     use RedBeanPHP\R;
 
-    class AppController extends Controller{
+    class AppController extends Controller
+    {
+        public $responseData = [
+            'status' => 0,
+            'message' => ''
+        ];
 
         public function __construct($route)
         {
@@ -39,6 +44,12 @@
             }
 
             return $cats;
+        }
+
+        public static function sendResponse($data)
+        {
+            echo json_encode($data);
+            exit;
         }
 
     }

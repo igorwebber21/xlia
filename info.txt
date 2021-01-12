@@ -9,3 +9,38 @@ https://github.com/lis-dev/nova-poshta-api-2
 https://devcenter.novaposhta.ua/
 https://devcenter.novaposhta.ua/docs/services/556d7ccaa0fe4f08e8f7ce43/operations/58e5ebeceea27017bc851d67
 https://qa-guide.ru/forums/topic/api_testing_postmen/
+
+
+Генератор анимаций
+https://icons8.com/cssload/ru/
+
+
+Локация пользователей
+https://www.geoplugin.com/
+Array
+(
+    [geoplugin_request] => 109.197.166.178
+    [geoplugin_status] => 200
+    [geoplugin_delay] => 2ms
+    [geoplugin_credit] => Some of the returned data includes GeoLite data created by MaxMind, available from http://www.maxmind.com.
+    [geoplugin_city] => Odessa
+    [geoplugin_region] => Odessa
+    [geoplugin_regionCode] => 51
+    [geoplugin_regionName] => Odessa
+    [geoplugin_areaCode] =>
+    [geoplugin_dmaCode] =>
+    [geoplugin_countryCode] => UA
+    [geoplugin_countryName] => Ukraine
+    [geoplugin_inEU] => 0
+    [geoplugin_euVATrate] =>
+    [geoplugin_continentCode] => EU
+    [geoplugin_continentName] => Europe
+    [geoplugin_latitude] => 46.4639
+    [geoplugin_longitude] => 30.7386
+    [geoplugin_locationAccuracyRadius] => 1
+    [geoplugin_timezone] => Europe/Kiev
+    [geoplugin_currencyCode] => UAH
+    [geoplugin_currencySymbol] => ₴
+    [geoplugin_currencySymbol_UTF8] => ₴
+    [geoplugin_currencyConverter] => 28.1959
+)

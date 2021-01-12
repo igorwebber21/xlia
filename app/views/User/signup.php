@@ -1,62 +1,111 @@
-<!--start-breadcrumbs-->
-<div class="breadcrumbs">
-    <div class="container">
-        <div class="breadcrumbs-main">
-            <ol class="breadcrumb">
-                <li><a href="<?= PATH ?>">Главная</a></li>
-                <li>Регистрация</li>
-            </ol>
+<!-- Page Content -->
+<main class="page-main">
+    <div class="block">
+        <div class="container">
+            <ul class="breadcrumbs">
+                <li><a href="<?=PATH?>"><i class="icon icon-home"></i></a></li>
+                <li> <span> / </span> </li>
+                <li> <span>Регистрация</span> </li>
+            </ul>
         </div>
     </div>
-</div>
-<!--end-breadcrumbs-->
-<!--prdt-starts-->
-<div class="prdt">
-    <div class="container">
-        <div class="prdt-top">
-            <div class="col-md-12">
-                <div class="product-one signup">
-                    <div class="register-top heading">
-                        <h2>REGISTER</h2>
+    <div class="block">
+        <div class="container">
+            <div class="form-card" id="registrationWrapp">
+
+                <h3>Регистрация</h3>
+
+                <div class="blockquote hide form-errors"></div>
+
+                <form id="registrationForm" class="account-create" action="#" autocomplete="off">
+
+                    <div class="row">
+
+                        <div class="col-xs-6">
+
+                            <h2>Личные данные</h2>
+
+                            <div class="form-group has-feedback">
+                                <label for="userName">Имя<span class="required">*</span></label>
+                                <input type="text" class="form-control" id="userName" name="userName" required data-minlength="3">
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="form-group has-feedback">
+                                <label for="userLastName">Фамилия <span class="required">*</span></label>
+                                <input type="text" class="form-control" id="userLastName" name="userLastName" required data-minlength="3">
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="form-group has-feedback">
+                                <label for="userPhone">Мобильный телефон <span class="required">*</span></label>
+                                <input type="tel" class="form-control phone-checker" id="userPhone" name="userPhone" required pattern="[\+]\d{2}[\s][\(]\d{3}[\)][\s]\d{3}[\-]\d{2}[\-]\d{2}" placeholder="+38 (___) ___-__-__">
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="form-group has-feedback">
+                                <label for="userCity" class="userCity">
+                                                <span class="labelBlock">
+                                                    <span>Город</span>
+                                                    <span class="required">*</span>
+                                                </span>
+                                </label>
+                                <div class="dropdown">
+                                    <input type="text" class="form-control dropdown-toggle" id="userCity" name="userCity" required
+                                           placeholder="Введите населённые пункт">
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" id="userCityDropdown"></ul>
+                                </div>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="col-xs-6">
+                            <h2>Данные авторизации</h2>
+
+                            <div class="form-group has-feedback">
+                                <label for="userEmail">Email <span class="required">*</span></label>
+                                <input type="email" class="form-control" id="userEmail" name="userEmail" required>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="form-group has-feedback">
+                                <label for="userPassword">Пароль <span class="required">*</span></label>
+                                <input type="password" class="form-control" id="userPassword" name="userPassword" required>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            </div>
+
+                            <div class="form-group has-feedback">
+                                <label for="userPasswordRepeat">Повторите пароль <span class="required">*</span></label>
+                                <input type="password" class="form-control" id="userPasswordRepeat" name="userPasswordRepeat" required>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            </div>
+
+                        </div>
+
                     </div>
 
-                    <div class="register-main">
-                        <div class="col-md-6 account-left">
-                            <form method="post" action="user/signup" id="signup" role="form" data-toggle="validator">
-                                <div class="form-group has-feedback">
-                                    <label for="login">Login</label>
-                                    <input type="text" name="login" class="form-control" id="login" placeholder="Login" value="<?=isset($_SESSION['form_data']['login']) ? h($_SESSION['form_data']['login']) : '';?>" required>
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                </div>
-                                <div class="form-group has-feedback">
-                                    <label for="pasword">Password</label>
-                                    <input type="password" name="password" class="form-control" id="password" placeholder="Password" data-error="Пароль должен включать не менее 6 символов" data-minlength="6" value="<?=isset($_SESSION['form_data']['password']) ? h($_SESSION['form_data']['password']) : '';?>" required>
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                    <div class="help-block with-errors"></div>
-                                </div>
-                                <div class="form-group has-feedback">
-                                    <label for="name">Имя</label>
-                                    <input type="text" name="name" class="form-control" id="name" placeholder="Имя" value="<?=isset($_SESSION['form_data']['name']) ? h($_SESSION['form_data']['name']) : '';?>" required>
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                </div>
-                                <div class="form-group has-feedback">
-                                    <label for="email">Email</label>
-                                    <input type="email" name="email" class="form-control" id="email" placeholder="Email" value="<?=isset($_SESSION['form_data']['email']) ? h($_SESSION['form_data']['email']) : '';?>" required>
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                </div>
-                                <div class="form-group has-feedback">
-                                    <label for="address">Address</label>
-                                    <input type="text" name="address" class="form-control" id="address" placeholder="Address" value="<?=isset($_SESSION['form_data']['address']) ? h($_SESSION['form_data']['address']) : '';?>" required>
-                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                </div>
-                                <button type="submit" class="btn btn-default">Зарегистрировать</button>
-                            </form>
-                            <?php if(isset($_SESSION['form_data'])) unset($_SESSION['form_data']); ?>
-                        </div>
-                    </div>
+                    <button type="submit" class="btn btn-lg">Создать аккаунт</button>
+                    <span class="required-text">* Обязательные поля</span>
+
+                </form>
+
+                <!-- loader -->
+                <div class="bg-loader hide"></div>
+                <div id="orderLoader" class="hide">
+                    <div id="spinningSquaresG_1" class="spinningSquaresG"></div>
+                    <div id="spinningSquaresG_2" class="spinningSquaresG"></div>
+                    <div id="spinningSquaresG_3" class="spinningSquaresG"></div>
+                    <div id="spinningSquaresG_4" class="spinningSquaresG"></div>
+                    <div id="spinningSquaresG_5" class="spinningSquaresG"></div>
+                    <div id="spinningSquaresG_6" class="spinningSquaresG"></div>
+                    <div id="spinningSquaresG_7" class="spinningSquaresG"></div>
+                    <div id="spinningSquaresG_8" class="spinningSquaresG"></div>
                 </div>
+                <!-- loader -->
+
             </div>
         </div>
     </div>
-</div>
-<!--product-end-->
+</main>
+<!-- /Page Content -->

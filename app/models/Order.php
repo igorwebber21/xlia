@@ -4,19 +4,22 @@
 namespace app\models;
 
 
+use app\controllers\CartController;
 use ishop\App;
 use RedBeanPHP\R;
 
 class Order extends AppModel
 {
+    public static $QUICK_ORDER_USER_ID = 888888;
 
     public static function saveOrder($data)
     {
         $order = R::dispense('orders');
 
-        $order->user_id = $data['user_id'];
+        $order->user_id = isset($data['user_id']) ? $data['user_id'] : self::$QUICK_ORDER_USER_ID;
         $order->note = $data['note'];
         $order->currency = $_SESSION['cart.currency']['code'];
+        $order->sum = round($_SESSION['cart.sum']);
 
         $order_id = R::store($order);
         self::saveOrderProduct($order_id);
@@ -31,7 +34,8 @@ class Order extends AppModel
         foreach ($_SESSION['cart'] as $product_id => $product)
         {
             $product_id = (int)$product_id;
-            $sql_part .= "($order_id, $product_id, {$product['qty']}, '{$product['title']}', {$product['price']}),";
+            $product_price = round($product['price']);
+            $sql_part .= "($order_id, $product_id, {$product['qty']}, '{$product['title']}', {$product_price}),";
         }
 
         $sql_part = rtrim($sql_part, ',');
@@ -67,16 +71,10 @@ class Order extends AppModel
 
         // Send a message
         $result = $mailer->send($messageClient);
-        $result = $mailer->send($messageAdmin);
+        $result2 = $mailer->send($messageAdmin);
         //============================= send email by SwiftMailer =======================================//
 
-
-        unset($_SESSION['cart']);
-        unset($_SESSION['cart.sum']);
-        unset($_SESSION['cart.qty']);
-        unset($_SESSION['cart.currency']);
-
-        $_SESSION['success'] = "Спасибо за ваш заказ. В ближайшее время с Вами свяжется менеджер";
+        return ($result == 1 && $result2 == 1) ? 1 : 0;
 
     }
 

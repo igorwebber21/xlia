@@ -16,14 +16,14 @@
                 foreach($breadcrumbs_array as $alias => $title)
                 {
                     $breadcrumbs .= ($counter == count($breadcrumbs_array) && !$product_name)
-                        ? "<span> / </span><li>{$title}</li>"
-                        : "<span> / </span><li><a href='" . PATH . "/category/{$alias}'>{$title}</a></li>";
+                        ? "<li><span> / </span></li><li><span>{$title}</span></li>"
+                        : "<li><span> / </span></li><li><a href='" . PATH . "/category/{$alias}'>{$title}</a></li>";
 
                     $counter++;
                 }
             }
             if($product_name){
-                $breadcrumbs .= "<span> / </span> <li>$product_name</li>";
+                $breadcrumbs .= "<li><span> / </span></li> <li><span>$product_name </span></li>";
             }
             return $breadcrumbs;
         }

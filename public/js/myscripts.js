@@ -13,7 +13,7 @@ $(function(){
 
 /* ==========================================  Order - cart ===================================================================*/
     // =========== orderForm validator ================== //
-    $('body #orderForm').validator();
+    $('body #orderForm, body #orderFormQuick, body #registrationForm').validator();
 
     // =========== nova poshta - cities ================== //
     $("#userCity").bind("click keyup", function() {
@@ -110,16 +110,70 @@ $(function(){
 
         var formData = new FormData($(this)[0]);
 
+        $(".form-errors").slideUp();
+
         $.ajax({
             type: 'POST',
             url: '/cart/checkout',
             data: formData,
+            beforeSend: function(){
+                    $("#orderLoader, .bg-loader").removeClass('hide');
+            },
             processData: false,
             contentType: false,
             dataType: "json",
             success: function(res){
-                console.log('res', res);
-               // var result = JSON.parse(res);
+                setTimeout(function () {
+                    $("#orderLoader, .bg-loader").addClass('hide');
+
+                    if(res.status === 1)
+                    {
+                        showCartViews(res.cart, 0);
+                        $("#cart-content").html("<div class=\"no-products-block\"><h1>" + res.message + "</h1></div>");
+                    }
+                    else{
+                        $(".form-errors").html(res.message).removeClass('hide').slideDown();
+                    }
+                }, 1500);
+            },
+            error: function(){
+                alert('Error!');
+            }
+        });
+
+        return false;
+    });
+
+
+    $("#orderFormQuick").submit(function () {
+
+        var formData = new FormData($(this)[0]);
+
+        $(".form-errors").slideUp();
+
+        $.ajax({
+            type: 'POST',
+            url: '/cart/checkoutQuick',
+            data: formData,
+            beforeSend: function(){
+                $("#orderLoader, .bg-loader").removeClass('hide');
+            },
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            success: function(res){
+                setTimeout(function () {
+                    $("#orderLoader, .bg-loader").addClass('hide');
+
+                    if(res.status === 1)
+                    {
+                        showCartViews(res.cart, 0);
+                        $("#cart-content").html("<div class=\"no-products-block\"><h1>" + res.message + "</h1></div>");
+                    }
+                    else{
+                        $(".form-errors").html(res.message).removeClass('hide').slideDown();
+                    }
+                }, 1500);
             },
             error: function(){
                 alert('Error!');
@@ -131,12 +185,68 @@ $(function(){
 /* ==========================================  Order - cart ===================================================================*/
 
 
+/* ==========================================  Registration  ===================================================================*/
+
+// =========== nova poshta - select user city ================== //
+    $("#registrationForm").on("click", "#userCityDropdown li a.np-settlement:not(.no-results)", function () {
+
+        var npSettlement =  $(this).text();
+
+        $("#userCity").val(npSettlement);
+        $(this).closest('.dropdown').removeClass('open');
+
+        $('body #registrationForm').validator('validate');
+
+        return false;
+
+    }).submit(function () {
+
+        var formData = new FormData($(this)[0]);
+
+        $(".form-errors").slideUp();
+
+        $.ajax({
+            type: 'POST',
+            url: '/user/signup',
+            data: formData,
+            beforeSend: function(){
+                $("#orderLoader, .bg-loader").removeClass('hide');
+            },
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            success: function(res){
+                console.log(res);
+                setTimeout(function () {
+
+                    $("#orderLoader, .bg-loader").addClass('hide');
+
+                    if(res.status === 1)
+                    {
+                        $("#registrationWrapp").html("<div class=\"no-products-block\"><h1>" + res.message + "</h1></div>");
+                    }
+                    else{
+                        $(".form-errors").html(res.message).removeClass('hide').slideDown();
+                    }
+                }, 1500);
+            },
+            error: function(){
+                alert('Error!');
+            }
+        });
+
+        return false;
+    });
+
+
+/* ========================================== Registration===================================================================*/
+
 /* ==========================================  Cart ===================================================================*/
 
     // функция динамического обновления корзины
-    function showCartViews(result)
+    function showCartViews(result, jsonParse = 1)
     {
-        var returnedData = JSON.parse(result);
+        var returnedData = jsonParse ? JSON.parse(result) : result;
         $('#footer-cart-block').html(returnedData.cartFooter);
         $('#header-cart-block').html(returnedData.cartHeader);
 
@@ -148,8 +258,8 @@ $(function(){
         }
         else{
             $('#cart-content .cart-table').html(returnedData.cartContent);
-            $("#orderForm .cartTotalQty").text(returnedData.cartTotalQty);
-            $("#orderForm .cartTotalSum").text(returnedData.cartTotalSum);
+            $("#cart-content .cartTotalQty").text(returnedData.cartTotalQty);
+            $("#cart-content .cartTotalSum").text(returnedData.cartTotalSum);
             $("#footer-cart-block").removeClass('disable');
            // $("#orderForm").show();
         }

@@ -63,14 +63,21 @@
 
         public function showAction()
         {
+            $cartViews = $this->getCartViews();
+            echo json_encode($cartViews, true);
+            die;
+        }
+
+        public function getCartViews()
+        {
             $cartViews['cartFooter'] = $this->loadViews('cart_footer');
             $cartViews['cartHeader'] = $this->loadViews('cart_header');
             $cartViews['cartContent'] = $this->loadViews('cart_content');
             $cartViews['cartIsEmpty'] = isset($_SESSION['cart']) && $_SESSION['cart'] ? false : true;
             $cartViews['cartTotalQty'] = isset($_SESSION['cart.qty']) ? $_SESSION['cart.qty'] : 0;
             $cartViews['cartTotalSum'] = isset($_SESSION['cart.sum']) ? round($_SESSION['cart.sum']) : 0;
-            echo json_encode($cartViews, true);
-            die;
+
+            return $cartViews;
         }
 
 
@@ -87,12 +94,16 @@
 
         public function clearAction()
         {
+            self::clearCart();
+            $this->isAjax() ? $this->showAction() : redirect();
+        }
+
+        public static function clearCart()
+        {
             unset($_SESSION['cart']);
             unset($_SESSION['cart.qty']);
             unset($_SESSION['cart.currency']);
             unset($_SESSION['cart.sum']);
-
-            $this->isAjax() ? $this->showAction() : redirect();
         }
 
         public function viewAction()
@@ -100,48 +111,111 @@
             $this->setMeta('Корзина');
         }
 
+        public function checkoutQuickAction()
+        {
+            if(isset($_POST['userPhoneQuick']) && !empty($_POST['userPhoneQuick']))
+            {
+                $user = new User();
+                $user->attributes['phone'] = $_POST['userPhoneQuick'];
+
+                // check, if user phone exists in DB
+                if(!$user->checkPhoneNumber())
+                {
+                    $errors = $user->getErrors();
+                    $this->responseData['message'] = $errors;
+                    self::sendResponse($this->responseData);
+                }
+
+                // save order
+                $userPhoneQuick = isset($_POST['userPhoneQuick'])
+                                  ? "Быстрый заказ с номера ". $_POST['userPhoneQuick'] .": "
+                                  : '';
+
+                $orderData['note'] = isset($_POST['orderCommentQuick']) ? $userPhoneQuick.$_POST['orderCommentQuick'] : '';
+                $order_id = Order::saveOrder($orderData);
+
+                // check if order is success
+                if($order_id)
+                {
+                    CartController::clearCart();
+                    $this->responseData['cart'] = $this->getCartViews();
+                    $this->responseData['status'] = 1;
+                    $this->responseData['message'] = '<p>Спасибо, за Ваш заказ. В ближайшее время с Вами свяжеться менеджер</p>';
+                }
+                else{
+                    $this->responseData['message'] = '<p>Ошибка, заказ не сохранён. Попробуйте ещё раз</p>';
+                }
+
+                self::sendResponse($this->responseData);
+            }
+        }
+
         public function checkoutAction()
         {
             if($_POST)
             {
-
-                debug($_POST, 1);
                 if(!User::checkAuth())
                 {
                     // register user
                     $user = new User();
                     $data = $_POST;
-                    $user->load($data);
 
-                    if(!$user->validate($data) || !$user->checkUnique())
+                    $user->attributes['email'] = $data['userEmail'];
+                    $user->attributes['phone'] = $data['userPhone'];
+                    $user->attributes['fname'] = $data['userName'];
+                    $user->attributes['lname'] = $data['userLastName'];
+
+                    // checkUnique - проверяем есть ли в БД user с таким телефоном или email
+                    if(!$user->validate($user->attributes) || !$user->checkUnique())
                     {
-                        $user->getErrors();
-                        $_SESSION['form_data'] = $data;
-                        redirect();
+                        $errors = $user->getErrors();
+                        $this->responseData['message'] = $errors;
+                        self::sendResponse($this->responseData);
                     }
                     else
                     {
-                        $user->attributes['password'] = password_hash($user->attributes['password'], PASSWORD_DEFAULT);
+                        $generatedPassword = $user::generatePassword();
+                        $user->attributes['password'] = password_hash($generatedPassword, PASSWORD_DEFAULT);
+                        $user->attributes['ip_address'] = getUserIP();
+                        $user->attributes['ip_location'] = getUserLocation($user->attributes['ip_address']);
+
                         $user_id = $user->save('user');
 
-                        if (!$user_id)
+                        if($user_id)
                         {
-                            $_SESSION['error'] = 'Ошибка';
-                            redirect();
+                            //если зарегистрировали - отправляем Email с данными для входа
+                            $user::sendEmailPassword($generatedPassword, $user->attributes);
+                        }
+                        else{
+                            $this->responseData['message'] = '<p>Ошибка, пользователь не сохранён. Попробуйте ещё раз</p>';
+                            self::sendResponse($this->responseData);
                         }
                     }
                 }
 
                 // save order
-                $data['user_id'] = isset($user_id) ? $user_id : $_SESSION['user']['id'];
-                $data['note'] = $_POST['note'] ? $_POST['note'] : '';
+                $orderData['user_id'] = isset($user_id) ? $user_id : $_SESSION['user']['id'];
+                $orderData['note'] = isset($_POST['orderComment']) ? $_POST['orderComment'] : '';
 
                 // send email to user
-                $user_email = isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : $_POST['email'];
-                $order_id = Order::saveOrder($data);
+                $user_email = isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : $_POST['userEmail'];
+                $order_id = Order::saveOrder($orderData);
                 Order::mailOrder($order_id, $user_email);
 
-                redirect();
+                // check if order is success
+                if($order_id)
+                {
+                    CartController::clearCart();
+                    $this->responseData['cart'] = $this->getCartViews();
+                    $this->responseData['status'] = 1;
+                    $this->responseData['message'] = '<p>Спасибо, за Ваш заказ. В ближайшее время с Вами свяжеться менеджер</p>';
+                }
+                else{
+                    $this->responseData['message'] = '<p>Ошибка, заказ не сохранён. Попробуйте ещё раз</p>';
+                }
+
+                self::sendResponse($this->responseData);
+
             }
         }
 

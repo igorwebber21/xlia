@@ -20,7 +20,7 @@ class NovaPoshtaController extends AppController
                 "calledMethod" => "searchSettlements",
                 "methodProperties" => [
                     "CityName" => $userCitySearch,
-                    "Limit" => 5
+                    "Limit" => 30
                 ]
             ];
 

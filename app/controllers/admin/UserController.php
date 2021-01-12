@@ -14,7 +14,7 @@ class UserController extends AppController
     public function indexAction()
     {
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $perpage = 3;
+        $perpage = 10;
         $count = R::count('user');
         $pagination = new Pagination($page, $perpage, $count);
         $start = $pagination->getStart();
@@ -81,5 +81,14 @@ class UserController extends AppController
         }
         $this->layout = 'login';
         $this->setMeta('Вход в админ панель');
+    }
+
+    public function deleteAction()
+    {
+        $user_id = $this->getRequestID();
+        $user = R::load('user', $user_id);
+        R::trash($user);
+        $_SESSION['success'] = 'Пользователь удален';
+        redirect(ADMIN . '/user');
     }
 }

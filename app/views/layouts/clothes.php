@@ -20,6 +20,7 @@
     <link href="js/vendor/nouislider/nouislider.css" rel="stylesheet">
     <link href="js/vendor/darktooltip/dist/darktooltip.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
+    <link href="css/loaders.css" rel="stylesheet">
 
     <!-- Custom -->
     <link href="css/style.css" rel="stylesheet"><!--
@@ -109,7 +110,7 @@
                                 </form>
                                 <!-- /form -->
                                 <div class="title">ИЛИ</div>
-                                <div class="bottom-text"><a href="/?v=registration">Создайте аккаунт</a></div>
+                                <div class="bottom-text"><a href="/user/signup">Создайте аккаунт</a></div>
                             </div>
                         </div>
                         <!-- /Header Account -->

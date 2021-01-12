@@ -35,7 +35,7 @@
                                 <?php $class = ($order['status'] == 'new') ? '' : 'success'; ?>
                                 <tr class="<?=$class;?>">
                                     <td><?=$order['id'];?></td>
-                                    <td><?=$order['name'];?></td>
+                                    <td><?=$order['fname'];?> <?=$order['lname'];?></td>
                                     <td><?=($order['status'] == 'new') ?  'Новый': 'Завершен';?></td>
                                     <td><?=$order['productsCount'];?></td>
                                     <td><?=$order['sum'];?> <?=$order['currency'];?></td>

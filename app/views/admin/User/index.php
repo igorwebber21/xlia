@@ -34,7 +34,10 @@
                                 <td><?=$user->email;?></td>
                                 <td><?=$user->name;?></td>
                                 <td><?=$user->role;?></td>
-                                <td><a href="<?=ADMIN;?>/user/edit?id=<?=$user->id;?>"><i class="fa fa-fw fa-eye"></i></a></td>
+                                <td>
+                                    <a href="<?=ADMIN;?>/user/edit?id=<?=$user->id;?>"><i class="fa fa-fw fa-eye"></i></a>
+                                    <a href="<?=ADMIN;?>/user/delete?id=<?=$user->id;?>" class="delete"><i class="fa fa-fw fa-close text-danger"></i></a>
+                                </td>
                                 </tr>
                             <?php endforeach; ?>
                             </tbody>

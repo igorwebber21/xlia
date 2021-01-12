@@ -15,25 +15,45 @@
 
             if(!empty($_POST))
             {
-                $user = new User();
-                $data= $_POST;
-                $user->load($data);
 
-               if(!$user->validate($data) || !$user->checkUnique())
+                $user = new User();
+                $user->rules['required'][] = ['password'];
+                $user->attributes['password'] = $_POST['userPassword'] ? $_POST['userPassword'] : '';
+
+                if(!$user->attributes['password'] || $user->attributes['password'] != $_POST['userPasswordRepeat'])
+                {
+                    $this->responseData["message"] = '<p>Ошибка! Введенные Вами пароли не совпадают</p>';
+                    self::sendResponse($this->responseData);
+                }
+
+                $user->attributes['email'] = $_POST['userEmail'];
+                $user->attributes['phone'] = $_POST['userPhone'];
+                $user->attributes['fname'] = $_POST['userName'];
+                $user->attributes['lname'] = $_POST['userLastName'];
+                $user->attributes['address'] = $_POST['userCity'];
+
+               if(!$user->validate($user->attributes) || !$user->checkUnique())
                {
-                   $user->getErrors();
-                   $_SESSION['form_data'] = $data;
+                   $this->responseData['message'] = $user->getErrors();
                }
                else
                {
                    $user->attributes['password'] = password_hash($user->attributes['password'], PASSWORD_DEFAULT);
-                   if ($user->save('user')) {
-                       $_SESSION['success'] = 'Пользователь успешно зарегистрирован';
-                   } else {
-                       $_SESSION['error'] = 'Ошибка';
+                   $user->attributes['ip_address'] = getUserIP();
+                   $user->attributes['ip_location'] = getUserLocation($user->attributes['ip_address']);
+
+                   if ($user->save('user'))
+                   {
+                       $this->responseData['status'] = 1;
+                       $this->responseData['message'] = '<p>Вы успешно зарегистрированы</p>';
+                   }
+                   else
+                   {
+                       $this->responseData['message'] = '<p>Ошибка, не удалось зарегистрироваться. Попробуйте ещё раз</p>';
                    }
                }
-                   redirect();
+
+                self::sendResponse($this->responseData);
             }
 
             $this->setMeta('Регистрация');

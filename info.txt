@@ -15,6 +15,10 @@ https://qa-guide.ru/forums/topic/api_testing_postmen/
 https://icons8.com/cssload/ru/
 
 
+Верстка под письма
+https://www.unisender.com/ru/blog/sovety/kak-sverstat-pismo-instruktsiya-dlya-chaynikov/
+
+
 Локация пользователей
 https://www.geoplugin.com/
 Array

@@ -10,7 +10,7 @@ use RedBeanPHP\R;
 
 class Order extends AppModel
 {
-    public static $QUICK_ORDER_USER_ID = 888888;
+    public static $QUICK_ORDER_USER_ID = 0;
 
     public static function saveOrder($data)
     {
@@ -23,6 +23,8 @@ class Order extends AppModel
 
         $order_id = R::store($order);
         self::saveOrderProduct($order_id);
+
+        self::saveOrderDelivery($order_id, $data);
 
         return $order_id;
     }
@@ -40,6 +42,12 @@ class Order extends AppModel
 
         $sql_part = rtrim($sql_part, ',');
         R::exec("INSERT INTO order_product (order_id, product_id, qty, title, price) VALUES $sql_part");
+    }
+
+    public static function saveOrderDelivery($order_id, $data)
+    {
+        $sql_part = "($order_id, '{$data['deliveryMethod']}', '{$data['paymentMethod']}', '{$data['deliveryCity']}', '{$data['deliveryBranch']}')";
+        R::exec("INSERT INTO user_delivery (order_id, delivery_method, payment_method, delivery_city, delivery_branch) VALUES $sql_part");
     }
 
     public static function mailOrder($order_id, $user_email)

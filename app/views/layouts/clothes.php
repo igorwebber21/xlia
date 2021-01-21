@@ -21,6 +21,8 @@
     <link href="js/vendor/darktooltip/dist/darktooltip.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/loaders.css" rel="stylesheet">
+    <link href="css/typeahead.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Custom -->
     <link href="css/style.css" rel="stylesheet"><!--
@@ -70,7 +72,7 @@
                     <!-- /Menu Toggle -->
                     <!-- Header Cart -->
                     <div class="header-link dropdown-link header-cart variant-1" id="header-cart-block">
-                       <?php  require APP . "/views/Cart/cart_header.php"; ?>
+                        <?php  require APP . "/views/Cart/cart_header.php"; ?>
                     </div>
                     <!-- /Header Cart -->
                     <!-- Header Links -->
@@ -98,20 +100,11 @@
                         <!-- /Header Currency -->
                         <!-- Header Account -->
                         <div class="header-link dropdown-link header-account">
-                            <a href="#"><i class="icon icon-user"></i></a>
-                            <div class="dropdown-container right">
-                                <div class="title">Личный кабинет</div>
-                                <div class="top-text">Если у вас уже есть аккаунт, ввойдите в него</div>
-                                <!-- form -->
-                                <form action="#">
-                                    <input type="text" class="form-control" placeholder="E-mail*">
-                                    <input type="text" class="form-control" placeholder="Пароль*">
-                                    <button type="submit" class="btn">Войти</button>
-                                </form>
-                                <!-- /form -->
-                                <div class="title">ИЛИ</div>
-                                <div class="bottom-text"><a href="/user/signup">Создайте аккаунт</a></div>
-                            </div>
+                            <?php if(isset($_SESSION['user']) && $_SESSION['user']): ?>
+                                <a href="user/cabinet"><i class="icon icon-user user-active"></i></a>
+                            <?php else: ?>
+                                <a href="#modalUserAuth" data-toggle="modal"><i class="icon icon-user"></i></a>
+                            <?php endif;?>
                         </div>
                         <!-- /Header Account -->
                     </div>
@@ -119,9 +112,9 @@
                     <!-- Header Search -->
                     <div class="header-link header-search header-search">
                         <div class="exp-search">
-                            <form action="/?v=search" method="post">
-                                <input class="exp-search-input " placeholder="Я ищу ..." type="text" value="">
-                                <input class="exp-search-submit" type="submit" value="">
+                            <form action="search" method="get" autocomplete="off">
+                                <input name="s" id="typeahead"  class="exp-search-input typeahead" placeholder="Я ищу ..." type="text">
+                                <input class="exp-search-submit" type="submit">
                                 <span class="exp-icon-search"><i class="icon icon-magnify"></i></span>
                                 <span class="exp-search-close"><i class="icon icon-close"></i></span>
                             </form>
@@ -224,7 +217,8 @@
                             <!-- input-group -->
                             <form action="#" id="subscribe-from">
                                 <div class="input-group">
-                                    <input type="email" class="form-control" placeholder="Подпишись на новости" required="">
+                                    <input type="email" class="form-control" placeholder="Подпишись на новости" required
+                                    <?php if(isset($_SESSION['user']['email'])) echo 'value="'.$_SESSION['user']['email'].'"';?>>
                                     <span class="input-group-btn">
 											<button class="btn btn-default" type="submit"><i class="icon icon-close-envelope"></i></button>
 											</span>
@@ -313,7 +307,7 @@
                     </div>
                 </div>
                 <div class="after-footer">
-                    <div class="footer-copyright text-center"> © <?=date("Y")?>. Все права защищены </div>
+                    <div class="footer-copyright text-center"> © 2020-<?=date("Y")?>. Все права защищены </div>
                 </div>
             </div>
         </footer>
@@ -381,6 +375,118 @@
 </div>
 <!-- /Modal -->
 
+
+<!-- Modal -->
+<?php if(!isset($_SESSION['user'])): ?>
+<div class="modal fade zoom" id="modalUserAuth">
+    <div class="modal-dialog modal-md">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&#10006;</button>
+        </div>
+        <div class="modal-content"   id="authWrapp">
+
+            <div class="modal-body">
+                <div class="row" id="authRow">
+
+                    <div class="col-lg-7 header-account leftBlock">
+                        <div class="dropdown-container right" id="authBlock">
+
+                            <div class="title">Личный кабинет</div>
+                            <div class="top-text">Если у вас уже есть аккаунт, ввойдите в него</div>
+
+                            <!-- form -->
+                            <form action="user/login" id="authForm">
+                                <div class="form-group has-feedback">
+                                    <input type="email" class="form-control" id="userLogin" name="userLogin" placeholder="E-mail*" required>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <input type="password" class="form-control" id="userPassword" name="userPassword" placeholder="Пароль*" required>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                </div>
+
+                                <button type="submit" class="btn">Войти</button>
+                            </form>
+                            <!-- /form -->
+
+                            <div class="bottom-text"><a href="#" id="forgotPassword">Забыли пароль?</a></div>
+
+
+                        </div>
+                        <div class="dropdown-container right" id="forgotPasswordBlock" style="display: none">
+
+                            <div class="title">Восстановление пароля</div>
+                            <div class="top-text">Введите Ваш Email и мы отправим письмо для с инструкцией по восстановлению пароля </div>
+
+                            <!-- form -->
+                            <form action="user/passwordRecovery" id="forgotPasswordForm">
+                                <div class="form-group has-feedback">
+                                    <input type="email" class="form-control" id="emailRecovery" name="emailRecovery" placeholder="E-mail*" required>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                </div>
+                                <button type="submit" class="btn">Отправить</button>
+                            </form>
+                            <!-- /form -->
+
+                            <div class="bottom-text"><a href="#" id="forgotPasswordBack">Войти на сайт</a></div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5 header-account rightBlock">
+                        <div class="dropdown-container right">
+                            <div class="top-text">Войдите с помощью Google или Facebook:</div>
+
+                            <a href="#" class="btn btn-blue">
+                                <i class="icon facebook icon-facebook-logo icon-circled"></i>
+                                <span>Войти с Facebook</span>
+                            </a>
+                            <a href="#" class="btn">
+                                <i class="icon icon-google icon-circled"></i>
+                                <span>Войти с Google</span>
+                            </a>
+
+                            <div class="title">ИЛИ</div>
+                            <div class="bottom-text"><a href="/user/signup">Создайте аккаунт</a></div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-12 blockquote hide form-errors"></div>
+
+                </div>
+            </div>
+
+            <!-- loader -->
+            <div class="bg-loader hide"></div>
+            <div class="hide spinningSquaresLoader">
+                <div id="spinningSquaresG_1" class="spinningSquaresG"></div>
+                <div id="spinningSquaresG_2" class="spinningSquaresG"></div>
+                <div id="spinningSquaresG_3" class="spinningSquaresG"></div>
+                <div id="spinningSquaresG_4" class="spinningSquaresG"></div>
+                <div id="spinningSquaresG_5" class="spinningSquaresG"></div>
+                <div id="spinningSquaresG_6" class="spinningSquaresG"></div>
+                <div id="spinningSquaresG_7" class="spinningSquaresG"></div>
+                <div id="spinningSquaresG_8" class="spinningSquaresG"></div>
+            </div>
+            <!-- loader -->
+
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+<!-- /Modal -->
+
+
+<?php $curr = \ishop\App::$app->getProperty('currency'); ?>
+<script>
+    var path = '<?=PATH?>',
+        course = <?=$curr['value']?>,
+        symbolLeft = '<?=$curr['symbol_left']?> ',
+        symbolRight = ' <?=$curr['symbol_right']?>';
+</script>
+
 <!-- jQuery Scripts  -->
 <script src="js/vendor/jquery/jquery.js"></script>
 <script src="js/vendor/bootstrap/bootstrap.min.js"></script>
@@ -401,6 +507,7 @@
 <script src="js/validator.min.js"></script>
 <script src="js/megamenu.min.js"></script>
 <script src="js/jquery.maskedinput.min.js"></script>
+<script src="js/typeahead.bundle.js"></script>
 <script src="js/myscripts.js"></script>
 <script src="js/app.js"></script>
 

@@ -80,7 +80,7 @@
                 }
             }
             $errors .= '</ul>';
-            $_SESSION['error'] = $errors;
+            return $errors;
         }
 
     }

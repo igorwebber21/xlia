@@ -1,4 +1,6 @@
 $(function(){
+
+    const sitename = location.protocol + "//" + location.hostname;
 	
 	$("#main-menu-btn").click(function(){
 		$("body").addClass('open-panel');
@@ -10,10 +12,37 @@ $(function(){
         $(this).focus();
     });
 
+    /* Search */
+    var products = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: {
+            wildcard: '%QUERY',
+            url: path + '/search/typeahead?query=%QUERY'
+        }
+    });
+
+    products.initialize();
+
+    $("#typeahead").typeahead({
+        // hint: false,
+        highlight: true
+    },{
+        name: 'products',
+        display: 'title',
+        limit: 10,
+        source: products
+    });
+
+    $('#typeahead').bind('typeahead:select', function(ev, suggestion) {
+        // console.log(suggestion);
+        window.location = path + '/search/?s=' + encodeURIComponent(suggestion.title);
+    });
+
 
 /* ==========================================  Order - cart ===================================================================*/
     // =========== orderForm validator ================== //
-    $('body #orderForm, body #orderFormQuick, body #registrationForm').validator();
+    $('body #orderForm, body #orderFormQuick, body #registrationForm, body #authForm').validator();
 
     // =========== nova poshta - cities ================== //
     $("#userCity").bind("click keyup", function() {
@@ -24,6 +53,9 @@ $(function(){
             $.ajax({
                 url: '/novaPoshta/searchSettlements',
                 data: {userCitySearch: userCitySearch},
+                beforeSend: function(){
+                    $(".cityBlock label i.fa-refresh").removeClass('hide');
+                },
                 type: 'GET',
                 success: function(res){
 
@@ -49,6 +81,8 @@ $(function(){
                         $("#userCity").dropdown('toggle');
                     }
 
+                    $(".cityBlock label i.fa-refresh").addClass('hide');   
+
                 },
                 error: function(){
                     alert('Error!');
@@ -61,48 +95,96 @@ $(function(){
 
         var npSettlement =  $(this).text();
         var npDeliveryCity = $(this).attr('data-delivery');
+        $("#userCity").attr('data-delivery', npDeliveryCity);
+        $("#warehousesDropdown").val('');
+
+        getNovaPoshtaBranches(npDeliveryCity);
 
         $("#userCity").val(npSettlement);
         $(this).closest('.dropdown').removeClass('open');
 
         $('body #orderForm').validator('validate');
 
-        $.ajax({
-            url: '/novaPoshta/getWarehouses',
-            data: {cityRef: npDeliveryCity},
-            type: 'GET',
-            success: function(res){
 
-                var result = JSON.parse(res);
-
-                var warehousesDropdown = '<option value="" readonly="readonly" selected>Не выбрано</option>';
-
-                if(result !== "no-results")
-                {
-                    for (let t=0; t<result.length; t++){
-                        var categoryOfWarehouse = "№" + result[t]['Number'];
-                        if(result[t]['CategoryOfWarehouse'] === "Postomat"){
-                            categoryOfWarehouse = "Почтомат " + "№" + result[t]['Number'];
-                        }
-                        warehousesDropdown += "<option value=\"" + categoryOfWarehouse + ", " + result[t]['ShortAddressRu'] + "\">"
-                           + categoryOfWarehouse + ", " + result[t]['ShortAddressRu'] + "</option>";
-                    }
-
-                    if(result !== '' && result !== null){
-                        $("#warehousesDropdown").html(warehousesDropdown);
-                    }
-                }
-                else{
-                }
-
-
-            },
-            error: function(){
-                alert('Error!');
-            }
-        });
 
         return false;
+    });
+
+
+    function getNovaPoshtaBranches(npDeliveryCity)
+    {
+        var deliveryMethod = Number($("#orderForm #deliveryMethod").val());
+
+        if(deliveryMethod === 1 && npDeliveryCity !== '' && npDeliveryCity != null){
+            $.ajax({
+                url: '/novaPoshta/getWarehouses',
+                data: {cityRef: npDeliveryCity},
+                beforeSend: function(){
+                   $(".addressBlock label i.fa-refresh").removeClass('hide');
+                },
+                type: 'GET',
+                success: function(res){
+
+                    var result = JSON.parse(res);
+                    var warehousesDropdown = '';
+
+                    if(result !== "no-results")
+                    {
+                        for (let t=0; t<result.length; t++){
+                            var categoryOfWarehouse = "№" + result[t]['Number'];
+                            if(result[t]['CategoryOfWarehouse'] === "Postomat"){
+                                categoryOfWarehouse = "Почтомат " + "№" + result[t]['Number'];
+                            }
+                            warehousesDropdown += "<li><a href='#'>" + categoryOfWarehouse + ", " + result[t]['ShortAddressRu'] + "</a></li>";
+                        }
+
+                        if(result !== '' && result !== null){
+                            $("#dropdownMenuWarehouses").html(warehousesDropdown);
+                        }
+
+                        $(".addressBlock label i.fa-refresh").addClass('hide');
+
+                        $("#dropdownMenuWarehouses").dropdown('toggle');
+                    }
+                    else{
+                    }
+
+
+                },
+                error: function(){
+                    alert('Error!');
+                }
+            });
+        }
+    }
+
+    $("#dropdownMenuWarehouses").on("click", "li a", function (){
+        var warehouse =  $(this).text();
+        $("#warehousesDropdown").val(warehouse);
+        $(this).closest('.dropdown').removeClass('open');
+        $('body #orderForm').validator('validate');
+        return false;
+    });
+
+    $("#warehousesDropdown").focus(function () {
+        var npDeliveryCity = $("#userCity").attr('data-delivery');
+        getNovaPoshtaBranches(npDeliveryCity);
+    });
+
+    $("#orderForm #deliveryMethod").change(function () {
+        var deliveryType = $(this).find('option:selected').attr('data-type');
+        var deliveryPrice = Number($(this).find('option:selected').attr('data-price'));
+        $("#addressLabel").text(deliveryType);
+        $("#warehousesDropdown").val('');
+
+        // recalc cart sum
+        var cartDeliveryPrice = Number($("#orderForm .cartDeliveryPrice").text());
+        var cartTotalSum = Number($("#orderForm .cartTotalSum").text());
+        var cartSum = Number(cartTotalSum - cartDeliveryPrice);
+
+        $("#orderForm .cartDeliveryPrice").text(deliveryPrice);
+        $("#orderForm .cartTotalSum").text(cartSum + deliveryPrice);
+
     });
 
 
@@ -110,21 +192,21 @@ $(function(){
 
         var formData = new FormData($(this)[0]);
 
-        $(".form-errors").slideUp();
+        $("#cart-content .form-errors").slideUp();
 
         $.ajax({
             type: 'POST',
             url: '/cart/checkout',
             data: formData,
             beforeSend: function(){
-                    $("#orderLoader, .bg-loader").removeClass('hide');
+                $("#cart-content .spinningSquaresLoader, #cart-content .bg-loader").removeClass('hide');
             },
             processData: false,
             contentType: false,
             dataType: "json",
             success: function(res){
                 setTimeout(function () {
-                    $("#orderLoader, .bg-loader").addClass('hide');
+                    $("#cart-content .spinningSquaresLoader, #cart-content .bg-loader").addClass('hide');
 
                     if(res.status === 1)
                     {
@@ -132,7 +214,7 @@ $(function(){
                         $("#cart-content").html("<div class=\"no-products-block\"><h1>" + res.message + "</h1></div>");
                     }
                     else{
-                        $(".form-errors").html(res.message).removeClass('hide').slideDown();
+                        $("#cart-content .form-errors").html(res.message).removeClass('hide').slideDown();
                     }
                 }, 1500);
             },
@@ -144,26 +226,32 @@ $(function(){
         return false;
     });
 
+    $("body").mouseup(function (e){ // событие клика по веб-документу
+        var div = $('#warehousesDropdown, #userCityDropdown').closest('.dropdown'); // тут указываем ID элемента
+        if (!div.is(e.target) && div.has(e.target).length === 0) { // и не по его дочерним элементам
+            div.removeClass('open'); // скрываем его
+        }
+    });
 
     $("#orderFormQuick").submit(function () {
 
         var formData = new FormData($(this)[0]);
 
-        $(".form-errors").slideUp();
+        $("#cart-content .form-errors").slideUp();
 
         $.ajax({
             type: 'POST',
             url: '/cart/checkoutQuick',
             data: formData,
             beforeSend: function(){
-                $("#orderLoader, .bg-loader").removeClass('hide');
+                $("#cart-content .spinningSquaresLoader, #cart-content .bg-loader").removeClass('hide');
             },
             processData: false,
             contentType: false,
             dataType: "json",
             success: function(res){
                 setTimeout(function () {
-                    $("#orderLoader, .bg-loader").addClass('hide');
+                    $("#cart-content .spinningSquaresLoader, #cart-content .bg-loader").addClass('hide');
 
                     if(res.status === 1)
                     {
@@ -171,7 +259,7 @@ $(function(){
                         $("#cart-content").html("<div class=\"no-products-block\"><h1>" + res.message + "</h1></div>");
                     }
                     else{
-                        $(".form-errors").html(res.message).removeClass('hide').slideDown();
+                        $("#cart-content .form-errors").html(res.message).removeClass('hide').slideDown();
                     }
                 }, 1500);
             },
@@ -203,30 +291,30 @@ $(function(){
 
         var formData = new FormData($(this)[0]);
 
-        $(".form-errors").slideUp();
+        $("#registrationWrapp .form-errors").slideUp();
 
         $.ajax({
             type: 'POST',
             url: '/user/signup',
             data: formData,
             beforeSend: function(){
-                $("#orderLoader, .bg-loader").removeClass('hide');
+                $("#registrationWrapp .spinningSquaresLoader, #registrationWrapp .bg-loader").removeClass('hide');
             },
             processData: false,
             contentType: false,
             dataType: "json",
             success: function(res){
-                console.log(res);
+
                 setTimeout(function () {
 
-                    $("#orderLoader, .bg-loader").addClass('hide');
+                    $("#registrationWrapp .spinningSquaresLoader, #registrationWrapp .bg-loader").addClass('hide');
 
                     if(res.status === 1)
                     {
                         $("#registrationWrapp").html("<div class=\"no-products-block\"><h1>" + res.message + "</h1></div>");
                     }
                     else{
-                        $(".form-errors").html(res.message).removeClass('hide').slideDown();
+                        $("#registrationWrapp .form-errors").html(res.message).removeClass('hide').slideDown();
                     }
                 }, 1500);
             },
@@ -238,8 +326,223 @@ $(function(){
         return false;
     });
 
+    // authorization
+    $("#authForm").submit(function () {
+
+        var formData = new FormData($(this)[0]);
+
+        $("#authWrapp .form-errors").slideUp();
+
+        $.ajax({
+            type: 'POST',
+            url: '/user/login',
+            data: formData,
+            beforeSend: function(){
+                $("#authWrapp .spinningSquaresLoader, #authWrapp .bg-loader").removeClass('hide');
+            },
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            success: function(res){
+
+                setTimeout(function () {
+
+                    $("#authWrapp .spinningSquaresLoader, #authWrapp .bg-loader").addClass('hide');
+
+                    if(res.status === 1)
+                    {
+                        window.location.replace(location.href);
+                    }
+                    else{
+                        $("#authWrapp .form-errors").html(res.message).removeClass('hide').slideDown();
+                    }
+                }, 1500);
+            },
+            error: function(){
+                alert('Error!');
+            }
+        });
+
+        return false;
+
+    });
+
+    // click on "Забыли пароль"
+    $("#forgotPassword").on("click", function () {
+
+        $("#authBlock").slideUp();
+        $("#forgotPasswordBlock").removeClass('hide');
+        $("#forgotPasswordBlock").slideDown();
+
+        return false;
+    });
+
+    // click on "Войти на сайт"
+    $("#forgotPasswordBack").on("click", function () {
+
+        $("#forgotPasswordBlock").slideUp();
+        $("#authBlock").removeClass('hide');
+        $("#authBlock").slideDown();
+
+        return false;
+    });
+
+    // отправить письмо с восстановлением пароля
+    $("#forgotPasswordForm").submit(function () {
+
+        var formData = new FormData($(this)[0]);
+
+        $("#authWrapp .form-errors").slideUp();
+
+        $.ajax({
+            type: 'POST',
+            url: '/user/passwordRecovery',
+            data: formData,
+            beforeSend: function(){
+                $("#authWrapp .spinningSquaresLoader, #authWrapp .bg-loader").removeClass('hide');
+            },
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            success: function(res){
+
+               // console.log('res', res);
+
+                setTimeout(function () {
+
+                    $("#authWrapp .spinningSquaresLoader, #authWrapp .bg-loader").addClass('hide');
+
+                    if(res.status === 1)
+                    {
+                        $("#forgotPasswordForm").hide();
+                        $("#forgotPasswordBlock .top-text").html(res.message);
+                    }
+                    else{
+                        $("#authWrapp .form-errors").html(res.message).removeClass('hide').slideDown();
+                    }
+                }, 1500);
+            },
+            error: function(){
+                alert('Error!');
+            }
+        });
+
+        return false;
+
+    });
 
 /* ========================================== Registration===================================================================*/
+
+
+
+/* ==========================================  Cabinet ===================================================================*/
+$("#userInfoForm").submit(function () {
+
+    var formData = new FormData($(this)[0]);
+
+    $("#userInfo .form-errors, #userInfo .form-success").slideUp();
+
+    $.ajax({
+        type: 'POST',
+        url: '/user/edit',
+        data: formData,
+        beforeSend: function(){
+            $("#userCabinetPanel .spinningSquaresLoader, #userCabinetPanel .bg-loader").removeClass('hide');
+        },
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function(res){
+            console.log(res);
+
+            setTimeout(function () {
+
+                $("#userCabinetPanel .spinningSquaresLoader, #userCabinetPanel .bg-loader").addClass('hide');
+
+                if(res.status === 1)
+                {
+                    $("#userInfo .form-success").html(res.message).removeClass('hide').slideDown();
+
+                    setTimeout(function () {
+                        $("#userInfo .form-errors, #userInfo .form-success").slideUp();
+                    }, 5000);
+                }
+                else{
+                    $("#userInfo .form-errors").html(res.message).removeClass('hide').slideDown();
+                }
+            }, 1500);
+        },
+        error: function(){
+            alert('Error!');
+        }
+    });
+
+    return false;
+
+}).on("click", "#userCityDropdown li a.np-settlement:not(.no-results)", function () {
+
+    var npSettlement = $(this).text();
+
+    $("#userCity").val(npSettlement);
+    $(this).closest('.dropdown').removeClass('open');
+
+    $('body #userInfoForm').validator('validate');
+
+    return false;
+});
+
+
+$("#changePasswordForm").submit(function () {
+
+    var formData = new FormData($(this)[0]);
+
+    $("#userChangePassword .form-errors, #userChangePassword .form-success").slideUp();
+
+    $.ajax({
+        type: 'POST',
+        url: '/user/changePassword',
+        data: formData,
+        beforeSend: function(){
+            $("#userCabinetPanel .spinningSquaresLoader, #userCabinetPanel .bg-loader").removeClass('hide');
+        },
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        success: function(res){
+            console.log(res);
+
+            setTimeout(function () {
+
+                $("#userCabinetPanel .spinningSquaresLoader, #userCabinetPanel .bg-loader").addClass('hide');
+
+                if(res.status === 1)
+                {
+                    $("#userChangePassword .form-success").html(res.message).removeClass('hide').slideDown();
+                    $("#changePasswordForm")[0].reset();
+
+                    setTimeout(function () {
+                        $("#userChangePassword .form-errors, #userChangePassword .form-success").slideUp();
+                    }, 5000);
+                }
+                else{
+                    $("#userChangePassword .form-errors").html(res.message).removeClass('hide').slideDown();
+                }
+            }, 1500);
+        },
+        error: function(){
+            alert('Error!');
+        }
+    });
+
+    return false;
+
+})
+
+
+/* ==========================================  Cabinet ===================================================================*/
+
+
+
 
 /* ==========================================  Cart ===================================================================*/
 
@@ -257,9 +560,11 @@ $(function(){
            // $("#orderForm").hide();
         }
         else{
+            var cartDeliveryPrice =  Number($('#cart-content .cartDeliveryPrice').text());
             $('#cart-content .cart-table').html(returnedData.cartContent);
             $("#cart-content .cartTotalQty").text(returnedData.cartTotalQty);
-            $("#cart-content .cartTotalSum").text(returnedData.cartTotalSum);
+            $("#cart-content .cartSum").text(returnedData.cartTotalSum);
+            $("#cart-content .cartTotalSum").text(returnedData.cartTotalSum + cartDeliveryPrice);
             $("#footer-cart-block").removeClass('disable');
            // $("#orderForm").show();
         }

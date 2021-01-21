@@ -10,18 +10,23 @@ class User extends \app\models\User {
 
     public $attributes = [
         'id' => '',
-        'login' => '',
         'password' => '',
-        'name' => '',
+        'fname' => '',
+        'lname' => '',
+        'birthday' => '',
         'email' => '',
+        'phone' => '',
         'address' => '',
-        'role' => '',
+        'ip_address' => '',
+        'ip_location' => '',
+        'role' => ''
     ];
 
     public $rules = [
         'required' => [
-            ['login'],
-            ['name'],
+            ['fname'],
+            ['lname'],
+            ['phone'],
             ['email'],
             ['role'],
         ],
@@ -32,10 +37,10 @@ class User extends \app\models\User {
 
     public function checkUnique()
     {
-        $user = R::findOne('user', '(login = ? OR email = ?) AND id <> ?', [$this->attributes['login'], $this->attributes['email'], $this->attributes['id']]);
+        $user = R::findOne('user', '(phone = ? OR email = ?) AND id <> ?', [$this->attributes['phone'], $this->attributes['email'], $this->attributes['id']]);
         if($user){
-            if($user->login == $this->attributes['login']){
-                $this->errors['unique'][] = 'Этот логин уже занят';
+            if($user->login == $this->attributes['phone']){
+                $this->errors['unique'][] = 'Этот телефон уже занят';
             }
             if($user->email == $this->attributes['email']){
                 $this->errors['unique'][] = 'Этот email уже занят';
@@ -43,6 +48,35 @@ class User extends \app\models\User {
             return false;
         }
         return true;
+    }
+
+    public function checkUserAuth()
+    {
+        $user = R::findOne('user', "id = ?", [$this->attributes['id']]);
+
+        if($user)
+        {
+            if(password_verify($this->attributes['password'], $user->password))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
+    public function getUserData($email)
+    {
+        $userData = R::getRow('SELECT * FROM user WHERE email = ?', [$email]);
+        return $userData;
+    }
+
+    public function updateUserPassword()
+    {
+        $user = R::exec('UPDATE user SET password = ? WHERE id = ?', [$this->attributes['password'], $this->attributes['id']]);
+        return $user ? true : false;
     }
 
 }

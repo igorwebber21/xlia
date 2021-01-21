@@ -16,6 +16,7 @@
             'password' => '',
             'fname' => '',
             'lname' => '',
+            'birthday' => '',
             'email' => '',
             'phone' => '',
             'address' => '',
@@ -70,17 +71,17 @@
             return true;
         }
 
-        public function login($isAdmin = false)
+        public function login($userData, $isAdmin = false)
         {
-            $login = !empty(trim($_POST['login'])) ? trim($_POST['login']) : null;
-            $password = !empty(trim($_POST['password'])) ? trim($_POST['password']) : null;
+            $login = !empty(trim($userData['login'])) ? trim($userData['login']) : null;
+            $password = !empty(trim($userData['password'])) ? trim($userData['password']) : null;
 
             if($login && $password)
             {
                 if($isAdmin){
                     $user = R::findOne('user', "login = ? AND role = 'admin'", [$login]);
                 }else{
-                    $user = R::findOne('user', "login = ?", [$login]);
+                    $user = R::findOne('user', "email = ?", [$login]);
                 }
 
                 if($user){

@@ -109,6 +109,9 @@
         public function viewAction()
         {
             $this->setMeta('Корзина');
+            $delivery_methods =  R::getAll('SELECT * FROM delivery_methods');
+            $payment_methods =  R::getAll('SELECT * FROM payment_methods');
+            $this->set(compact('delivery_methods', 'payment_methods'));
         }
 
         public function checkoutQuickAction()
@@ -196,6 +199,10 @@
                 // save order
                 $orderData['user_id'] = isset($user_id) ? $user_id : $_SESSION['user']['id'];
                 $orderData['note'] = isset($_POST['orderComment']) ? $_POST['orderComment'] : '';
+                $orderData['deliveryMethod'] = isset($_POST['deliveryMethod']) ? $_POST['deliveryMethod'] : '';
+                $orderData['deliveryCity'] = isset($_POST['userCity']) ? $_POST['userCity'] : '';
+                $orderData['deliveryBranch'] = isset($_POST['warehousesDropdown']) ? $_POST['warehousesDropdown'] : '';
+                $orderData['paymentMethod'] = isset($_POST['paymentMethod']) ? $_POST['paymentMethod'] : '';
 
                 // send email to user
                 $user_email = isset($_SESSION['user']['email']) ? $_SESSION['user']['email'] : $_POST['userEmail'];

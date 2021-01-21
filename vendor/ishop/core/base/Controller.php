@@ -50,5 +50,16 @@
             die;
         }
 
+        public function loadViews($view, $vars = [])
+        {
+            extract($vars);
+
+            ob_start();
+            require APP . "/views/{$this->prefix}{$this->controller}/{$view}.php";
+            $content = ob_get_clean();
+
+            return $content;
+        }
+
 
     }

@@ -41,7 +41,12 @@
                $file = ($responce == 404) ? "404.php" : "prod.php";
             }
 
+            ob_start();
             require WWW."/errors/".$file;
+            $content = ob_get_clean();
+
+            require APP . "/views/layouts/clothes.php";
+
 
         }
     }

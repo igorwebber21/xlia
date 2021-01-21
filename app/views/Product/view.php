@@ -19,7 +19,7 @@
             </ul>
         </div>
     </div>
-    <div class="block product-block">
+    <div class="block product-block product-item-inside">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-md-6 col-lg-5">
@@ -28,7 +28,7 @@
                         <div class="row">
                             <?php  $previewImg = ($gallery) ? GALLERYIMG.reset($gallery)->img : '/public/upload/images/product-9.jpg';?>
                             <div class="main-image col-xs-10">
-                                <img src="<?=$previewImg?>" class="zoom" alt="" data-zoom-image="<?=$previewImg?>" />
+                                <img src="<?=$previewImg?>" class="zoom product-image-photo" alt="" data-zoom-image="<?=$previewImg?>" />
                                 <?php if($gallery): ?>
                                 <div class="dblclick-text"><span>Double click for enlarge</span></div>
                                 <a href="<?=$previewImg?>" class="zoom-link"><i class="icon icon-zoomin"></i></a>
@@ -146,8 +146,9 @@
                                         <span class="special-price"><span><?=$curr['symbol_left'];?><?=round($product->price * $curr['value']);?><?=$curr['symbol_right'];?></span></span>
                                     </div>
                                     <div class="actions">
-                                        <button data-loading-text='<i class="icon icon-spinner spin"></i><span>Add to cart</span>' class="btn btn-lg btn-loading"><i class="icon icon-cart"></i><span>В корзину</span></button>
-                                        <a href="#" class="btn btn-lg product-details"><i class="icon icon-external-link"></i></a>
+                                        <button class="btn btn-lg add-to-cart" data-id="<?=$product->id;?>" href="cart/add?id=<?=$product->id;?>">
+                                            <i class="icon icon-cart"></i><span>В корзину</span>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -362,7 +363,7 @@
 												    </span>
                                             </div>
 
-                                            <button class="btn add-to-cart" data-product="789123"> <i class="icon icon-cart"></i><span>В корзину</span> </button>
+                                            <button class="btn add-to-cart" data-id="<?=$item['id'];?>"> <i class="icon icon-cart"></i><span>В корзину</span> </button>
                                         </div>
                                         <!-- /Product Details -->
                                     </div>

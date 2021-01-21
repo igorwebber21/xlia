@@ -13,7 +13,7 @@
         <div class="container">
             <div class="form-card" id="registrationWrapp">
 
-                <h3>Регистрация</h3>
+                <h1 class="text-center">Регистрация</h1>
 
                 <div class="blockquote hide form-errors"></div>
 
@@ -92,7 +92,7 @@
 
                 <!-- loader -->
                 <div class="bg-loader hide"></div>
-                <div id="orderLoader" class="hide">
+                <div class="hide spinningSquaresLoader">
                     <div id="spinningSquaresG_1" class="spinningSquaresG"></div>
                     <div id="spinningSquaresG_2" class="spinningSquaresG"></div>
                     <div id="spinningSquaresG_3" class="spinningSquaresG"></div>

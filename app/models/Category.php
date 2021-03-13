@@ -11,6 +11,7 @@
             'parent_id' => '',
             'keywords' => '',
             'description' => '',
+            'text' => '',
             'alias' => ''
         ];
 

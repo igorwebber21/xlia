@@ -1,3 +1,9 @@
+<?php
+
+//debug($this->attrs);
+//debug($this->groups, 1);
+?>
+
 <div class="nav-tabs-custom form-section-bmt" id="product-filters-tabs">
     <h3>Фильтры товара</h3>
     <ul class="nav nav-tabs">
@@ -27,7 +33,7 @@
                         ?>
                         <div class="form-group">
                             <label>
-                                <input type="radio" name="attrs[<?= $group_id ?>]" class="minimal" value="<?= $attr_id ?>"<?= $checked ?>>
+                                <input type="checkbox" name="attrs[<?= $group_id ?>][]" class="minimal" value="<?= $attr_id ?>"<?= $checked ?>>
                                 <span><?= $value ?></span>
                             </label>
                         </div>

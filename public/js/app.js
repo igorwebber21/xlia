@@ -82,14 +82,22 @@ $(function () {
 	function priceSlider() {
 
 		var priceSlider = document.getElementById('priceSlider');
+		var priceMin = document.getElementById('priceMin');
+		var priceMax = document.getElementById('priceMax');
 
-		noUiSlider.create(priceSlider, {
-			start: [200, 1500],
+		var priceMinVal = Number(priceMin.innerText);
+		var priceMaxVal = Number(priceMax.innerText);
+
+		var newStart = newPriceSliderStart > 0 ? newPriceSliderStart : priceMinVal;
+		var newEnd = newPriceSliderEnd > 0 ? newPriceSliderEnd : priceMaxVal;
+
+			noUiSlider.create(priceSlider, {
+			start: [newStart, newEnd],
 			connect: true,
 			step: 1,
 			range: {
-				'min': 0,
-				'max': 2000
+				'min': priceMinVal,
+				'max': priceMaxVal
 			}
 		});
 
@@ -105,6 +113,15 @@ $(function () {
 			} else {
 				inputPriceMin.innerHTML = value;
 			}
+		});
+
+		priceSlider.noUiSlider.on('change', function (values, handle) {
+			$(".products-block .filter-products-block").fadeIn();
+			$(".products-block .filter-products-block").animate({
+				top: "+=" + ($("#priceSlider").offset().top - $(".products-block .filter-products-block").offset().top - 23)
+			}, 500, function() {
+				// Animation complete.
+			});
 		});
 
 	}
@@ -214,6 +231,7 @@ $(function () {
 			$btn.addClass('is-visible')
 		}
 		$window.scroll(function () {
+			$(".products-block .filter-products-block").fadeOut(700);
 			($(this).scrollTop() > windowH) ? $btn.addClass('is-visible'): $btn.removeClass('is-visible');
 		});
 		$btn.on('click', function () {
@@ -496,10 +514,10 @@ $(function () {
 	function viewMode(viewmode) {
 		var $grid = $('.grid-view', $(viewmode)),
 			$list = $('.list-view', $(viewmode)),
-			$products = $('.products-listview, .products-grid');
-		if ($('.products-listview').length) {
+			$products = $('.products-content .products-listview, .products-content .products-grid');
+		if ($('.products-content .products-listview').length) {
 			$list.addClass('active');
-		} else if ($('.products-grid').length) {
+		} else if ($('.products-content .products-grid').length) {
 			$grid.addClass('active');
 		} else return false;
 		$grid.on("click", function (e) {
@@ -509,6 +527,14 @@ $(function () {
 				$list.removeClass('active');
 				$this.addClass('active');
 				$products.removeClass('products-listview').addClass('products-grid');
+
+				$.ajax({
+					type: 'GET',
+					url: location.href,
+					data: {productsMode: 'products-grid'},
+					success: function (res) {},
+					error: function () {}
+				});
 			}
 			setTimeout(function () {
 				$products.removeClass('no-animate');
@@ -522,6 +548,14 @@ $(function () {
 				$grid.removeClass('active');
 				$this.addClass('active');
 				$products.removeClass('products-grid').addClass('products-listview');
+
+				$.ajax({
+					type: 'GET',
+					url: location.href,
+					data: {productsMode: 'products-listview'},
+					success: function (res) {},
+					error: function () {}
+				});
 			}
 			setTimeout(function () {
 				$products.removeClass('no-animate');
@@ -709,8 +743,22 @@ $(function () {
 	$.fn.blockSelectedMark = function () {
 		var $block = this;
 
-		function markSelected(block) {
+		function markSelected(block, liClicked = null) {
 			var $this = block;
+			var $liClicked = liClicked;
+
+			if($liClicked)
+			{
+				$(".products-block .filter-products-block").fadeIn();
+				$(".products-block .filter-products-block").animate({
+					top: "+=" + ($liClicked.offset().top - $(".products-block .filter-products-block").offset().top)
+				}, 500, function() {
+					// Animation complete.
+				});
+			} else {
+				//$(".filter-products-block").fadeOut();
+			}
+
 			if ($this.find('li.active').length) {
 				$this.addClass('selected');
 			} else {
@@ -719,16 +767,16 @@ $(function () {
 		}
 		$block.each(function () {
 			markSelected($(this));
-		})
+		});
 		$('li > a', $block).unbind('click.blockSelectedMark');
 		$('li > a', $block).on('click.blockSelectedMark', function (e) {
 			if ($('.filter-col').hasClass('no-ajax-filter')) return;
 			var $this = $(this);
 			e.preventDefault();
 			$this.parent().toggleClass('active');
-			markSelected($this.closest('.sidebar-block'));
+			markSelected($this.closest('.sidebar-block'), $this.closest('li'));
 		})
-	}
+	};
 	
 	// hide shop by if no selected filters
 	$.fn.hideShopBy = function () {

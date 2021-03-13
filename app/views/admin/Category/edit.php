@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box">
-                <form action="<?=ADMIN;?>/category/edit" method="post" data-toggle="validator">
+                <form class="categoryForm" action="<?=ADMIN;?>/category/edit" method="post" data-toggle="validator">
                     <div class="box-body">
                         <div class="form-group has-feedback">
                             <label for="title">Наименование категории</label>
@@ -69,6 +69,11 @@
                         <div class="form-group">
                             <label for="description">Описание</label>
                             <input type="text" name="description" class="form-control" id="description" placeholder="Описание" value="<?=h($category->description);?>">
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label for="content">Текст категории</label>
+                            <textarea id="text" name="text" cols="80" rows="10"><?=h($category->text);?></textarea>
                         </div>
                     </div>
                     <div class="box-footer">

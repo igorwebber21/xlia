@@ -479,12 +479,17 @@
 <!-- /Modal -->
 
 
-<?php $curr = \ishop\App::$app->getProperty('currency'); ?>
+<?php $curr = \ishop\App::$app->getProperty('currency');
+$newPriceSliderStart = isset($_GET['minPrice']) && $_GET['minPrice'] > 0 ? $_GET['minPrice'] : '';
+$newPriceSliderEnd = isset($_GET['maxPrice']) && $_GET['maxPrice'] > 0 ? $_GET['maxPrice'] : '';
+?>
 <script>
     var path = '<?=PATH?>',
         course = <?=$curr['value']?>,
         symbolLeft = '<?=$curr['symbol_left']?> ',
         symbolRight = ' <?=$curr['symbol_right']?>';
+        newPriceSliderStart = ' <?=$newPriceSliderStart?>',
+        newPriceSliderEnd = ' <?=$newPriceSliderEnd?>';
 </script>
 
 <!-- jQuery Scripts  -->
@@ -508,8 +513,8 @@
 <script src="js/megamenu.min.js"></script>
 <script src="js/jquery.maskedinput.min.js"></script>
 <script src="js/typeahead.bundle.js"></script>
-<script src="js/myscripts.js"></script>
 <script src="js/app.js"></script>
+<script src="js/myscripts.js"></script>
 
 
 </body>

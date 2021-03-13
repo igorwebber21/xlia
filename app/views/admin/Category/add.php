@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box">
-                <form action="<?=ADMIN;?>/category/add" method="post" data-toggle="validator">
+                <form class="categoryForm" action="<?=ADMIN;?>/category/add" method="post" data-toggle="validator">
                     <div class="box-body">
                         <div class="form-group has-feedback">
                             <label for="title">Наименование категории</label>
@@ -32,7 +32,7 @@
                                 'class' => 'form-control select2',
                                 'attrs' => [
                                     'name' => 'parent_id',
-                                    'id' => 'parent_id',
+                                    'id' => 'parent_id'
                                 ],
                                 'prepend' => '<option value="0">Самостоятельная категория</option>',
                             ]) ?>
@@ -69,6 +69,11 @@
                             <label for="description">Описание</label>
                             <input type="text" name="description" class="form-control" id="description" placeholder="Описание">
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        </div>
+
+                        <div class="form-group has-feedback">
+                            <label for="content">Текст категории</label>
+                            <textarea id="text" name="text" cols="80" rows="10"></textarea>
                         </div>
                     </div>
                     <div class="box-footer">

@@ -16,14 +16,16 @@
             <div class="box">
                 <div class="box-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-bordered table-hover table-centered">
                             <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Фото</th>
                                 <th>Категория</th>
                                 <th>Наименование</th>
                                 <th>Цена</th>
                                 <th>Статус</th>
+                                <th>Добавлен</th>
                                 <th>Действия</th>
                             </tr>
                             </thead>
@@ -31,10 +33,16 @@
                             <?php foreach($products as $product):?>
                                 <tr <?php if($product['status'] == 'hidden') echo 'class="product-hidden"';?>>
                                     <td><?=$product['id'];?></td>
+                                    <td>
+                                        <a href="<?=ADMIN;?>/product/edit?id=<?=$product['id'];?>" target="_blank">
+                                            <img width="50" src="<?=PRODUCTIMG.$product['img'];?>" alt="<?=$product['title'];?>" />
+                                        </a>
+                                    </td>
                                     <td><?=$product['cat'];?></td>
-                                    <td><?=$product['title'];?></td>
-                                    <td><?=$product['price'];?></td>
+                                    <td><a href="<?=ADMIN;?>/product/edit?id=<?=$product['id'];?>"><?=$product['title'];?></a></td>
+                                    <td><?=$product['price'];?> грн.</td>
                                     <td><?=$product['status'] == 'visible' ? 'Активный' : 'Скрытый';?></td>
+                                    <td><?=date_point_format($product['date_add']);?></td>
                                     <td>
                                         <a href="<?=ADMIN;?>/product/edit?id=<?=$product['id'];?>">
                                             <i class="fa fa-fw fa-eye"></i>

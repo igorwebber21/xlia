@@ -14,6 +14,7 @@
 
         public $attributes = [
             'password' => '',
+            'login' => '',
             'fname' => '',
             'lname' => '',
             'birthday' => '',

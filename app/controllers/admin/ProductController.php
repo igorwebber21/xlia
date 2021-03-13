@@ -22,6 +22,7 @@ class ProductController extends AppController
         $products = R::getAll("SELECT product.*, category.title AS cat FROM product 
                                      JOIN category ON category.id = product.category_id 
                                      ORDER BY product.id DESC LIMIT $start, $perpage");
+
         $this->setMeta('Список товаров');
         $this->set(compact('products', 'pagination', 'count'));
 
@@ -29,6 +30,7 @@ class ProductController extends AppController
 
     public function addAction()
     {
+
         if(!empty($_POST))
         {
             $product = new Product();
@@ -36,6 +38,7 @@ class ProductController extends AppController
             $product->load($data);
             $product->attributes['status'] = $product->attributes['status'] ? 'visible' : 'hidden';
             $product->attributes['hit'] = $product->attributes['hit'] ? 'yes' : 'no';
+            $product->attributes['date_add'] = date('Y-m-d H:i');
             $product->getImg();
 
             if(!$product->validate($data)){
@@ -46,7 +49,9 @@ class ProductController extends AppController
 
             if($id = $product->save('product'))
             {
+                $product->saveBaseImg($id);
                 $product->saveGallery($id);
+
                 $alias = AppModel::createAlias('product', 'alias', $data['title'], $id);
                 $loadedProduct = R::load('product', $id);
                 $loadedProduct->alias = $alias;
@@ -57,6 +62,9 @@ class ProductController extends AppController
             }
             redirect();
         }
+
+        unset($_SESSION['single']);
+        unset($_SESSION['multi']);
 
         $this->setMeta('Новый товар');
     }
@@ -82,6 +90,8 @@ class ProductController extends AppController
             {
                 $product->editFilter($id, $data);
                 $product->editRelatedProduct($id, $data);
+
+                $product->saveBaseImg($id);
                 $product->saveGallery($id);
 
                 $alias = AppModel::createAlias('product', 'alias', $data['title'], $id);
@@ -104,9 +114,10 @@ class ProductController extends AppController
                                             WHERE related_product.product_id = ?", [$id]);
 
         $gallery = R::getCol('SELECT img FROM gallery WHERE product_id = ?', [$id]);
+        $base_img = R::getCol('SELECT img  FROM product_base_img WHERE product_id = ?', [$id]);
 
         $this->setMeta("Редактирование товара {$product->title}");
-        $this->set(compact('product', 'filter', 'related_product', 'gallery'));
+        $this->set(compact('product', 'filter', 'related_product', 'base_img', 'gallery'));
     }
 
     public function deleteAction()
@@ -126,6 +137,8 @@ class ProductController extends AppController
     {
         if(isset($_GET['upload']))
         {
+            $baseImg = isset($_POST['baseImg']) ? $_POST['baseImg'] : '';
+
             if($_POST['name'] == 'single')
             {
                 $vmax = App::$app->getProperty('img_width');
@@ -139,7 +152,7 @@ class ProductController extends AppController
 
             $name = $_POST['name'];
             $product = new Product();
-            $product->uploadImg($name, $vmax, $hmax);
+            $product->uploadImg($name, $vmax, $hmax, $baseImg);
         }
     }
 
@@ -189,5 +202,21 @@ class ProductController extends AppController
         }
         return;
     }
+
+  public function deleteBaseImgAction()
+  {
+    $id = isset($_POST['id']) ? $_POST['id'] : null;
+    $src = isset($_POST['src']) ? $_POST['src'] : null;
+    if(!$id || !$src){
+      return;
+    }
+
+    if(R::exec("DELETE FROM product_base_img WHERE product_id = ? AND img = ?", [$id, $src]))
+    {
+      @unlink(WWW .UPLOAD_PRODUCT_BASE. $src);
+      exit('1');
+    }
+    return;
+  }
 
 }

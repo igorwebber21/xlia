@@ -14,6 +14,7 @@ class Category extends AppModel
         'parent_id' => '',
         'keywords' => '',
         'description' => '',
+        'text' => '',
         'alias' => ''
     ];
 

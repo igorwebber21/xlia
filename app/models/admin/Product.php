@@ -76,20 +76,19 @@ class Product extends AppModel {
     {
         $filter = R::getCol('SELECT attr_id FROM attribute_product WHERE product_id = ?', [$id]);
 
-        // 1. if there are no filters in form
-        if(empty($data['attrs']) && !empty($filter))
-        {
+        if($filter){
             R::exec('DELETE FROM attribute_product WHERE product_id = ?', [$id]);
-            return;
         }
 
-        // 2. if added new filters
-        if(empty($filter) && !empty($data['attrs']))
+        if(!empty($data['attrs']))
         {
             $sql_part = '';
-            foreach ($data['attrs'] as $attr)
+            foreach ($data['attrs'] as $group)
             {
-                $sql_part .= "($attr, $id),";
+                foreach ($group as $attr)
+                {
+                    $sql_part .= "($attr, $id),";
+                }
             }
 
             $sql_part = rtrim($sql_part, ',');
@@ -97,34 +96,69 @@ class Product extends AppModel {
             return;
         }
 
-        // 3. if filters changed in form
-        if(!empty($data['attrs']))
-        {
-            $result = array_diff($filter, $data['attrs']);
 
-            if($result || count($filter) != count($data['attrs']))
-            {
-                R::exec('DELETE FROM attribute_product WHERE product_id = ?', [$id]);
-                $sql_part = '';
-                foreach ($data['attrs'] as $attr)
-                {
-                    $sql_part .= "($attr, $id),";
-                }
-
-                $sql_part = rtrim($sql_part, ',');
-                R::exec("INSERT INTO attribute_product (attr_id, product_id) VALUES {$sql_part}");
-                return;
-            }
-        }
+        // 1. if there are no filters in form
+//        if(empty($data['attrs']) && !empty($filter))
+//        {
+//            R::exec('DELETE FROM attribute_product WHERE product_id = ?', [$id]);
+//            return;
+//        }
+//
+//        // 2. if added new filters
+//        if(empty($filter) && !empty($data['attrs']))
+//        {
+//            $sql_part = '';
+//            foreach ($data['attrs'] as $attr)
+//            {
+//                $sql_part .= "($attr, $id),";
+//            }
+//
+//            $sql_part = rtrim($sql_part, ',');
+//            R::exec("INSERT INTO attribute_product (attr_id, product_id) VALUES {$sql_part}");
+//            return;
+//        }
+//
+//        // 3. if filters changed in form
+//        if(!empty($data['attrs']))
+//        {
+//            $result = array_diff($filter, $data['attrs']);
+//
+//            if($result || count($filter) != count($data['attrs']))
+//            {
+//                R::exec('DELETE FROM attribute_product WHERE product_id = ?', [$id]);
+//                $sql_part = '';
+//                foreach ($data['attrs'] as $attr)
+//                {
+//                    $sql_part .= "($attr, $id),";
+//                }
+//
+//                $sql_part = rtrim($sql_part, ',');
+//                R::exec("INSERT INTO attribute_product (attr_id, product_id) VALUES {$sql_part}");
+//                return;
+//            }
+//        }
 
     }
 
     public function getImg()
     {
-        if(!empty($_SESSION['single'])){
-            $this->attributes['img'] = $_SESSION['single'];
-            unset($_SESSION['single']);
+      if(!empty($_SESSION['baseImg'] )){
+        $this->attributes['img'] = $_SESSION['baseImg'];
+      }
+    }
+
+    public function saveBaseImg($id)
+    {
+      if(!empty($_SESSION['single']))
+      {
+        $sql_part = '';
+        foreach($_SESSION['single'] as $v){
+          $sql_part .= "('$v', $id),";
         }
+        $sql_part = rtrim($sql_part, ',');
+        R::exec("INSERT INTO product_base_img (img, product_id) VALUES $sql_part");
+        unset($_SESSION['single']);
+      }
     }
 
     public function saveGallery($id)
@@ -141,7 +175,7 @@ class Product extends AppModel {
         }
     }
 
-    public function uploadImg($name, $wmax, $hmax)
+    public function uploadImg($name, $wmax, $hmax, $baseImg = '')
     {
         $subdir = ($name == 'single') ? 'base/' : 'gallery/';
         $uploaddir = WWW .'/upload/products/'. $subdir;
@@ -164,7 +198,8 @@ class Product extends AppModel {
         if(@move_uploaded_file($_FILES[$name]['tmp_name'], $uploadfile))
         {
             if($name == 'single'){
-                $_SESSION['single'] = $new_name;
+                $_SESSION['single'][] = $new_name;
+                $_SESSION['baseImg'] = $baseImg;
             }else{
                 $_SESSION['multi'][] = $new_name;
             }

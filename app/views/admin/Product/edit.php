@@ -34,7 +34,8 @@
                                 'attrs' => [
                                     'name' => 'category_id',
                                     'id' => 'category_id',
-                                ],
+                                    'required' => 'required'
+                                ]
                             ]) ?>
                         </div>
 
@@ -65,7 +66,7 @@
                                 <div class="product-image-base">
                                     <div class="box box-danger box-solid file-upload">
                                         <div class="box-header">
-                                            <h3 class="box-title">Базовое изображение</h3>
+                                            <h3 class="box-title">Базовое фото (в списке категории)</h3>
                                         </div>
                                         <div class="box-body">
                                             <div id="single" class="btn btn-success" data-url="product/add-image" data-name="single">
@@ -80,7 +81,12 @@
                                             </span>
                                             </p>
                                             <div class="single">
-                                                <img src="/upload/products/base/<?=$product->img;?>" alt="" style="max-height: 150px;">
+                                              <?php if(!empty($base_img)): ?>
+                                                <?php foreach($base_img as $item): ?>
+                                                      <img src="/upload/products/base/<?=$item;?>" alt=""
+                                                           data-id="<?=$product->id;?>" data-src="<?=$item;?>" class="del-item del-single">
+                                                <?php endforeach; ?>
+                                              <?php endif; ?>
                                             </div>
                                         </div>
                                         <div class="overlay">
@@ -91,7 +97,7 @@
                                 <div class="product-image-gallery">
                                     <div class="box box-primary box-solid file-upload">
                                         <div class="box-header">
-                                            <h3 class="box-title">Картинки галереи</h3>
+                                            <h3 class="box-title">Фото галереи (в карточке товара)</h3>
                                         </div>
                                         <div class="box-body">
                                             <div id="multi" class="btn btn-success" data-url="product/add-image/" data-name="multi">
@@ -109,7 +115,7 @@
                                                 <?php if(!empty($gallery)): ?>
                                                     <?php foreach($gallery as $item): ?>
                                                         <img src="/upload/products/gallery/<?=$item;?>" alt=""
-                                                             data-id="<?=$product->id;?>" data-src="<?=$item;?>" class="del-item">
+                                                             data-id="<?=$product->id;?>" data-src="<?=$item;?>" class="del-item del-multi">
                                                     <?php endforeach; ?>
                                                 <?php endif; ?>
                                             </div>
@@ -159,7 +165,7 @@
                             </select>
                         </div>
 
-                        <?php new \app\widgets\filter\Filter($filter, WWW . '/filter/admin_filter_tpl.php'); ?>
+                        <?php new \app\widgets\filter\FilterAdmin($filter);?>
 
                     </div>
                     <div class="box-footer">

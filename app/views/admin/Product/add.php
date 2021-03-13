@@ -35,8 +35,9 @@
                                 'attrs' => [
                                     'name' => 'category_id',
                                     'id' => 'category_id',
+                                    'required' => 'required'
                                 ],
-                                'prepend' => '<option>Выберите категорию</option>',
+                                'prepend' => '<option value="">Выберите категорию</option>',
                             ]) ?>
                         </div>
 
@@ -67,7 +68,7 @@
                                 <div class="product-image-base">
                                     <div class="box box-danger box-solid file-upload">
                                         <div class="box-header">
-                                            <h3 class="box-title">Базовое изображение</h3>
+                                            <h3 class="box-title">Базовое фото (в списке категории)</h3>
                                         </div>
                                         <div class="box-body">
                                             <div id="single" class="btn btn-success" data-url="product/add-image" data-name="single">
@@ -91,7 +92,7 @@
                                 <div class="product-image-gallery">
                                     <div class="box box-primary box-solid file-upload">
                                         <div class="box-header">
-                                            <h3 class="box-title">Картинки галереи</h3>
+                                            <h3 class="box-title">Фото галереи (в карточке товара)</h3>
                                         </div>
                                         <div class="box-body">
                                             <div id="multi" class="btn btn-success" data-url="product/add-image/" data-name="multi">
@@ -149,7 +150,7 @@
                         </div>
 
 
-                        <?php new \app\widgets\filter\Filter(null, WWW. '/filter/admin_filter_tpl.php'); ?>
+                      <?php new \app\widgets\filter\FilterAdmin();?>
 
                     </div>
                     <div class="box-footer">

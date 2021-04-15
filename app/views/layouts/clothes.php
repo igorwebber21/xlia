@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SEIKO eCommerce HTML 5 Template</title>
+    <?=$this->getMeta();?>
     <meta name="author" content="BigSteps">
     <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
     <link rel="shortcut icon" href="favicon.ico">
@@ -139,7 +139,7 @@
                                 <li><a href="category.html">Детям</a></li>
                                 <li><a href="category.html">Sale</a></li>
                                 <li><a href="category.html">Новинки</a></li>
-                                <li><a href="/?v=blog">Блог</a></li>
+                                <li><a href="/blog">Блог</a></li>
                             </ul>
                         </div>
                     </div>
@@ -158,7 +158,7 @@
                             ?>
                             <li><a href="category.html">Sale<span class="menu-label">-15%</span></a></li>
                             <li><a href="category.html">Новинки<span class="menu-label-alt">NEW</span></a></li>
-                            <li><a href="/?v=blog">Блог</li>
+                            <li><a href="/blog">Блог</li>
                         </ul>
                     </div>
                     <!-- /Mega Menu -->
@@ -509,6 +509,7 @@ $newPriceSliderEnd = isset($_GET['maxPrice']) && $_GET['maxPrice'] > 0 ? $_GET['
 <script src="js/vendor/darktooltip/dist/jquery.darktooltip.js"></script>
 <script src="js/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
 <script src="js/vendor/instafeed/instafeed.min.js"></script>
+<script src="js/share.js"></script>
 <script src="js/validator.min.js"></script>
 <script src="js/megamenu.min.js"></script>
 <script src="js/jquery.maskedinput.min.js"></script>

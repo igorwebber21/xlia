@@ -17,5 +17,10 @@ return [
     'img_width' => 390,
     'img_height' => 480,
     'gallery_width' => 700,
-    'gallery_height' => 1000
+    'gallery_height' => 1000,
+
+    'blog_img_width' => 450,
+    'blog_img_height' => 220,
+    'blog_full_img_width' => 1200,
+    'blog_full_img_height' => 800
 ];

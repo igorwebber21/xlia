@@ -34,8 +34,12 @@
                                 <tr <?php if($product['status'] == 'hidden') echo 'class="product-hidden"';?>>
                                     <td><?=$product['id'];?></td>
                                     <td>
-                                        <a href="<?=ADMIN;?>/product/edit?id=<?=$product['id'];?>" target="_blank">
+                                        <a href="<?=ADMIN;?>/product/edit?id=<?=$product['id'];?>">
+                                            <?php if($product['img']): ?>
                                             <img width="50" src="<?=PRODUCTIMG.$product['img'];?>" alt="<?=$product['title'];?>" />
+                                            <?php else: ?>
+                                            <img width="50" src="<?=PRODUCTIMG?>no_image.jpg" alt="">
+                                            <?php endif; ?>
                                         </a>
                                     </td>
                                     <td><?=$product['cat'];?></td>

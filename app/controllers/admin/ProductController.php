@@ -30,7 +30,6 @@ class ProductController extends AppController
 
     public function addAction()
     {
-
         if(!empty($_POST))
         {
             $product = new Product();
@@ -103,6 +102,9 @@ class ProductController extends AppController
             }
         }
 
+        unset($_SESSION['single']);
+        unset($_SESSION['multi']);
+
         $id = $this->getRequestID();
         $product = R::load('product', $id);
         App::$app->setProperty('parent_id', $product->category_id);
@@ -128,6 +130,7 @@ class ProductController extends AppController
         R::exec('DELETE FROM attribute_product WHERE product_id = ?', [$product_id]);
         R::exec('DELETE FROM related_product WHERE product_id = ?', [$product_id]);
         R::exec('DELETE FROM gallery WHERE product_id = ?', [$product_id]);
+        R::exec('DELETE FROM product_base_img WHERE product_id = ?', [$product_id]);
 
         $_SESSION['success'] = 'Товар удален';
         redirect(ADMIN . '/product');
@@ -137,7 +140,7 @@ class ProductController extends AppController
     {
         if(isset($_GET['upload']))
         {
-            $baseImg = isset($_POST['baseImg']) ? $_POST['baseImg'] : '';
+            $baseImg = isset($_POST['baseImg']) ? true : false;
 
             if($_POST['name'] == 'single')
             {
@@ -209,6 +212,12 @@ class ProductController extends AppController
     $src = isset($_POST['src']) ? $_POST['src'] : null;
     if(!$id || !$src){
       return;
+    }
+
+    // удалить последнюю из Base Image
+    if(R::exec("UPDATE product SET img = '' WHERE id = ? AND img = ?", [$id, $src]))
+    {
+      unset($_SESSION['baseImg']);
     }
 
     if(R::exec("DELETE FROM product_base_img WHERE product_id = ? AND img = ?", [$id, $src]))

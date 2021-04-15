@@ -4,6 +4,7 @@
 
     // special routes for site
     Router::add('^product/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Product', 'action' => 'view']);
+    Router::add('^blog/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Blog', 'action' => 'view']);
     Router::add('^category/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Category', 'action' => 'view']);
 
     // default routes for admin

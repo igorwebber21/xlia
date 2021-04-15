@@ -23,10 +23,14 @@ define("ADMIN", PATH . '/admin');
 define('UPLOAD_PRODUCT_BASE', '/upload/products/base/');
 define('UPLOAD_PRODUCT_GALLERY', '/upload/products/gallery/');
 define('UPLOAD_CATEGORY_IMAGE', '/upload/categories/');
+define('UPLOAD_BLOG_PREVIEW', '/upload/blog/preview/');
+define('UPLOAD_BLOG_FULL', '/upload/blog/full/');
 
 
 define("PRODUCTIMG", PATH . UPLOAD_PRODUCT_BASE);
 define("GALLERYIMG", PATH . UPLOAD_PRODUCT_GALLERY);
 define('CATEGORYIMG', PATH . UPLOAD_CATEGORY_IMAGE);
+define('BLOGPREVIEWIMG', PATH . UPLOAD_BLOG_PREVIEW);
+define('UPLOADBLOGFULL', PATH . UPLOAD_BLOG_FULL);
 
 require_once ROOT . '/vendor/autoload.php';

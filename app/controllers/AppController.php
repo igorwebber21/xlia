@@ -52,4 +52,84 @@
             exit;
         }
 
+        public static function productSortDB()
+        {
+          $productSortDB = 'product.date_add DESC';
+
+          if(!empty($_GET['sort']))
+          {
+            $sort = trim($_GET['sort']);
+
+            switch ($sort){
+              case 'date_desc':
+                $productSortDB = 'product.date_add DESC';
+                break;
+              case 'price_desc':
+                $productSortDB = 'product.price DESC';
+                break;
+              case 'price_asc':
+                $productSortDB = 'product.price ASC';
+                break;
+            }
+          }
+
+          return $productSortDB;
+        }
+
+        public static function productSort()
+        {
+          $sort = 'date_desc';
+
+          if(!empty($_GET['sort']))
+          {
+            $sort = trim($_GET['sort']);
+
+            switch ($sort){
+              case 'price_desc':
+                $sort = 'price_desc';
+                break;
+              case 'price_asc':
+                $sort = 'price_asc';
+                break;
+            }
+          }
+
+          return $sort;
+        }
+
+        public static function getProductPerpage()
+        {
+          $perpage = isset($_COOKIE['productsPerPage']) ? $_COOKIE['productsPerPage'] : App::$app->getProperty('pagination');
+
+          if(isset($_GET['productsPerPage'])) // per page filter
+          {
+            if(in_array($_GET['productsPerPage'], App::$app->getProperty('productsPerPage')))
+            {
+              setcookie('productsPerPage', $_GET['productsPerPage'], time() + 3600*24, '/');
+              $perpage = $_GET['productsPerPage'];
+            }
+          }
+
+          return $perpage;
+        }
+
+        public static function getProductMode()
+        {
+          $productsMode = isset($_COOKIE['productsMode']) ? $_COOKIE['productsMode'] : 'products-grid';
+
+          if(isset($_GET['productsMode'])) // products mode (grid or list)
+          {
+            if(in_array($_GET['productsMode'], App::$app->getProperty('productsMode')))
+            {
+              setcookie('productsMode', $_GET['productsMode'], time() + 3600*24, '/');
+            }
+            die;
+          }
+
+          return $productsMode;
+        }
+
+
+
+
     }

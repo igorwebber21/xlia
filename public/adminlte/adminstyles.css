@@ -1,0 +1,188 @@
+
+
+table.table-centered td,
+table.table-centered th{
+    vertical-align: middle!important;
+    text-align: center;
+}
+
+/* =============    orders    ============= */
+.order-title-text{
+    margin-right: 25px;
+}
+
+.order-action-btn{
+    padding: 3px;
+    min-width: 80px;
+}
+
+.order-action-btn:not(:last-child) {
+    margin-right: 10px;
+}
+
+.content-wrapper .alert-success,
+.content-wrapper .alert-danger{
+    border-radius: 0;
+}
+/* =============    orders    ============= */
+
+
+
+/* =============    category    ============= */
+.list-group.list-group-root {
+    padding: 0;
+    overflow: hidden;
+}
+
+.list-group, .list-group.list-group-root > p .list-group {
+    margin-bottom: 0;
+}
+
+.list-group.list-group-root .list-group-item {
+    border-radius: 0;
+    border-width: 1px 0 0 0;
+}
+
+.list-group.list-group-root > .list-group-item:first-child {
+    border-top-width: 0;
+}
+
+.list-group.list-group-root > .list-group > p > .list-group-item {
+    padding-left: 30px;
+}
+
+.list-group.list-group-root > .list-group > .list-group > p > .list-group-item {
+    padding-left: 45px;
+}
+.item-p{
+    margin: 0;
+    position: relative;
+}
+.item-p > span{
+    position: absolute;
+    right: 20px;
+    top: 12px;
+}
+
+.cat-strong{
+    font-weight: bold;
+}
+
+/* =============    category    ============= */
+
+
+
+/* =============    products    ============= */
+
+.icheckbox_minimal-blue{
+    margin-right: 10px;
+}
+
+.product-hidden{
+    background: #eee;
+}
+
+.checkbox-text{
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.form-section-checkboxes{
+    display: flex;
+}
+
+.form-section-bmt{
+    margin: 35px 0 0 0;
+}
+
+.checkbox-delimiter{
+    display: inline-block;
+    width: 1px;
+    background: #aaa;
+    height: auto;
+    margin: 0 25px;
+}
+
+.section-checkbox{
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.section-checkbox:after{
+    content:"";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0.5em;
+    border-top: 1px solid black;
+    z-index: -1;
+}
+
+.section-checkbox label{
+    margin: 0;
+}
+
+.form-group .iradio_minimal-blue{
+    margin-right: 10px;
+}
+
+.form-group .iradio_minimal-blue + span{
+    cursor: pointer;
+}
+
+#product-filters-tabs{
+    border-top: 1px solid #ccc;
+    border-radius: 0;
+}
+
+#product-filters-tabs .tab-content{
+    margin-top: 15px;
+}
+
+#product-filters-tabs .nav-tabs {
+    margin-top: 25px;
+}
+
+#reset-filter{
+    background: #dd4b39;
+    border-color: #d73925;
+    color: #fff;
+}
+
+.related-products + .select2 input {
+    padding: 0 10px!important;
+}
+
+.upload-product-image .overlay{
+    display: none;
+}
+
+.upload-product-image .container-wrap{
+    padding: 25px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.upload-product-image .product-image-base{
+    width: 48%;
+}
+
+.upload-product-image .product-image-gallery{
+    width: 48%;
+}
+
+.upload-product-image .box.box-solid.box-danger,
+.upload-product-image .box.box-solid.box-primary{
+    border-top: none;
+}
+
+.upload-product-image .multi img,
+.upload-product-image .single img{
+    max-height: 150px;
+    cursor: pointer;
+}
+
+
+/* =============    products    ============= */

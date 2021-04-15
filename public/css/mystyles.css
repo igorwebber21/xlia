@@ -530,6 +530,18 @@ form #orderCommentQuick{
 	display: none;
 }
 
+.product-item.search-item{
+	width: 25%!important;
+}
+
+.search-container .products-listview .product-item{
+	width: 50%!important;
+}
+
+.search-info-block{
+	margin: 10px 0 25px 0!important;
+}
+
 .pagination-block .pagination{
 	margin: 0 auto;
 }
@@ -616,6 +628,33 @@ form #orderCommentQuick{
 }
 /* ==============   product ============= */
 
+
+/* ==============   blog ============= */
+
+.social-list li a:hover{
+	color: #fff!important;
+}
+.blog-text{
+	margin: 10px 0 25px 0;
+	text-align: justify!important;
+}
+
+.blog-text h1, .blog-text h2, .blog-text h3,
+.blog-text h4, .blog-text h5, .blog-text h6{
+	display: inline-block!important;
+}
+
+.blog-text .blog-mini-photo{
+	float: right;
+	max-width: 700px;
+	padding: 25px 0 35px 35px;
+	width: 50%;
+}
+
+.blog-text .blog-mini-photo img{
+	max-width: 100%;
+}
+/* ==============   blog ============= */
 
 
 /* ==============   pages ============= */

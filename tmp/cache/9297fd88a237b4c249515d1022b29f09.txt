@@ -1,11 +1,11 @@
-a:2:{s:4:"data";s:19636:"        <li class="mega-dropdown">
+a:2:{s:4:"data";s:19596:"        <li class="mega-dropdown">
         <a href="category/muzhchinam">Мужчинам</a>
         <div class="sub-menu">
             <div class="container">
                 <div class="megamenu-left width-25">
                     <a href="#bannerLink" class="banner-wrap">
                         <div class="banner style-13 autosize-text image-hover-scale" data-fontratio="4">
-                            <img src="http://ms-seiko/upload/categories/f6261db194f0c9c639537b97a5d03499.png" alt="Banner">
+                            <img src="http://xlia/upload/categories/f6261db194f0c9c639537b97a5d03499.png" alt="Banner">
                             <div class="banner-caption horc vertb" style="bottom: 3%;">
                                 <div class="vert-wrapper">
                                     <div class="vert">
@@ -22,7 +22,7 @@ a:2:{s:4:"data";s:19636:"        <li class="mega-dropdown">
                 <div class="megamenu-categories column-3">
                                         <!-- megamenu column 1 -->
                     <div class="col">
-                        <a class="category-image light" href="category/odezhda"><img src="http://ms-seiko/upload/categories/cec61e8d8a7b91398d95ce7beb76b8d9.png" alt /></a>
+                        <a class="category-image light" href="category/odezhda"><img src="http://xlia/upload/categories/cec61e8d8a7b91398d95ce7beb76b8d9.png" alt /></a>
                         <div class="category-title title-border"><a href="category/odezhda">Одежда</a></div>
                         <ul class="category-links">
                                                         <li><a href="category/bryuki">Брюки</a></li>
@@ -37,7 +37,7 @@ a:2:{s:4:"data";s:19636:"        <li class="mega-dropdown">
                     </div>
                                         <!-- megamenu column 1 -->
                     <div class="col">
-                        <a class="category-image light" href="category/obuv"><img src="http://ms-seiko/upload/categories/07c443218a5052ac55dbb0bd53385549.png" alt /></a>
+                        <a class="category-image light" href="category/obuv"><img src="http://xlia/upload/categories/07c443218a5052ac55dbb0bd53385549.png" alt /></a>
                         <div class="category-title title-border"><a href="category/obuv">Обувь</a></div>
                         <ul class="category-links">
                                                         <li><a href="category/outdoor">Outdoor</a></li>
@@ -52,7 +52,7 @@ a:2:{s:4:"data";s:19636:"        <li class="mega-dropdown">
                     </div>
                                         <!-- megamenu column 1 -->
                     <div class="col">
-                        <a class="category-image light" href="category/aksessuary"><img src="http://ms-seiko/upload/categories/cb4e81bfdba669ff7f8a83c07d0378cf.png" alt /></a>
+                        <a class="category-image light" href="category/aksessuary"><img src="http://xlia/upload/categories/cb4e81bfdba669ff7f8a83c07d0378cf.png" alt /></a>
                         <div class="category-title title-border"><a href="category/aksessuary">Аксессуары</a></div>
                         <ul class="category-links">
                                                         <li><a href="category/remni">Ремни</a></li>
@@ -76,7 +76,7 @@ a:2:{s:4:"data";s:19636:"        <li class="mega-dropdown">
                 <div class="megamenu-left width-25">
                     <a href="#bannerLink" class="banner-wrap">
                         <div class="banner style-13 autosize-text image-hover-scale" data-fontratio="4">
-                            <img src="http://ms-seiko/upload/categories/c818a9d1278ced58a74031c6cbba1f36.png" alt="Banner">
+                            <img src="http://xlia/upload/categories/c818a9d1278ced58a74031c6cbba1f36.png" alt="Banner">
                             <div class="banner-caption horc vertb" style="bottom: 3%;">
                                 <div class="vert-wrapper">
                                     <div class="vert">
@@ -93,7 +93,7 @@ a:2:{s:4:"data";s:19636:"        <li class="mega-dropdown">
                 <div class="megamenu-categories column-3">
                                         <!-- megamenu column 1 -->
                     <div class="col">
-                        <a class="category-image light" href="category/odezhda-7"><img src="http://ms-seiko/upload/categories/cdaa725256e2edf9e47a912e333d1e1d.png" alt /></a>
+                        <a class="category-image light" href="category/odezhda-7"><img src="http://xlia/upload/categories/cdaa725256e2edf9e47a912e333d1e1d.png" alt /></a>
                         <div class="category-title title-border"><a href="category/odezhda-7">Одежда</a></div>
                         <ul class="category-links">
                                                         <li><a href="category/futbolki-i-mayki">Футболки и майки</a></li>
@@ -108,7 +108,7 @@ a:2:{s:4:"data";s:19636:"        <li class="mega-dropdown">
                     </div>
                                         <!-- megamenu column 1 -->
                     <div class="col">
-                        <a class="category-image light" href="category/obuv-8"><img src="http://ms-seiko/upload/categories/362fb7c67b1ed2931233e32cd0b9150b.png" alt /></a>
+                        <a class="category-image light" href="category/obuv-8"><img src="http://xlia/upload/categories/362fb7c67b1ed2931233e32cd0b9150b.png" alt /></a>
                         <div class="category-title title-border"><a href="category/obuv-8">Обувь</a></div>
                         <ul class="category-links">
                                                         <li><a href="category/outdoor-42">Outdoor</a></li>
@@ -123,7 +123,7 @@ a:2:{s:4:"data";s:19636:"        <li class="mega-dropdown">
                     </div>
                                         <!-- megamenu column 1 -->
                     <div class="col">
-                        <a class="category-image light" href="category/aksessuary-9"><img src="http://ms-seiko/upload/categories/026e7ae4ff208e801f9e9420212af4c3.png" alt /></a>
+                        <a class="category-image light" href="category/aksessuary-9"><img src="http://xlia/upload/categories/026e7ae4ff208e801f9e9420212af4c3.png" alt /></a>
                         <div class="category-title title-border"><a href="category/aksessuary-9">Аксессуары</a></div>
                         <ul class="category-links">
                                                         <li><a href="category/bizhuteriya">Бижутерия</a></li>
@@ -148,7 +148,7 @@ a:2:{s:4:"data";s:19636:"        <li class="mega-dropdown">
                     <div class="megamenu-categories column-2">
                                         <!-- megamenu column 1 -->
                         <div class="col">
-                            <a class="category-image" href="#"><img src="http://ms-seiko/upload/categories/0b377b6b4e50ef4c8e4d4c7abfadcfb9.png" alt /></a>
+                            <a class="category-image" href="#"><img src="http://xlia/upload/categories/0b377b6b4e50ef4c8e4d4c7abfadcfb9.png" alt /></a>
                             <div class="category-title title-border"><a href="#">Мальчик<span class="menu-label">HOT</span></a></div>
 
                             <div class="flex top end">
@@ -188,7 +188,7 @@ a:2:{s:4:"data";s:19636:"        <li class="mega-dropdown">
                         <!-- /megamenu column 1 -->
                                             <!-- megamenu column 1 -->
                         <div class="col">
-                            <a class="category-image" href="#"><img src="http://ms-seiko/upload/categories/14a8cd1a197c6e24d96e6f0d91c18cae.png" alt /></a>
+                            <a class="category-image" href="#"><img src="http://xlia/upload/categories/14a8cd1a197c6e24d96e6f0d91c18cae.png" alt /></a>
                             <div class="category-title title-border"><a href="#">Девочка<span class="menu-label">HOT</span></a></div>
 
                             <div class="flex top end">
@@ -229,4 +229,4 @@ a:2:{s:4:"data";s:19636:"        <li class="mega-dropdown">
                                     </div>
             </div>
     </li>
-    ";s:8:"end_time";i:1611217839;}
+    ";s:8:"end_time";i:1620226076;}

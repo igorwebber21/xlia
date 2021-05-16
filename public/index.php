@@ -10,7 +10,6 @@ $app = new App();
 $router = new Router();
 
 //$app::$app->setProperty('property_id', 1);
-
 //debug($router::getRoutes());
 //debug($router::getRoute());
 //debug($app::$app->getProperties());

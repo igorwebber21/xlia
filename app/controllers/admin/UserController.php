@@ -11,7 +11,36 @@ use RedBeanPHP\R;
 class UserController extends AppController
 {
 
-    public function indexAction()
+  public function signupAction()
+  {
+
+    if(!empty($_POST))
+    {
+      $user = new \app\models\admin\User();
+      $data= $_POST;
+      $user->load($data);
+
+      if(!$user->validate($data) || !$user->checkUnique())
+      {
+        $user->getErrors();
+        $_SESSION['form_data'] = $data;
+      }
+      else
+      {
+        $user->attributes['password'] = password_hash($user->attributes['password'], PASSWORD_DEFAULT);
+        if ($user->save('user')) {
+          $_SESSION['success'] = 'Пользователь успешно зарегистрирован';
+        } else {
+          $_SESSION['error'] = 'Ошибка';
+        }
+      }
+      redirect();
+    }
+
+    $this->setMeta('Регистрация');
+  }
+
+  public function indexAction()
     {
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $perpage = 10;

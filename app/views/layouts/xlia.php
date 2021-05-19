@@ -16,12 +16,13 @@
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 
     <link href='/css/styles.css' type='text/css' rel='stylesheet'>
-    <link href='/css/mystyles.css' type='text/css' rel='stylesheet'>
+    <link href='/css/mystyles.css?v=1.2' type='text/css' rel='stylesheet'>
     <script type='text/javascript' src='/js/globals.js'></script>
     <script type='text/javascript' src='/js/main.js'></script>
 
 </head>
-<body class="<?php if($view == 'main') echo 'homepage'; ?> ru-RU" itemscope itemtype="https://schema.org/WebPage">
+
+<body class="<?php if($this->controller == 'Main') echo 'homepage'; ?> ru-RU" itemscope itemtype="https://schema.org/WebPage">
 <script>
   // source file: /vendor/helpers/SVGCache.js
   !function(e, t) {
@@ -68,24 +69,20 @@
                                 <nav class="site-menu">
 
                                     <span class="site-menu__item">
+                                        <a class="site-menu__link" href="/">Главная</a>
+                                    </span>
+
+                                    <span class="site-menu__item">
                                         <a class="site-menu__link" href="?view=category">Каталог</a>
                                     </span>
 
-                                    <span class="site-menu__item">
-                                        <a class="site-menu__link" href="?view=about">О нас</a>
-                                    </span>
+                                    <?php if($pages): foreach ($pages as $page): ?>
 
                                     <span class="site-menu__item">
-                                        <a class="site-menu__link" href="?view=oplata-i-dostavka">Оплата и доставка</a>
+                                        <a class="site-menu__link" href="/<?=$page['alias']?>"><?=$page['title']?></a>
                                     </span>
 
-                                    <span class="site-menu__item">
-                                        <a class="site-menu__link" href="?view=obmen-i-vozvrat">Обмен и возврат</a>
-                                    </span>
-
-                                    <span class="site-menu__item">
-                                        <a class="site-menu__link" href="?view=contacts">Контактная информация</a>
-                                    </span>
+                                    <?php endforeach; endif; ?>
 
                                 </nav>
                                 <script>
@@ -222,29 +219,7 @@
                                     }
                                   }, 'form');
                                 </script>
-                                <script type="application/ld+json">
-                                    {
-                                        "@context": "https:\/\/schema.org",
-                                        "@type": "Organization",
-                                        "name": "Интернет магазин женской одежды - LiOR",
-                                        "description": "Интернет магазин женской одежды - LiOR",
-                                        "logo": "https:\/\/lior-boutique.com\/content\/images\/2\/50635946868302.jpg",
-                                        "url": "https:\/\/lior-boutique.com\/",
-                                        "email": "lior27.10.2018@gmail.com",
-                                        "contactPoint": [
-                                            {
-                                                "@type": "ContactPoint",
-                                                "telephone": "+380689172424",
-                                                "contactType": "customer service"
-                                            }
-                                        ],
-                                        "sameAs": [
-                                            "https:\/\/www.instagram.com\/lior_boutique\/",
-                                            "https:\/\/t.me\/lior_with_love_for_you"
-                                        ],
-                                        "address": "  Киев, ул. Проспект Победы 20\r\n  тел: +38095 - 744 - 5815\r\n         "
-                                    }
-                                </script>
+
                             </div>
                             <div class="header__section">
                                 <div class="basket" data-widget="mini_cart" data-skin="header" data-icon="bag" data-elements="all">
@@ -274,41 +249,14 @@
                             <div class="header__section header__section--catalog-menu">
                                 <div class="products-menu j-products-menu">
                                     <ul class="products-menu__container">
+
+                                        <?php foreach ($categories as $category): ?>
                                         <li class="products-menu__item j-submenu-item">
                                             <div class="products-menu__title">
-                                                <a class="products-menu__title-link" href="?view=category">Платья</a>
+                                                <a class="products-menu__title-link" href="/category/<?=$category['alias']?>"><?=$category['title']?></a>
                                             </div>
                                         </li>
-                                        <li class="products-menu__item j-submenu-item">
-                                            <div class="products-menu__title">
-                                                <a class="products-menu__title-link" href="?view=category">Блузы</a>
-                                            </div>
-                                        </li>
-                                        <li class="products-menu__item j-submenu-item">
-                                            <div class="products-menu__title">
-                                                <a class="products-menu__title-link" href="?view=category">Боди</a>
-                                            </div>
-                                        </li>
-                                        <li class="products-menu__item j-submenu-item">
-                                            <div class="products-menu__title">
-                                                <a class="products-menu__title-link" href="?view=category">Комбинезоны</a>
-                                            </div>
-                                        </li>
-                                        <li class="products-menu__item j-submenu-item">
-                                            <div class="products-menu__title">
-                                                <a class="products-menu__title-link" href="?view=category">Костюмы</a>
-                                            </div>
-                                        </li>
-                                        <li class="products-menu__item j-submenu-item">
-                                            <div class="products-menu__title">
-                                                <a class="products-menu__title-link" href="?view=category">Топы</a>
-                                            </div>
-                                        </li>
-                                        <li class="products-menu__item j-submenu-item">
-                                            <div class="products-menu__title">
-                                                <a class="products-menu__title-link" href="?view=category">Кимоно</a>
-                                            </div>
-                                        </li>
+                                        <?php endforeach; ?>
 
                                     </ul>
                                 </div>
@@ -372,63 +320,29 @@
                         Каталог
                     </a>
                     <ul class="nav-items nav-expand-content">
-                        <li class="nav-item">
-                            <a class="nav-link" href="?view=category">
-                                Платья
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Блузы
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Боди
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Комбинезоны
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Костюмы
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Топы
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                Кимоно
-                            </a>
-                        </li>
+
+                      <?php if($categories): foreach ($categories as $category): ?>
+                          <li class="nav-item">
+                              <a class="nav-link" href="/category/<?=$category['alias']?>">
+                                <?=$category['title']?>
+                              </a>
+                          </li>
+                      <?php endforeach; endif; ?>
+
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?view=about">
-                        О нас
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?view=oplata-i-dostavka">
-                        Оплата и доставка
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?view=obmen-i-vozvrat">
-                        Обмен и возврат
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?view=contacts">
-                        Контактная информация
-                    </a>
-                </li>
+
+              <?php if($pages): foreach ($pages as $page): ?>
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="/<?=$page['alias']?>">
+                        <?=$page['title']?>
+                      </a>
+                  </li>
+
+              <?php endforeach; endif; ?>
+
+
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-modal="#sign-in">
                         Вход на сайт
@@ -538,29 +452,26 @@
                                     <li class="footer__menu-item ">
                                         <a href="?view=category" class="footer__link">Каталог</a>
                                     </li>
-                                    <li class="footer__menu-item ">
-                                        <a href="?view=about" class="footer__link">О нас</a>
-                                    </li>
-                                    <li class="footer__menu-item ">
-                                        <a href="?view=oplata-i-dostavka" class="footer__link">Оплата и доставка</a>
-                                    </li>
-                                    <li class="footer__menu-item ">
-                                        <a href="?view=obmen-i-vozvrat" class="footer__link">Обмен и возврат</a>
-                                    </li>
-                                    <li class="footer__menu-item ">
-                                        <a href="?view=contacts" class="footer__link">Контактная информация</a>
-                                    </li>
+
+                                  <?php if($pages): foreach ($pages as $page): ?>
+
+                                      <li class="footer__menu-item ">
+                                          <a href="/<?=$page['alias']?>" class="footer__link"><?=$page['title']?></a>
+                                      </li>
+
+                                  <?php endforeach; endif; ?>
+
                                 </ul>
                             </div>
                             <div class="footer__block">
                                 Мы в соцсетях
                                 <div class="footer__social">
-                                    <a class="footer__social-icon" data-fake-href="https://www.instagram.com/lior_boutique/" rel="nofollow" target="_blank" title="Мы в инстаграмме">
+                                    <a class="footer__social-icon" data-fake-href="https://www.instagram.com/the_xlia/" rel="nofollow" target="_blank" title="Мы в инстаграмме">
                                         <svg class="icon-ig">
                                             <use xlink:href="#icon-ig"></use>
                                         </svg>
                                     </a>
-                                    <a class="footer__social-icon" data-fake-href="https://t.me/lior_with_love_for_you" rel="nofollow" target="_blank" title="Мы в Telegram">
+                                    <a class="footer__social-icon" data-fake-href="#" rel="nofollow" target="_blank" title="Мы в Telegram">
                                         <svg class="icon-tg">
                                             <use xlink:href="#icon-tg"></use>
                                         </svg>
@@ -574,27 +485,12 @@
                             <div class="footer__block">
                                 <div class="footer__heading">Каталог</div>
                                 <ul class="footer__menu">
-                                    <li class="footer__menu-item ">
-                                        <a href="?view=category" class="footer__link">Платья </a>
-                                    </li>
-                                    <li class="footer__menu-item ">
-                                        <a href="?view=category" class="footer__link">Блузы</a>
-                                    </li>
-                                    <li class="footer__menu-item ">
-                                        <a href="?view=category" class="footer__link">Боди</a>
-                                    </li>
-                                    <li class="footer__menu-item ">
-                                        <a href="?view=category" class="footer__link">Комбинезоны</a>
-                                    </li>
-                                    <li class="footer__menu-item ">
-                                        <a href="?view=category" class="footer__link">Костюмы</a>
-                                    </li>
-                                    <li class="footer__menu-item ">
-                                        <a href="?view=category" class="footer__link">Топы</a>
-                                    </li>
-                                    <li class="footer__menu-item ">
-                                        <a href="?view=category" class="footer__link">Кимоно</a>
-                                    </li>
+
+                                  <?php if($categories): foreach ($categories as $category): ?>
+                                      <li class="footer__menu-item ">
+                                          <a href="/category/<?=$category['alias']?>" class="footer__link"><?=$category['title']?> </a>
+                                      </li>
+                                  <?php endforeach; endif; ?>
                                 </ul>
                             </div>
                         </div>
@@ -652,7 +548,7 @@
 </div><!-- .container -->
 
 <div class="ft-bottom">
-    © 2020—2021 Интернет магазин женской одежды - xlia.vip
+    © 2014—<?=date('Y');?> Интернет магазин женской одежды - xlia.vip
 </div>
 
 

@@ -2,6 +2,8 @@
 
     namespace ishop\base;
 
+    use RedBeanPHP\R;
+
     abstract class Controller
     {
         public $route;
@@ -29,6 +31,8 @@
 
         public function set($data){
             $this->data = $data;
+            $this->data['pages'] = object_to_array(R::find('pages', 'ORDER BY id'));
+            $this->data['categories'] = object_to_array(R::find('category', 'ORDER BY id'));
         }
 
         public function setMeta($title = '', $description = '', $keywords = ''){

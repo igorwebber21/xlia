@@ -152,6 +152,15 @@
                                 <span class="checkbox-text">Хит</span>
                             </label>
 
+                            <div class="checkbox-delimiter"></div>
+                            <label class="section-checkbox">
+                                <label class="switch">
+                                    <input type="checkbox" name="novelty" <?=$product->novelty == 'yes' ? 'checked' : null;?>>
+                                    <span class="slider round"></span>
+                                </label>
+                                <span class="checkbox-text">Новинка</span>
+                            </label>
+
                         </div>
 
                         <div class="form-group form-section-bmt">

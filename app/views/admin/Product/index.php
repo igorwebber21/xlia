@@ -35,16 +35,22 @@
                                     <td><?=$product['id'];?></td>
                                     <td>
                                         <a href="<?=ADMIN;?>/product/edit?id=<?=$product['id'];?>">
-                                            <?php if($product['img']): ?>
-                                            <img width="50" src="<?=PRODUCTIMG.$product['img'];?>" alt="<?=$product['title'];?>" />
+                                            <?php if($product['imgs']): ?>
+                                            <img width="50" src="<?=UPLOAD_PRODUCT_BASE.explode(',', $product['imgs'])[0];?>" alt="<?=$product['title'];?>" />
                                             <?php else: ?>
-                                            <img width="50" src="<?=PRODUCTIMG?>no_image.jpg" alt="">
+                                            <img width="50" src="/images/no_image-2.jpg" alt="">
                                             <?php endif; ?>
                                         </a>
                                     </td>
                                     <td><?=$product['cat'];?></td>
                                     <td><a href="<?=ADMIN;?>/product/edit?id=<?=$product['id'];?>"><?=$product['title'];?></a></td>
-                                    <td><?=$product['price'];?> грн.</td>
+                                    <td>
+                                        <?php if($product['old_price']): ?>
+                                        <div class="catalogCard-oldPrice"><?=$product['old_price']?> грн.</div>
+                                        <?php endif; ?>
+
+                                        <?=$product['price'];?> грн.
+                                    </td>
                                     <td><?=$product['status'] == 'visible' ? 'Активный' : 'Скрытый';?></td>
                                     <td><?=date_point_format($product['date_add']);?></td>
                                     <td>

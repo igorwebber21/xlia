@@ -73,7 +73,7 @@
             $start =  $pagination->getStart();
 
             $products = R::getAll("SELECT product.*, GROUP_CONCAT(product_base_img.img SEPARATOR ',') AS base_img FROM product 
-                                        LEFT JOIN product_base_img   ON product_base_img.product_id = product.id
+                                        LEFT JOIN product_base_img ON product_base_img.product_id = product.id
                                         WHERE product.category_id IN ($ids) AND product.status = 'visible' $sql_part
                                         GROUP BY product.id ORDER BY $productSortDB LIMIT $start, $perpage");
 
@@ -85,6 +85,7 @@
 
             $filterData['minPrice'] = $filterPrice['minPrice'];
             $filterData['maxPrice'] = $filterPrice['maxPrice'];
+
 
             if($this->isAjax())
             {
@@ -103,5 +104,6 @@
                                         'productsSort', 'sort', 'productRangeCount', 'productsMode', 'filterData'));
 
         }
+
 
     }

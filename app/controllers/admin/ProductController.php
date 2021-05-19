@@ -19,9 +19,11 @@ class ProductController extends AppController
         $count = R::count('product');
         $pagination = new Pagination($page, $perpage, $count);
         $start = $pagination->getStart();
-        $products = R::getAll("SELECT product.*, category.title AS cat FROM product 
-                                     JOIN category ON category.id = product.category_id 
-                                     ORDER BY product.id DESC LIMIT $start, $perpage");
+        $products = R::getAll("SELECT product.*, category.title AS cat, 
+                                     GROUP_CONCAT(product_base_img.img) AS imgs FROM product
+                                     LEFT JOIN category ON category.id = product.category_id 
+                                     LEFT JOIN product_base_img ON product_base_img.product_id = product.id 
+                                     GROUP BY product.id ORDER BY product.id DESC  LIMIT $start, $perpage");
 
         $this->setMeta('Список товаров');
         $this->set(compact('products', 'pagination', 'count'));
@@ -37,7 +39,8 @@ class ProductController extends AppController
             $product->load($data);
             $product->attributes['status'] = $product->attributes['status'] ? 'visible' : 'hidden';
             $product->attributes['hit'] = $product->attributes['hit'] ? 'yes' : 'no';
-            $product->attributes['date_add'] = date('Y-m-d H:i');
+            $product->attributes['novelty'] = $product->attributes['novelty'] ? 'yes' : 'no';
+            $product->attributes['date_add'] = date('Y-m-d H:i:s');
             $product->getImg();
 
             if(!$product->validate($data)){
@@ -78,6 +81,7 @@ class ProductController extends AppController
             $product->load($data);
             $product->attributes['status'] = $product->attributes['status'] ? 'visible' : 'hidden';
             $product->attributes['hit'] = $product->attributes['hit'] ? 'yes' : 'no';
+            $product->attributes['novelty'] = $product->attributes['novelty'] ? 'yes' : 'no';
             $product->getImg();
 
             if(!$product->validate($data)){
@@ -145,17 +149,15 @@ class ProductController extends AppController
             if($_POST['name'] == 'single')
             {
                 $vmax = App::$app->getProperty('img_width');
-                $hmax = App::$app->getProperty('img_height');
             }
             else
             {
                 $vmax = App::$app->getProperty('gallery_width');
-                $hmax = App::$app->getProperty('gallery_height');
             }
 
             $name = $_POST['name'];
             $product = new Product();
-            $product->uploadImg($name, $vmax, $hmax, $baseImg);
+            $product->uploadImg($name, $vmax, 0, $baseImg);
         }
     }
 
@@ -201,6 +203,7 @@ class ProductController extends AppController
         if(R::exec("DELETE FROM gallery WHERE product_id = ? AND img = ?", [$id, $src]))
         {
             @unlink(WWW .UPLOAD_PRODUCT_GALLERY. $src);
+            @unlink(WWW .UPLOAD_PRODUCT_THUMBS. $src);
             exit('1');
         }
         return;

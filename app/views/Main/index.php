@@ -31,6 +31,8 @@
             </div>
         </section>
     </div>
+
+    <?php if($hits): ?>
     <section class="promo" id="special_offers_homepage-showcase-modern">
         <div class="layout-wrap">
             <div class="promo-container">
@@ -49,50 +51,20 @@
                                     <div class="catalog-carousel__container promo-slider">
                                         <ul class="catalog-carousel__wrap promo-slider-list" data-parent-class="catalog-grid">
 
-                                            <li class="catalog-carousel__item promo-slider-i">
-                                                <div class="catalogCard j-catalog-card">
-                                                    <div class="catalogCard-box j-product-container" data-id="5775">
-                                                        <div class="catalogCard-main">
-                                                            <div class="catalogCard-main-b">
-                                                                <div class="catalogCard-view">
-                                                                    <a href='?view=category' class="catalogCard-image ">
-                                                                        <div class="catalogCard-image-i">
-                                                                            <div class="catalogCard-image-bg" style="background-image:url(/images/main-1-2.jpeg);"></div>
-                                                                            <img alt='Топ-корсет серый' class='catalogCard-img' width='376' height='574' src='/images/main-1-1.jpeg'>
-                                                                        </div>
-                                                                    </a>
-                                                                    <div class="productSticker __flag2">
-                                                                        <div class="productSticker-item __popular" data-tooltip="hint-3d6d4454b0ae2552396b08c1876a67c1" style="color: #7baf35">
-                                                                            <div class="productSticker-container">
-                                                                                <div class="productSticker-content" style="color: #fff">Хит</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="catalogCard-info">
-                                                                    <div class="catalogCard-title">
-                                                                        <a href='/top-korset-seryy/5775/' title="Топ-корсет серый">Топ-корсет серый</a>
-                                                                    </div>
-                                                                    <div class="catalogCard-priceBox">
-                                                                        <div class="catalogCard-price">1 100 грн    </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                          <?php foreach ($hits as $hit):
 
+                                          $hitImages = explode(',', $hit['base_img']);
+                                          ?>
                                             <li class="catalog-carousel__item promo-slider-i">
                                                 <div class="catalogCard j-catalog-card">
                                                     <div class="catalogCard-box j-product-container" data-id="5775">
                                                         <div class="catalogCard-main">
                                                             <div class="catalogCard-main-b">
                                                                 <div class="catalogCard-view">
-                                                                    <a href='?view=category' class="catalogCard-image ">
+                                                                    <a href='/product/<?=$hit['alias']?>' class="catalogCard-image ">
                                                                         <div class="catalogCard-image-i">
-                                                                            <div class="catalogCard-image-bg" style="background-image:url(/images/main-2-2.jpeg);"></div>
-                                                                            <img alt='Топ-корсет серый' class='catalogCard-img' width='376' height='574' src='/images/main-2-1.jpeg'>
+                                                                            <div class="catalogCard-image-bg" style="background-image:url(<?=UPLOAD_PRODUCT_BASE.$hitImages[1]?>);"></div>
+                                                                            <img alt='Топ-корсет серый' class='catalogCard-img' width='376' height='574' src='<?=UPLOAD_PRODUCT_BASE.$hitImages[0]?>'>
                                                                         </div>
                                                                     </a>
                                                                     <div class="productSticker __flag2">
@@ -105,10 +77,10 @@
                                                                 </div>
                                                                 <div class="catalogCard-info">
                                                                     <div class="catalogCard-title">
-                                                                        <a href='/top-korset-seryy/5775/' title="Топ-корсет серый">Топ-корсет серый</a>
+                                                                        <a href='/product/<?=$hit['alias']?>' title="Топ-корсет серый"><?=$hit['title']?></a>
                                                                     </div>
                                                                     <div class="catalogCard-priceBox">
-                                                                        <div class="catalogCard-price">1 100 грн    </div>
+                                                                        <div class="catalogCard-price"><?=$hit['price']?> грн    </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -116,138 +88,7 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class="catalog-carousel__item promo-slider-i">
-                                                <div class="catalogCard j-catalog-card">
-                                                    <div class="catalogCard-box j-product-container" data-id="5775">
-                                                        <div class="catalogCard-main">
-                                                            <div class="catalogCard-main-b">
-                                                                <div class="catalogCard-view">
-                                                                    <a href='?view=category' class="catalogCard-image ">
-                                                                        <div class="catalogCard-image-i">
-                                                                            <div class="catalogCard-image-bg" style="background-image:url(/images/main-3-2.jpeg);"></div>
-                                                                            <img alt='Топ-корсет серый' class='catalogCard-img' width='376' height='574' src='/images/main-3-1.jpeg'>
-                                                                        </div>
-                                                                    </a>
-                                                                    <div class="productSticker __flag2">
-                                                                        <div class="productSticker-item __popular" data-tooltip="hint-3d6d4454b0ae2552396b08c1876a67c1" style="color: #7baf35">
-                                                                            <div class="productSticker-container">
-                                                                                <div class="productSticker-content" style="color: #fff">Хит</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="catalogCard-info">
-                                                                    <div class="catalogCard-title">
-                                                                        <a href='/top-korset-seryy/5775/' title="Топ-корсет серый">Топ-корсет серый</a>
-                                                                    </div>
-                                                                    <div class="catalogCard-priceBox">
-                                                                        <div class="catalogCard-price">1 100 грн    </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="catalog-carousel__item promo-slider-i">
-                                                <div class="catalogCard j-catalog-card">
-                                                    <div class="catalogCard-box j-product-container" data-id="5775">
-                                                        <div class="catalogCard-main">
-                                                            <div class="catalogCard-main-b">
-                                                                <div class="catalogCard-view">
-                                                                    <a href='?view=category' class="catalogCard-image ">
-                                                                        <div class="catalogCard-image-i">
-                                                                            <div class="catalogCard-image-bg" style="background-image:url(/images/main-4-2.jpeg);"></div>
-                                                                            <img alt='Топ-корсет серый' class='catalogCard-img' width='376' height='574' src='/images/main-4-1.jpeg'>
-                                                                        </div>
-                                                                    </a>
-                                                                    <div class="productSticker __flag2">
-                                                                        <div class="productSticker-item __popular" data-tooltip="hint-3d6d4454b0ae2552396b08c1876a67c1" style="color: #7baf35">
-                                                                            <div class="productSticker-container">
-                                                                                <div class="productSticker-content" style="color: #fff">Хит</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="catalogCard-info">
-                                                                    <div class="catalogCard-title">
-                                                                        <a href='/top-korset-seryy/5775/' title="Топ-корсет серый">Топ-корсет серый</a>
-                                                                    </div>
-                                                                    <div class="catalogCard-priceBox">
-                                                                        <div class="catalogCard-price">1 100 грн    </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="catalog-carousel__item promo-slider-i">
-                                                <div class="catalogCard j-catalog-card">
-                                                    <div class="catalogCard-box j-product-container" data-id="5775">
-                                                        <div class="catalogCard-main">
-                                                            <div class="catalogCard-main-b">
-                                                                <div class="catalogCard-view">
-                                                                    <a href='?view=category' class="catalogCard-image ">
-                                                                        <div class="catalogCard-image-i">
-                                                                            <div class="catalogCard-image-bg" style="background-image:url(/images/main-5-2.jpeg);"></div>
-                                                                            <img alt='Топ-корсет серый' class='catalogCard-img' width='376' height='574' src='/images/main-5-1.jpeg'>
-                                                                        </div>
-                                                                    </a>
-                                                                    <div class="productSticker __flag2">
-                                                                        <div class="productSticker-item __popular" data-tooltip="hint-3d6d4454b0ae2552396b08c1876a67c1" style="color: #7baf35">
-                                                                            <div class="productSticker-container">
-                                                                                <div class="productSticker-content" style="color: #fff">Хит</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="catalogCard-info">
-                                                                    <div class="catalogCard-title">
-                                                                        <a href='/top-korset-seryy/5775/' title="Топ-корсет серый">Топ-корсет серый</a>
-                                                                    </div>
-                                                                    <div class="catalogCard-priceBox">
-                                                                        <div class="catalogCard-price">1 100 грн    </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="catalog-carousel__item promo-slider-i">
-                                                <div class="catalogCard j-catalog-card">
-                                                    <div class="catalogCard-box j-product-container" data-id="5775">
-                                                        <div class="catalogCard-main">
-                                                            <div class="catalogCard-main-b">
-                                                                <div class="catalogCard-view">
-                                                                    <a href='?view=category' class="catalogCard-image ">
-                                                                        <div class="catalogCard-image-i">
-                                                                            <div class="catalogCard-image-bg" style="background-image:url(/images/main-6-2.jpeg);"></div>
-                                                                            <img alt='Топ-корсет серый' class='catalogCard-img' width='376' height='574' src='/images/main-6-1.jpeg'>
-                                                                        </div>
-                                                                    </a>
-                                                                    <div class="productSticker __flag2">
-                                                                        <div class="productSticker-item __popular" data-tooltip="hint-3d6d4454b0ae2552396b08c1876a67c1" style="color: #7baf35">
-                                                                            <div class="productSticker-container">
-                                                                                <div class="productSticker-content" style="color: #fff">Хит</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="catalogCard-info">
-                                                                    <div class="catalogCard-title">
-                                                                        <a href='/top-korset-seryy/5775/' title="Топ-корсет серый">Топ-корсет серый</a>
-                                                                    </div>
-                                                                    <div class="catalogCard-priceBox">
-                                                                        <div class="catalogCard-price">1 100 грн    </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                            <?php endforeach; ?>
                                         </ul>
                                     </div>
                                     <a class="slideCarousel-nav-btn __slideLeft" href="#" style="display: none;"></a>
@@ -260,6 +101,8 @@
             </div>
         </div>
     </section>
+    <?php endif; ?>
+
     <section class="frontInfo">
         <div class="frontInfo-section __1">
             <div class="layout-wrap">
@@ -338,6 +181,9 @@
             </div>
         </div>
     </section>
+
+
+    <?php if($novelty): ?>
     <section class="promo" id="special_offers_homepage-showcase-modern">
         <div class="layout-wrap">
             <div class="promo-container">
@@ -349,6 +195,7 @@
                             </li>
                         </ul>
                     </nav>
+
                     <div class="catalogTabs-content j-special-offers-content" style="display: block;">
                         <section class="promo-section">
                             <div class="slideCarousel-screen">
@@ -356,50 +203,20 @@
                                     <div class="catalog-carousel__container promo-slider">
                                         <ul class="catalog-carousel__wrap promo-slider-list" data-parent-class="catalog-grid">
 
-                                            <li class="catalog-carousel__item promo-slider-i">
-                                                <div class="catalogCard j-catalog-card">
-                                                    <div class="catalogCard-box j-product-container" data-id="5716">
-                                                        <div class="catalogCard-main">
-                                                            <div class="catalogCard-main-b">
-                                                                <div class="catalogCard-view">
-                                                                    <a href='?view=category' class="catalogCard-image ">
-                                                                        <div class="catalogCard-image-i">
-                                                                            <div class="catalogCard-image-bg" style="background-image:url(/images/product-2-2.jpeg);"></div>
-                                                                            <img alt='Черное платье миди с вырезами' class='catalogCard-img' width='376' height='564' src='/images/product-2.jpeg'>
-                                                                        </div>
-                                                                    </a>
-                                                                    <div class="productSticker __flag2">
-                                                                        <div class="productSticker-item __new" data-tooltip="hint-e9121c9cd997297d125e171a35ab3438" style="color: #3da5ca">
-                                                                            <div class="productSticker-container">
-                                                                                <div class="productSticker-content" style="color: #fff">Новинка            </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="catalogCard-info">
-                                                                    <div class="catalogCard-title">
-                                                                        <a href='/chernoe-plate-midi-s-vyrezami/5716/' title="Черное платье миди с вырезами">Черное платье миди с вырезами                        </a>
-                                                                    </div>
-                                                                    <div class="catalogCard-priceBox">
-                                                                        <div class="catalogCard-price">1 780 грн    </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                            <?php foreach ($novelty as $noveltyItem):
 
+                                              $noveltyItemImages = explode(',', $noveltyItem['base_img']);
+                                              ?>
                                             <li class="catalog-carousel__item promo-slider-i">
                                                 <div class="catalogCard j-catalog-card">
                                                     <div class="catalogCard-box j-product-container" data-id="5716">
                                                         <div class="catalogCard-main">
                                                             <div class="catalogCard-main-b">
                                                                 <div class="catalogCard-view">
-                                                                    <a href='?view=category' class="catalogCard-image ">
+                                                                    <a href='/product/<?=$noveltyItem['alias']?>' class="catalogCard-image ">
                                                                         <div class="catalogCard-image-i">
-                                                                            <div class="catalogCard-image-bg" style="background-image:url(/images/product-3-2.jpeg);"></div>
-                                                                            <img alt='Черное платье миди с вырезами' class='catalogCard-img' width='376' height='564' src='/images/product-3-1.jpeg'>
+                                                                            <div class="catalogCard-image-bg" style="background-image:url(<?=UPLOAD_PRODUCT_BASE.$noveltyItemImages[1]?>);"></div>
+                                                                            <img alt='Черное платье миди с вырезами' class='catalogCard-img' width='376' height='564' src='<?=UPLOAD_PRODUCT_BASE.$noveltyItemImages[0]?>'>
                                                                         </div>
                                                                     </a>
                                                                     <div class="productSticker __flag2">
@@ -412,10 +229,10 @@
                                                                 </div>
                                                                 <div class="catalogCard-info">
                                                                     <div class="catalogCard-title">
-                                                                        <a href='/chernoe-plate-midi-s-vyrezami/5716/' title="Черное платье миди с вырезами">Черное платье миди с вырезами                        </a>
+                                                                        <a href='/product/<?=$noveltyItem['alias']?>' title="Черное платье миди с вырезами"><?=$noveltyItem['title']?></a>
                                                                     </div>
                                                                     <div class="catalogCard-priceBox">
-                                                                        <div class="catalogCard-price">1 780 грн    </div>
+                                                                        <div class="catalogCard-price"><?=$noveltyItem['price']?> грн    </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -423,74 +240,7 @@
                                                     </div>
                                                 </div>
                                             </li>
-
-                                            <li class="catalog-carousel__item promo-slider-i">
-                                                <div class="catalogCard j-catalog-card">
-                                                    <div class="catalogCard-box j-product-container" data-id="5716">
-                                                        <div class="catalogCard-main">
-                                                            <div class="catalogCard-main-b">
-                                                                <div class="catalogCard-view">
-                                                                    <a href='?view=category' class="catalogCard-image ">
-                                                                        <div class="catalogCard-image-i">
-                                                                            <div class="catalogCard-image-bg" style="background-image:url(/images/product-4-2.jpeg);"></div>
-                                                                            <img alt='Черное платье миди с вырезами' class='catalogCard-img' width='376' height='564' src='/images/product-4-1.jpeg'>
-                                                                        </div>
-                                                                    </a>
-                                                                    <div class="productSticker __flag2">
-                                                                        <div class="productSticker-item __new" data-tooltip="hint-e9121c9cd997297d125e171a35ab3438" style="color: #3da5ca">
-                                                                            <div class="productSticker-container">
-                                                                                <div class="productSticker-content" style="color: #fff">Новинка            </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="catalogCard-info">
-                                                                    <div class="catalogCard-title">
-                                                                        <a href='/chernoe-plate-midi-s-vyrezami/5716/' title="Черное платье миди с вырезами">Черное платье миди с вырезами                        </a>
-                                                                    </div>
-                                                                    <div class="catalogCard-priceBox">
-                                                                        <div class="catalogCard-price">1 780 грн    </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-
-                                            <li class="catalog-carousel__item promo-slider-i">
-                                                <div class="catalogCard j-catalog-card">
-                                                    <div class="catalogCard-box j-product-container" data-id="5716">
-                                                        <div class="catalogCard-main">
-                                                            <div class="catalogCard-main-b">
-                                                                <div class="catalogCard-view">
-                                                                    <a href='?view=category' class="catalogCard-image ">
-                                                                        <div class="catalogCard-image-i">
-                                                                            <div class="catalogCard-image-bg" style="background-image:url(/images/product-5-2.jpeg);"></div>
-                                                                            <img alt='Черное платье миди с вырезами' class='catalogCard-img' width='376' height='564' src='/images/product-5-1.jpeg'>
-                                                                        </div>
-                                                                    </a>
-                                                                    <div class="productSticker __flag2">
-                                                                        <div class="productSticker-item __new" data-tooltip="hint-e9121c9cd997297d125e171a35ab3438" style="color: #3da5ca">
-                                                                            <div class="productSticker-container">
-                                                                                <div class="productSticker-content" style="color: #fff">Новинка            </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="catalogCard-info">
-                                                                    <div class="catalogCard-title">
-                                                                        <a href='/chernoe-plate-midi-s-vyrezami/5716/' title="Черное платье миди с вырезами">Черное платье миди с вырезами                        </a>
-                                                                    </div>
-                                                                    <div class="catalogCard-priceBox">
-                                                                        <div class="catalogCard-price">1 780 грн    </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
+                                            <?php endforeach; ?>
 
                                         </ul>
                                     </div>
@@ -504,4 +254,5 @@
             </div>
         </div>
     </section>
+    <?php endif; ?>
 </main>

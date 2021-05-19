@@ -36,7 +36,7 @@
     <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
     <link rel="stylesheet" href="toggle.css">
-    <link rel="stylesheet" href="adminstyles.css">
+    <link rel="stylesheet" href="adminstyles.css?v=1.1">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -483,7 +483,7 @@ $logs = RedBeanPHP\R::getDatabaseAdapter()
     ->getDatabase()
     ->getLogger();
 
-debug( $logs->grep( 'SELECT' ) );
+//debug( $logs->grep( 'SELECT' ) );
 ?>
 
 </body>

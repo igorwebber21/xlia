@@ -134,10 +134,19 @@
                             <div class="checkbox-delimiter"></div>
                             <label class="section-checkbox">
                                 <label class="switch">
-                                    <input type="checkbox" name="hit" checked>
+                                    <input type="checkbox" name="hit">
                                     <span class="slider round"></span>
                                 </label>
                                 <span class="checkbox-text">Хит</span>
+                            </label>
+
+                            <div class="checkbox-delimiter"></div>
+                            <label class="section-checkbox">
+                                <label class="switch">
+                                    <input type="checkbox" name="novelty">
+                                    <span class="slider round"></span>
+                                </label>
+                                <span class="checkbox-text">Новинка</span>
                             </label>
 
                         </div>

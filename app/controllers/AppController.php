@@ -26,7 +26,6 @@
 
             App::$app->setProperty('cats', self::cacheCategory());
 
-
 //            $cats = R::getAssoc("SELECT * FROM category");
 //            debug($cats);
 

@@ -11,6 +11,12 @@ table.table-centered th{
     margin-right: 25px;
 }
 
+.catalogCard-oldPrice {
+    line-height: .8;
+    color: #ACACAC;
+    text-decoration: line-through
+}
+
 .order-action-btn{
     padding: 3px;
     min-width: 80px;

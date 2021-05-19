@@ -14,17 +14,25 @@
 //        $this->layout = 'test';
 //        echo __METHOD__;
 
-            $brands = R::find('brand', 'LIMIT 3');
+        //    $brands = R::find('brand', 'LIMIT 3');
 
-            $hits = R::find('product', "hit = 'yes' AND status = 'visible' LIMIT 8");
-            $hits = object_to_array($hits);
+            $hits = R::getAll("SELECT product.*, GROUP_CONCAT(product_base_img.img SEPARATOR ',') AS base_img FROM product 
+                                        LEFT JOIN product_base_img ON product_base_img.product_id = product.id
+                                        WHERE hit = 'yes' AND status = 'visible'
+                                        GROUP BY product.id ORDER BY RAND() LIMIT 8");
+
+            $novelty = R::getAll("SELECT product.*, GROUP_CONCAT(product_base_img.img SEPARATOR ',') AS base_img FROM product 
+                                        LEFT JOIN product_base_img ON product_base_img.product_id = product.id
+                                        WHERE novelty = 'yes' AND status = 'visible'
+                                        GROUP BY product.id ORDER BY RAND() LIMIT 8");
+
             //current currency
             $curr = App::$app->getProperty('currency');
 
             $canonical = PATH;
 
             //debug($hits);
-            $this->set(compact('brands', 'hits', 'curr', 'canonical'));
+            $this->set(compact( 'hits', 'novelty', 'curr', 'canonical'));
 
            // $this->setMeta(App::$app->getProperty("shop_name"), "Описание", "Ключевики");
 

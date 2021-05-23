@@ -58,7 +58,7 @@
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>ES</b></span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Easy</b>Shop</span>
+            <span class="logo-lg"><b>XLiA</b> <span style="font-size: 10px; margin-left: 10px;">by MegaShop</span></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -71,8 +71,8 @@
                 <ul class="nav navbar-nav">
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                            <span class="hidden-xs"><?=$_SESSION['user']['fname']?></span>
+                            <img src="dist/img/user3-128x128.jpg" class="user-image" alt="User Image">
+                            <span class="hidden-xs"><?=$_SESSION['user']['name']?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
@@ -80,12 +80,13 @@
                                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                                 <p>
-                                    <?=$_SESSION['user']['fname']?> - Web Developer
-                                    <small>Member since Nov. 2012</small>
+                                    <?=$_SESSION['user']['name']?>
+                                    <!--- Web Developer
+                                    <small>Member since Nov. 2012</small>-->
                                 </p>
                             </li>
                             <!-- Menu Body -->
-                            <li class="user-body">
+                            <!--<li class="user-body">
                                 <div class="row">
                                     <div class="col-xs-4 text-center">
                                         <a href="#">Followers</a>
@@ -96,23 +97,23 @@
                                     <div class="col-xs-4 text-center">
                                         <a href="#">Friends</a>
                                     </div>
-                                </div>
+                                </div>-->
                                 <!-- /.row -->
                             </li>
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="<?=ADMIN?>/user/edit?id=<?=$_SESSION['user']['id']?>" class="btn btn-default btn-flat">Profile</a>
+                                    <a href="<?=ADMIN?>/user/edit?id=<?=$_SESSION['user']['id']?>" class="btn btn-default btn-flat">Профиль</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="/user/logout" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="/user/logout" class="btn btn-default btn-flat">Выйти из админки</a>
                                 </div>
                             </li>
                         </ul>
                     </li>
                     <!-- Control Sidebar Toggle Button -->
                     <li>
-                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        <a href="#" onclick="return false;"><i class="fa fa-gears"></i></a> <!-- data-toggle="control-sidebar" -->
                     </li>
                 </ul>
             </div>
@@ -125,17 +126,17 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p><?=$_SESSION['user']['fname']?></p>
+                    <p><?=$_SESSION['user']['name']?></p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
             <!-- search form -->
             <form action="#" method="get" class="sidebar-form">
                 <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <input type="text" name="q" class="form-control" placeholder="Поиск...">
                     <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
@@ -171,19 +172,23 @@
                         <li><a href="<?= ADMIN ?>/product/add">Добавить товар</a></li>
                     </ul>
                 </li>
-                <li><a href="<?= ADMIN ?>/cache"><i class="fa fa-database"></i> <span>Кэширование</span></a></li>
+                <!--<li><a href="<?/*= ADMIN */?>/cache"><i class="fa fa-database"></i> <span>Кэширование</span></a></li>-->
                 <li class="treeview">
                     <a href="#"><i class="fa fa-users"></i> <span>Пользователи</span>
                         <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="<?= ADMIN ?>/user">Список пользователей</a></li>
                         <li><a href="<?= ADMIN ?>/user/add">Добавить пользователя</a></li>
                     </ul>
                 </li>
-               
+
+                <li><a href="<?= ADMIN ?>/recalls"><i class="fa fa-volume-control-phone"></i> <span>Перезвоните мне</span></a></li>
+
+                <li><a href="<?= ADMIN ?>/tryon"><i class="fa  fa-graduation-cap"></i> <span>Примерки товара</span></a></li>
+
                 <li class="treeview">
                     <a href="#"><i class="fa fa-filter"></i> <span>Фильтры</span>
                         <span class="pull-right-container">
@@ -220,8 +225,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 2.4.0
         </div>
-        <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-        reserved.
+        <strong>Copyright &copy; 2020-2021 <a href="https://megashop.od.ua">MegaShop</a>.</strong> Все права защищены.
     </footer>
 
     <!-- Control Sidebar -->

@@ -12,6 +12,8 @@ use RedBeanPHP\R;
 
 class ProductController extends AppController
 {
+    const vendorCode = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
     public function indexAction()
     {
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
@@ -37,6 +39,8 @@ class ProductController extends AppController
             $product = new Product();
             $data = $_POST;
             $product->load($data);
+
+            $product->attributes['vendor_code'] = substr(str_shuffle(self::vendorCode), 0, 11);
             $product->attributes['status'] = $product->attributes['status'] ? 'visible' : 'hidden';
             $product->attributes['hit'] = $product->attributes['hit'] ? 'yes' : 'no';
             $product->attributes['novelty'] = $product->attributes['novelty'] ? 'yes' : 'no';
@@ -79,6 +83,9 @@ class ProductController extends AppController
             $product = new Product();
             $data = $_POST;
             $product->load($data);
+
+            $product->attributes['vendor_code'] = $product->attributes['vendor_code'] ? $product->attributes['vendor_code']
+              : substr(str_shuffle(self::vendorCode), 0, 11);
             $product->attributes['status'] = $product->attributes['status'] ? 'visible' : 'hidden';
             $product->attributes['hit'] = $product->attributes['hit'] ? 'yes' : 'no';
             $product->attributes['novelty'] = $product->attributes['novelty'] ? 'yes' : 'no';

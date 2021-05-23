@@ -3,6 +3,41 @@
 @import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 
 
+.hide{
+    display: none;
+}
+
+.form-errors{
+    text-align: left;
+    background: #FAFAFA;
+    color: #000;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.success-block{
+    background: #fafafa;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+.success-order-block{
+    background: #fff;
+    width: 90%;
+    margin: 25px auto;
+    padding: 50px 25px;
+    text-align: center;
+}
+
+.success-order-title{
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+.success-order-block .material-icons{
+    font-size: 90px;
+}
+
 .container{
 	min-width: auto!important;
 }
@@ -80,6 +115,25 @@ body.nav-is-toggled{
 	background: transparent;
 }
 
+.header__column--right .header__section{
+    display: flex;
+    align-items: center
+}
+
+.header__column--right .header__section .site-menu__item{
+    margin-right: 35px;
+    display: flex;
+    align-items: center;
+}
+
+.header__column--right .header__section .site-menu__item .material-icons.outlined{
+    color: #fff;
+}
+
+#userState{
+    background: #fff;
+}
+
 
 /* ====== header ===========*/
 
@@ -143,6 +197,11 @@ body.nav-is-toggled{
 
 
 /* ====== product ===========*/
+
+.empty-cart-title{
+    text-align: center;
+    margin: 75px auto 50px auto!important;
+}
 
 .no-products{
     text-align: center;
@@ -255,6 +314,17 @@ body.nav-is-toggled{
 
 
 /* ====== footer ===========*/
+
+.accountItem{
+    display: flex;
+    align-items: center;
+}
+
+.material-icons.outlined{
+    font-size: 14px;
+    margin-left: 5px;
+    cursor: pointer;
+}
 
 .footer__logo-img{
 	width: 170px;
@@ -512,6 +582,15 @@ transform: translate(0, 4px);
   margin-left: 15px;
 }
 
+#cartMobileCount {
+    color: #fff;
+    position: absolute;
+    top: -2px;
+    right: -8px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
 .mobile-recall{
 	color: #ff680d;
     font-weight: bold;
@@ -580,6 +659,21 @@ transform: translate(0, 4px);
 .nav-expand .nav-expand-content .nav-expand-content .nav-expand-content .nav-expand-content .nav-link {
   background-color: #59e1cb;
 }
+
+
+.account-mobile{
+    display: flex;
+    align-items: center;
+}
+
+.account-mobile .nav-link{
+     padding-right: 5px;
+}
+
+.account-mobile .material-icons{
+    color: #000;
+}
+
 /* ====== mobile menu ===========*/
 
 
@@ -601,6 +695,10 @@ transform: translate(0, 4px);
 
 @media screen and (max-width: 991px) {
 
+
+.container{
+    min-height: calc(100% - 49px);
+}
 
 .productsSlider-image, .recentProducts-image {
     height: 240px;
@@ -710,11 +808,6 @@ transform: translate(0, 4px);
 
   .catalog__middle-col--left, .catalog__controls{
     display: none;
-  }
-
-
-  .checkout{
-    padding-top: 50px;
   }
 
 

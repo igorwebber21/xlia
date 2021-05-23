@@ -12,6 +12,7 @@ class Product extends AppModel {
 
     public $attributes = [
       'title' => '',
+      'vendor_code' => '',
       'category_id' => '',
       'keywords' => '',
       'description' => '',

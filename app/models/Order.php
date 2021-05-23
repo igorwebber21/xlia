@@ -46,8 +46,8 @@ class Order extends AppModel
 
     public static function saveOrderDelivery($order_id, $data)
     {
-        $sql_part = "($order_id, '{$data['deliveryMethod']}', '{$data['paymentMethod']}', '{$data['deliveryCity']}', '{$data['deliveryBranch']}')";
-        R::exec("INSERT INTO user_delivery (order_id, delivery_method, payment_method, delivery_city, delivery_branch) VALUES $sql_part");
+        $sql_part = "($order_id, '{$data['deliveryMethod']}', '{$data['paymentMethod']}', '{$data['deliveryCity']}')";
+        R::exec("INSERT INTO user_delivery (order_id, delivery_method, payment_method, delivery_city) VALUES $sql_part");
     }
 
     public static function mailOrder($order_id, $user_email)

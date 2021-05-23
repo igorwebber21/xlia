@@ -15,16 +15,16 @@
     <div class="row">
         <div class="col-md-12">
             <div class="box">
-                <form action="<?=ADMIN;?>/user/edit" method="post" data-toggle="validator">
+                <form action="<?=ADMIN;?>/user/edit" method="post" data-toggle="validator" >
                     <div class="box-body">
                         <div class="form-group has-feedback">
                             <label for="login">Логин</label>
-                            <input type="text" class="form-control" name="login" id="login" value="<?=h($user->login);?>" required>
+                            <input type="text" class="form-control" autocomplete="off" name="login" id="login" value="<?php echo h($user->login); ?>" required>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         </div>
                         <div class="form-group">
                             <label for="password">Пароль</label>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Введите пароль, если хотите его изменить">
+                            <input type="password" class="form-control" autocomplete="new-password" name="password" id="password" placeholder="Введите пароль, если хотите его изменить">
                         </div>
                         <div class="form-group has-feedback">
                             <label for="name">Имя</label>

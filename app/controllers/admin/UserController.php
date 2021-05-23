@@ -84,8 +84,8 @@ class UserController extends AppController
         $user_id = $this->getRequestID();
         $user = R::load('user', $user_id);
 
-        $orders = R::getAll("SELECT `orders`.`id`, `orders`.`user_id`, `orders`.`status`, `orders`.`date`, `orders`.`update_at`, `orders`.`currency`, 
-                                            ROUND(SUM(`order_product`.`price`), 2) AS `sum` 
+        $orders = R::getAll("SELECT `orders`.`id`, `orders`.`user_id`, `orders`.`status`, `orders`.`date`, `orders`.`update_at`, `orders`.`currency`,
+                                  `orders`.`sum` 
                                    FROM `orders`
                                    JOIN `order_product` ON `orders`.`id` = `order_product`.`order_id`
                                    WHERE user_id = {$user_id} GROUP BY `orders`.`id` 

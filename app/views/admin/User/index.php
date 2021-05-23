@@ -16,7 +16,7 @@
             <div class="box">
                 <div class="box-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
+                        <table class="table table-bordered table-hover text-center">
                             <thead>
                             <tr>
                                 <th>ID</th>
@@ -30,7 +30,7 @@
                             <tbody>
                             <?php foreach($users as $user): ?>
                                 <td><?=$user->id;?></td>
-                                <td><?=$user->login;?></td>
+                                <td><?php echo $user->login ? $user->login : "-";?></td>
                                 <td><?=$user->email;?></td>
                                 <td><?=$user->name;?></td>
                                 <td><?=$user->role;?></td>

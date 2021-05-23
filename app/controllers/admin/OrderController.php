@@ -19,8 +19,8 @@ class OrderController extends AppController
         $start = $pagination->getStart();
 
         $orders = R::getAll("SELECT `orders`.`id`, `orders`.`user_id`, `orders`.`status`, `orders`.`date`, `orders`.`update_at`, 
-                                  `orders`.`currency`, `user`.`fname`, `user`.`lname`, ROUND(SUM(`order_product`.`price`), 2) AS `sum`,
-                                  COUNT(`order_product`.id) AS `productsCount`
+                                  `orders`.`currency`, `user`.`name`, `orders`.`sum`,
+                                  COUNT(`order_product`.id) AS `productsCount`, SUM(`order_product`.qty) AS `productsQty`
                                   FROM `orders`
                                   JOIN `user` ON `orders`.`user_id` = `user`.`id`
                                   JOIN `order_product` ON `orders`.`id` = `order_product`.`order_id`
@@ -33,7 +33,7 @@ class OrderController extends AppController
     public function viewAction()
     {
         $order_id = $this->getRequestID();
-        $order = R::getRow("SELECT `orders`.*,  `user`.`fname`, `user`.`lname`,  ROUND(SUM(`order_product`.`price`), 2) AS `sum`
+        $order = R::getRow("SELECT `orders`.*,  `user`.`name`
                                 FROM `orders`
                                 JOIN `user` ON `orders`.`user_id` = `user`.`id`
                                 JOIN `order_product` ON `orders`.`id` = `order_product`.`order_id`

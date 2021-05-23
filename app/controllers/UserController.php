@@ -15,12 +15,14 @@
 
             if(!empty($_POST))
             {
+                //debug($_POST,1);
+
                 $user = new User();
                 $user->rules['required'][] = ['password'];
                 $user->attributes['password'] = $_POST['userPassword'] ? $_POST['userPassword'] : '';
                 $generatedPassword = $user->attributes['password'];
 
-                if(!$user->attributes['password'] || $user->attributes['password'] != $_POST['userPasswordRepeat'])
+                if(!$user->attributes['password'])
                 {
                     $this->responseData["message"] = '<p>Ошибка! Введенные Вами пароли не совпадают</p>';
                     self::sendResponse($this->responseData);
@@ -28,9 +30,7 @@
 
                 $user->attributes['email'] = $_POST['userEmail'];
                 $user->attributes['phone'] = $_POST['userPhone'];
-                $user->attributes['fname'] = $_POST['userName'];
-                $user->attributes['lname'] = $_POST['userLastName'];
-                $user->attributes['address'] = $_POST['userCity'];
+                $user->attributes['name'] = $_POST['userName'];
 
                if(!$user->validate($user->attributes) || !$user->checkUnique())
                {
@@ -45,9 +45,10 @@
                    if ($user->save('user'))
                    {
                        //если зарегистрировали - отправляем Email с данными для входа
-                       $user::sendEmailPassword($generatedPassword, $user->attributes);
+                       // $user::sendEmailPassword($generatedPassword, $user->attributes);
                        $this->responseData['status'] = 1;
-                       $this->responseData['message'] = '<p>Вы успешно зарегистрированы</p>';
+                       $this->responseData['message'] = '<h3 class="text-center">Вы успешно зарегистрированы</h3>
+                            <p class="text-center">Для входа на сайт, нажмите на кнопку "Вход" и введите Ваш Email и пароль</p>';
                    }
                    else
                    {
@@ -64,6 +65,9 @@
         // Авторизация
         public function loginAction()
         {
+
+         // debug($_POST, 1);
+
             if($_POST['userLogin'] && $_POST['userPassword'])
             {
                 $user = new User();
@@ -90,7 +94,7 @@
         public function logoutAction()
         {
             if(isset($_SESSION['user'])) unset($_SESSION['user']);
-            redirect(PATH);
+            redirect();
         }
 
         // Страница Личного Кабинета
@@ -129,6 +133,62 @@
 
             $this->set(compact('orders'));
         }
+
+
+        public function recallAction()
+        {
+          $sql_part = '';
+
+          $recallName =  isset($_POST['recallName']) ? $_POST['recallName'] : "";
+          $recallPhone =  isset($_POST['recallPhone']) ? $_POST['recallPhone'] : "";
+          $date = date('Y-m-d H:i');
+
+          if($recallName && $recallPhone)
+          {
+            $sql_part .= "('$recallName', '$recallPhone', '$date')";
+
+            $sql_part = rtrim($sql_part, ',');
+            R::exec("INSERT INTO recalls (user_name, user_phone, date) VALUES $sql_part");
+
+            $this->responseData['status'] = 1;
+            $this->responseData['message'] = '<p>Ваша заявка принята.</p> <p>Ожидайте, с Вами свяжутся в ближайшее время</p>';
+            self::sendResponse($this->responseData);
+          }
+
+          $this->responseData['status'] = 0;
+          $this->responseData['message'] = 'Ошибка попробуйте еще раз';
+          self::sendResponse($this->responseData);
+
+        }
+
+      public function tryOnAction()
+      {
+       // debug($_POST, 1);
+        $sql_part = '';
+
+        $userName =  isset($_POST['userName']) ? $_POST['userName'] : "";
+        $userPhone =  isset($_POST['userPhone']) ? $_POST['userPhone'] : "";
+        $userState =  isset($_POST['userState']) ? $_POST['userState'] : "";
+        $productId =  isset($_POST['productId']) ? (int)$_POST['productId'] : 0;
+
+        $date = date('Y-m-d H:i');
+
+        if($userName && $userPhone && $userState)
+        {
+          $sql_part .= "('$productId', '$userName', '$userPhone', '$userState', '$date')";
+          $sql_part = rtrim($sql_part, ',');
+          R::exec("INSERT INTO tryon (product_id, user_name, user_phone, state, date) VALUES $sql_part");
+
+          $this->responseData['status'] = 1;
+          $this->responseData['message'] = '<p>Ваша заявка принята.</p> <p>Ожидайте, с Вами свяжутся в ближайшее время</p>';
+          self::sendResponse($this->responseData);
+        }
+
+        $this->responseData['status'] = 0;
+        $this->responseData['message'] = 'Ошибка попробуйте еще раз';
+        self::sendResponse($this->responseData);
+
+      }
 
         //========== user cabinet  ==========//
         public function editAction()
@@ -240,6 +300,9 @@
         // восстановление пароля
         public function passwordRecoveryAction()
         {
+
+          //  debug($_POST,1 );
+
             if(!empty($_POST) && isset($_POST['emailRecovery']))
             {
                  $email = h($_POST['emailRecovery']);
@@ -254,7 +317,7 @@
 
                      if($user->updateUserPassword())
                      {
-                         $user::sendEmailPassword($generatedPassword, $userData);
+                        // $user::sendEmailPassword($generatedPassword, $userData);
 
                          $this->responseData['status'] = 1;
                          $this->responseData['message'] = '<p>Письмо с инструкцией по восстановлению пароля отправлено на почту <strong>'.$email.'</strong></p>';

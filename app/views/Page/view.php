@@ -6,7 +6,7 @@
           <section class="page">
             <nav class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
               <div class="breadcrumbs-i" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                <a itemprop="item" href="https://lior-boutique.com/">
+                <a itemprop="item" href="/">
                   <span itemprop="name">Главная</span>
                 </a>
                 <meta itemprop="position" content="1">
@@ -15,8 +15,8 @@
                                 </span>
               </div>
               <div class="breadcrumbs-i" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                                <span itemprop="item" content="https://lior-boutique.com/oplata-i-dostavka/">
-                                    <span itemprop="name">Оплата и доставка</span>
+                                <span itemprop="item">
+                                    <span itemprop="name"><?=$currPage['title']?></span>
                                 </span>
                 <meta itemprop="position" content="2">
               </div>

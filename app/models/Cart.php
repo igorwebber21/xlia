@@ -17,13 +17,13 @@
 
             // если есть модификатор (цвет, размер и т.д.)
             if($mod){
-                $ID = "{$product->id}-{$mod->id}";
-                $title = "{$product->title} ({$mod->title})";
-                $price = $mod->price;
+                $ID = "{$product['id']}-{$mod}";
+                $title = "{$product['title']} (Размер {$mod})";
+                $price = $product['price'];
             }else{
-                $ID = $product->id;
-                $title = $product->title;
-                $price = $product->price;
+                $ID = $product['id'];
+                $title = $product['title'];
+                $price = $product['price'];
             }
 
             // если товар уже добавлен в козину, добавить количество +qty
@@ -34,9 +34,10 @@
                 $_SESSION['cart'][$ID] = [
                     'qty' => $qty,
                     'title' => $title,
-                    'alias' => $product->alias,
+                    'alias' => $product['alias'],
                     'price' => $price * $_SESSION['cart.currency']['value'],
-                    'img' => $product->img,
+                    'old_price' => $product['old_price'] * $_SESSION['cart.currency']['value'],
+                    'img' => explode(',', $product['base_img'])[0]
                 ];
             }
             // суммарное количество и сумма
@@ -45,22 +46,22 @@
            // debug($_SESSION);
         }
 
-        public function changeCart($product, $operation, $mod = null)
+        public function changeCart($product, $operation, $prodData = null)
         {
-            if(isset($_SESSION['cart'][$product->id]))
+            if(isset($_SESSION['cart'][$prodData]))
             {
                 if($operation == 'minus')
                 {
-                    if($_SESSION['cart'][$product->id]['qty'] > 1)
+                    if($_SESSION['cart'][$prodData]['qty'] > 1)
                     {
-                        $_SESSION['cart'][$product->id]['qty']--;
+                        $_SESSION['cart'][$prodData]['qty']--;
                         $_SESSION['cart.qty']--;
                         $_SESSION['cart.sum'] -= $product->price*$_SESSION['cart.currency']['value'];
                     }
                 }
                 elseif ($operation == 'plus')
                 {
-                    $_SESSION['cart'][$product->id]['qty']++;
+                    $_SESSION['cart'][$prodData]['qty']++;
                     $_SESSION['cart.qty']++;
                     $_SESSION['cart.sum'] += $product->price*$_SESSION['cart.currency']['value'];
                 }

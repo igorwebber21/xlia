@@ -54,7 +54,7 @@
                                     <div class="product-header__block">
                                         <div class="product-header__code product-header__code--filled">
                                             <span class="product-header__code-title">Артикул</span>
-                                            642BeigeUNI
+                                            <?=$product['vendor_code']?>
                                         </div>
                                     </div>
                                 </div>
@@ -310,10 +310,10 @@
                                                             </div>
                                                             <div class="modification__body">
                                                                 <div class="modification__list">
-                                                                    <a href="javascript:void(0);" onclick="return false;" data-value="15" class="modification__button btn">XS</a>
-                                                                    <a href="javascript:void(0);" onclick="return false;" data-value="15" class="modification__button btn modification__button--active">S</a>
-                                                                    <a href="javascript:void(0);" onclick="return false;" data-value="15" class="modification__button btn">M</a>
-                                                                    <a href="javascript:void(0);" onclick="return false;" data-value="15" class="modification__button btn">L</a>
+                                                                    <a href="javascript:void(0);" data-value="15" class="modification__button btn">XS</a>
+                                                                    <a href="javascript:void(0);" data-value="15" class="modification__button btn">S</a>
+                                                                    <a href="javascript:void(0);" data-value="15" class="modification__button btn">M</a>
+                                                                    <a href="javascript:void(0);" data-value="15" class="modification__button btn">L</a>
                                                                 </div>
                                                                 <input type="hidden" id="j-mod-prop-volume" data-prop="volume" name="param[volume]" value="15">
                                                             </div>
@@ -350,10 +350,9 @@
 
                                                         </div>
                                                         <div class="product-order__block product-order__block--buy">
-                                                            <a class="btn __special add-to-cart" data-quantity="1" id="j-buy-button-widget-5245"  href="javascript:void(0);"
-                                                               onclick="addToCart()">
+                                                            <span class="btn __special add-to-cart" id="prod-<?=$product['id']?>">
                                                                 <span class="btn-content">Купить</span>
-                                                            </a>
+                                                            </span>
                                                         </div>
                                                         <div class="product-order__block product-order__block--buy product-order__block--tryon">
                                                             <a class="btn __special green-btn" data-quantity="1" id="productTryOn"  href="javascript:void(0);"
@@ -390,7 +389,7 @@
                                                 <p>
                                                     Доставка заказов осуществляется Транспортной Компанией <strong>«Новая Почта»</strong> или <strong>«Укр Почта»</strong>. Срок доставки 2-3 дня с момента подтверждения заказа при наличии товара на складе. При заказе товара от 5 единиц доставка осуществляется бесплатно.
                                                 </p>
-                                                <p>Подробнее читайте <a href="/?view=oplata-i-dostavka" class="a-pseudo-active">тут</a></p>
+                                                <p>Подробнее читайте <a href="/oplata-i-dostavka" class="a-pseudo-active">тут</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -405,7 +404,7 @@
                                                     <strong>Наложенный платеж</strong><br/>
                                                     Оплата при получении в отделении «Нова Почта» + 2% комиссии от суммы заказа за наложенный платеж Заказы отправляются по предоплате 10% от стоимости заказа, но не менее 100 UAH.
                                                 </p>
-                                                <p>Подробнее читайте <a href="/?view=oplata-i-dostavka" class="a-pseudo-active">тут</a></p>
+                                                <p>Подробнее читайте <a href="/oplata-i-dostavka" class="a-pseudo-active">тут</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -416,7 +415,7 @@
                                                     Вы можете обменять или вернуть купленный товар в течение 14 дней после получения посылки.
                                                     Как только возвращенный вами товар будет получен и проверен на нашем складе, мы незамедлительно свяжемся с вами по телефону либо эл. почту.
                                                 </p>
-                                                <p>Подробнее читайте <a href="/?view=obmen-i-vozvrat" class="a-pseudo-active">тут</a></p>
+                                                <p>Подробнее читайте <a href="/obmen-i-vozvrat" class="a-pseudo-active">тут</a></p>
                                             </div>
                                         </div>
                                     </div>

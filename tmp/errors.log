@@ -19110,3 +19110,13 @@
                                 Файл: C:\OSPanel\domains\xlia\vendor\ishop\core\Router.php | 
                                 Строка: 51 
  ___________________________________ 
+[20.05.2021 09:56:13]
+                                Текст ошибки: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'novelty' in 'where clause' | 
+                                Файл: C:\OSPanel\domains\xlia\vendor\gabordemooij\redbean\RedBeanPHP\Driver\RPDO.php | 
+                                Строка: 194 
+ ___________________________________ 
+[20.05.2021 09:56:13]
+                                Текст ошибки: Страница не найдена | 
+                                Файл: C:\OSPanel\domains\xlia\vendor\ishop\core\Router.php | 
+                                Строка: 51 
+ ___________________________________ 

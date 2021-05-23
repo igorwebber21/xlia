@@ -14,9 +14,7 @@
 
         public $attributes = [
             'password' => '',
-            'login' => '',
-            'fname' => '',
-            'lname' => '',
+            'name' => '',
             'birthday' => '',
             'email' => '',
             'phone' => '',
@@ -28,8 +26,7 @@
 
         public $rules = [
             'required' => [
-                ['fname'],
-                ['lname'],
+                ['name'],
                 ['email'],
                 ['phone'],
             ],
@@ -47,10 +44,10 @@
 
             if($user){
                 if($user->phone == $this->attributes['phone']){
-                    $this->errors['unique'][] = 'Этот телефон уже занят';
+                    $this->errors['unique'][] = 'Этот телефон уже зарегистрирован. Войдите на сайт или введите другой телефон.';
                 }
                 if($user->email == $this->attributes['email']){
-                    $this->errors['unique'][] = 'Этот Email уже занят';
+                    $this->errors['unique'][] = 'Этот Email уже зарегистрирован. Войдите на сайт или введите другой Email.';
                 }
                 return false;
             }

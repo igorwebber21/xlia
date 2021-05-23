@@ -179,6 +179,7 @@
                     </div>
                     <div class="box-footer">
                         <input type="hidden" name="id" value="<?=$product->id;?>">
+                        <input type="hidden" name="vendor_code" value="<?=$product->vendor_code;?>">
                         <button type="submit" class="btn btn-success">Сохранить</button>
                     </div>
                 </form>
